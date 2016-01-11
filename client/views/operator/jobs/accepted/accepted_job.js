@@ -58,6 +58,7 @@ Template.acceptedJob.onRendered(function() {
         var target = event.target;
         target.setAttribute('data-x', x);
         target.setAttribute('data-y', y);
+        $(target).addClass('dragged');
       },
       // call this function on every dragend event
       onend: function(event) {
@@ -68,6 +69,7 @@ Template.acceptedJob.onRendered(function() {
 
         target.setAttribute('data-x', startX);
         target.setAttribute('data-y', startY);
+        $(target).removeClass('dragged');
       }
     });
 

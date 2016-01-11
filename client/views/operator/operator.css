@@ -45,6 +45,9 @@
     -o-transition: none;
     transition: none;
 }
+.ui.card.dragged {
+  z-index: 999;
+}
 .ui.card .content a {
   color: #31797D;
 }
