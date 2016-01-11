@@ -1,7 +1,7 @@
 Session.setDefault('selectedJob', null);
 Session.setDefault('jobsSortOrder', {submitted: -1, jobNum: -1});
 
-Meteor.subscribe("directory");
+//Meteor.subscribe("directory");
 
 // Randomly tada the logo.
 Meteor.setInterval(function(){
