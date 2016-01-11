@@ -1,6 +1,4 @@
-# README #
-
-### What is this repository for? ###
+### Intro ###
 **3D/Paper Print Room Proof of Concept (POC).**
 
 ### How do I get set up? ###
