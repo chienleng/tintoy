@@ -1,0 +1,41 @@
+<template name="operator">
+  {{> operatorHeader}}
+
+  <div class="ui container">
+
+    <div class="ui stackable padded grid">
+      <!-- <div class="one column center aligned row">
+        <div class="column">
+          <div class="ui dropdown item">
+            All Jobs
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item">Submitted</div>
+              <div class="item">Accepted</div>
+              <div class="item">Done</div>
+              <div class="item">Rejected</div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="three column row">
+        <div class="column">
+          {{> submittedJobs}}
+        </div>
+
+        <div class="column">
+          {{> acceptedJobs}}
+          {{> rejectedJobs}}
+        </div>
+
+        <div class="column">
+          {{> doneJobs}}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  {{> jobModals}}
+</template>

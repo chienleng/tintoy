@@ -1,0 +1,24 @@
+<template name="jobModals">
+  {{> jobDetails}}
+
+  {{#with selectedJob}}
+  <div class="ui reject-message modal">
+    <div class="header">Job Details — #{{jobNum}}</div>
+    <div class="content" style="display: flex;">
+      <form action="" class="ui form segment" style="margin: 0; border-radius: 0; width: 100%">
+        <div class="field">
+          <label>Rejection Message</label>
+          <textarea>Computer says no.</textarea>
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div class="ui red ok reject-confirm right labeled icon button">
+        Reject
+        <i class="remove icon"></i>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+
+</template>

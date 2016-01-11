@@ -1,0 +1,28 @@
+<template name="user">
+  <!-- TODO:
+        - header
+        - Redesign a better UI
+        -
+  -->
+  {{> userHeader}}
+  <div class="ui container">
+    <div class="ui four column padded grid">
+
+      <div class="sixteen wide column">
+        <div class="ui basic segment">
+          <div class="ui medium header">Announcements</div>
+          {{> userAnnouncements}}
+        </div>
+      </div>
+
+      <div class="sixteen wide column">
+        <div class="ui basic segment">
+          <div class="ui medium header">Jobs</div>
+          {{> addJob}}
+          {{> jobs}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>

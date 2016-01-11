@@ -1,0 +1,81 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?mqwbjy');
+	src:url('fonts/icomoon.eot?mqwbjy#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?mqwbjy') format('truetype'),
+		url('fonts/icomoon.woff?mqwbjy') format('woff'),
+		url('fonts/icomoon.svg?mqwbjy#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-happy:before {
+	content: "\e900";
+}
+.icon-smile:before {
+	content: "\e901";
+}
+.icon-tongue:before {
+	content: "\e902";
+}
+.icon-sad:before {
+	content: "\e903";
+}
+.icon-wink:before {
+	content: "\e904";
+}
+.icon-grin:before {
+	content: "\e905";
+}
+.icon-cool:before {
+	content: "\e906";
+}
+.icon-angry:before {
+	content: "\e907";
+}
+.icon-evil:before {
+	content: "\e908";
+}
+.icon-shocked:before {
+	content: "\e909";
+}
+.icon-baffled:before {
+	content: "\e90a";
+}
+.icon-confused:before {
+	content: "\e90b";
+}
+.icon-neutral:before {
+	content: "\e90c";
+}
+.icon-hipster:before {
+	content: "\e90d";
+}
+.icon-wondering:before {
+	content: "\e90e";
+}
+.icon-sleepy:before {
+	content: "\e90f";
+}
+.icon-frustrated:before {
+	content: "\e910";
+}
+.icon-crying:before {
+	content: "\e911";
+}
+

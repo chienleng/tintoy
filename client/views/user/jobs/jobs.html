@@ -1,0 +1,30 @@
+<template name="jobs">
+
+  <table class="ui selectable stackable padded table">
+    <thead>
+      <tr>
+        <th>Job#</th>
+        <th>Filename</th>
+        <th>Status</th>
+        <th>Charged to</th>
+        <th>Submitted</th>
+        <th>Required by</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each jobs}}
+      <tr>
+        <td>#{{jobNum}}</td>
+        <td class="collapsing">
+          <i class="cube icon"></i> {{customName}} {{filename}}
+        </td>
+        <td>{{status}}</td>
+        <td>{{account.type}}</td>
+        <td class="right aligned collapsing">{{calendarDate submitted}}</td>
+        <td class="right aligned collapsing">{{calendarDate pickupDate}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</template>

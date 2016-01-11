@@ -1,0 +1,52 @@
+.accepted-jobs, .rejected-jobs {
+  min-height: 50px;
+}
+.rejected-jobs {
+  -webkit-transition: all ease-out .1s;
+    -moz-transition: all ease-out .1s;
+    -o-transition: all ease-out .1s;
+    transition: all ease-out .1s;
+}
+.drop-zone {
+  height: 200px;
+  display: none;
+  opacity: 0;
+  -webkit-transition: all ease-out .1s;
+    -moz-transition: all ease-out .1s;
+    -o-transition: all ease-out .1s;
+    transition: all ease-out .1s;
+}
+.drop-zone.drop-active {
+  display: block;
+  background-color: #eee;
+  opacity: 1;
+}
+.drop-zone.drop-target {
+  background-color: #ddd;
+  opacity: 1;
+}
+.card.can-drop {
+
+}
+
+.rejected-jobs.drop-active .card,
+.accepted-jobs.drop-active .card,
+.done-jobs.drop-active .card {
+  display: none;
+}
+
+.ui.card {
+  /*z-index: 999;*/
+  border-radius: 1px;
+  /*border: 1px solid #f1f1f1;*/
+  -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+.ui.card .content a {
+  color: #31797D;
+}
+.ui.card .content a:hover {
+  border-bottom: 1px solid #31797D;
+}

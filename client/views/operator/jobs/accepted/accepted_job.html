@@ -1,0 +1,24 @@
+<template name="acceptedJob">
+  <div data-id="{{_id}}" class="ui fluid link card accepted-job">
+    <div class="content" style="padding: 0.5em 1em; color: #31797D;">
+      <span class="left floated" style="font-weight: light;">
+        #{{jobNum}}
+      </span>
+      <span class="right floated" style="font-size: 0.8em; margin-right: 40px;">
+        <i class="user icon"></i>{{userId}}
+      </span>
+    </div>
+    <div class="content">
+      <span class="ui right corner label" style="border-color: #F23C55; color: #fff;"><i class="cube icon"></i></span>
+      <div class="description">
+        <a href="#" style="color: #31797D;"><i class="download icon"></i>{{filename}}</a>
+        <span class="right floated">
+          <small>
+            {{fromNow submitted}}
+          </small>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</template>

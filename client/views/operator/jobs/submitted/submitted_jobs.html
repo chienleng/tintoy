@@ -1,0 +1,11 @@
+<template name="submittedJobs">
+  <div class="ui basic segment incoming-jobs">
+    <div class="ui medium header">
+      Submitted
+      <small style="float: right;">
+        <a href="#"><i class="sort icon"></i></a>
+      </small>
+    </div>
+    {{#each incoming}} {{> incomingJob}} {{/each}}
+  </div>
+</template>

@@ -1,0 +1,44 @@
+.preview .icon {
+  position: relative;
+  margin-top: 80px;
+  left: 33%;
+  font-size: 6em;
+  color: #fff;
+  text-shadow: -8px 7px 0 #ddd;
+}
+.ui.form .inline.field > label {
+  width: 100px;
+}
+
+/*colour picker*/
+.sp-container {
+  border: none;
+}
+.sp-replacer {
+  border: none;
+  margin: 1px;
+  padding: 8px;
+  color: #888
+}
+.sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner {
+  background-image: url(/img/tick_white.png);
+}
+.sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner {
+  background-image: url(/img/tick_black.png);
+}
+
+.dropzone {
+  /*border: 10px solid transparent;*/
+  border: 0;
+  min-height: 0;
+  border-radius: 6px;
+  /*padding: 0;*/
+}
+.dropzone:hover {
+  /*border-color: #B7DA9B;*/
+  background-color: #eee;
+}
+.dropzone .dz-message {
+  font-weight: bold;
+  text-transform: uppercase;
+}

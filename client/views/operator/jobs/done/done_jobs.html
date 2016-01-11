@@ -1,0 +1,15 @@
+<template name="doneJobs">
+  <div class="ui green segment done-jobs">
+    <div class="ui medium header">
+      Done
+      <small style="float: right;">
+        <a href="#"><i class="sort icon"></i></a>
+      </small>
+    </div>
+    <div class="drop-zone">
+
+    </div>
+
+    {{#each done}} {{> doneJob}} {{/each}}
+  </div>
+</template>

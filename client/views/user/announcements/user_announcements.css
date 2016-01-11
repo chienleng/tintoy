@@ -1,0 +1,9 @@
+.event {
+  border-bottom: 1px solid #ddd;
+}
+.event:last-child {
+  border-bottom: none;
+}
+.ui.feed > .event > .content .summary {
+  font-weight: normal;
+}

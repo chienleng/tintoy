@@ -1,0 +1,110 @@
+<template name="jobModal">
+  <div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Submit your job</div>
+    <div class="content" style="display: flex;">
+      <div class="image ui basic segment" style="width: 40%; margin: 0; border: 3px dotted #fff; background-color: #ccc;">
+        <span class="ui left corner label"><i class="cube icon"></i></span>
+        <div class="preview ">
+          <i class="cubes icon"></i>
+        </div>
+      </div>
+      <div class="description" style="width: 60%;">
+
+        <form action="" class="job-submission ui form segment" style="margin: 0; border-radius: 0; width: 100%">
+          <span class="ui green ribbon label" style="margin-bottom: 10px;">Job Settings</span>
+          <!-- <h4 class="ui dividing header">Job Settings</h4> -->
+          <!-- <div class="ui header">Details</div> -->
+
+          <div class="field">
+            <label>Job name</label>
+            <input type="text" class="job-custom-name" placeholder="Optional job name">
+          </div>
+
+          <div class="fields">
+            <div class="three wide field">
+              <label>Color</label>
+              <input type='text' id="colorpicker" />
+            </div>
+
+            <div class="thirteen wide field">
+              <label>Required by</label>
+              <input type="text" id="datepicker">
+            </div>
+          </div>
+
+
+          <!-- <div class="ui divider"></div> -->
+
+          <span class="ui green ribbon label" style="margin-bottom: 10px;">Costs & Account Selection</span>
+          <!-- <div class="ui header">Costs</div> -->
+
+          <div class="fields">
+            <div class="four wide field">
+              <label>Estimated</label>
+              <div class="ui big label">$5.20</div>
+            </div>
+
+            <div class="twelve wide field">
+
+              <div class="account-charge field" style="margin-bottom: 10px;">
+                <label>Charge to</label>
+                <div class="ui dropdown labeled search icon green basic button">
+                  <i class="fa fa-folder-o icon"></i>
+                  <input type="hidden" name="account" value="personal">
+                  <!-- <i class="dropdown icon"></i> -->
+                  <div class="text"></div>
+                  <div class="menu">
+                    <div class="item" data-value="personal">Personal Account</div>
+                    <div class="item" data-value="shared">Shared Account</div>
+                    <div class="item" data-value="code">Account with PIN / Code</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="account-selection field">
+                <label>Account</label>
+                <div class="ui search selection dropdown" style="">
+                  <input type="hidden" name="country">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Choose department</div>
+                  <div class="menu">
+                    <div class="item" data-value="1">Biology Science</div>
+                    <div class="item" data-value="2">Business</div>
+                    <div class="item" data-value="3">Communications & Arts</div>
+                    <div class="item" data-value="4">Computing & Security</div>
+                    <div class="item" data-value="5">Engineering & Technology</div>
+                    <div class="item" data-value="6">Exercise & Health Sciences</div>
+                    <div class="item" data-value="7">Medical Sciences</div>
+                    <div class="item" data-value="8">Nursing & Midwifery</div>
+                    <div class="item" data-value="9">Performing Arts</div>
+                    <div class="item" data-value="10">Psychology Science</div>
+                    <div class="item" data-value="11">Teacher Education</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="code field">
+                <label>PIN / Code</label>
+                <input type="number" style="width: 100px;">
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui cancel button">
+        Cancel
+      </div>
+      <div class="ui green approve right labeled icon button">
+        Submit
+        <i class="upload cloud icon"></i>
+      </div>
+    </div>
+  </div>
+
+</template>
