@@ -6,20 +6,24 @@
   -->
   <div class="ui two column centered grid">
     <div class="column">
-      <h1 class="home-title">I want to</h1>
+      <h1 class="home-title">Demo — Choose a persona</h1>
     </div>
 
     <div class="four column centered row">
       <div class="column">
-        <a class="take-pill" href="/user">
-          <i class="icon-cool animated bounceIn"></i>
-          <span>Print stuff</span>
-        </a>
+        <div class="ui vertical buttons">
+          {{#each users}}
+          <a href="/user/{{_id}}" class="ui right labeled icon button">
+            <i class="right arrow icon"></i> {{username}}
+          </a>
+          {{/each}}
+        </div>
       </div>
       <div class="column">
-        <a class="take-pill" href="/operator">
-          <i class="icon-hipster animated bounceIn"></i>
-          <span>Manage stuff</span>
+        <a href="/operator" class="ui right labeled icon button">
+          <i class="icon-hipster"></i>
+          Operator Tinny
+          <i class="right arrow icon"></i>
         </a>
       </div>
     </div>
