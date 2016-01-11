@@ -82,7 +82,7 @@ Template.acceptedJob.onRendered(function() {
     // translate the element
     target.style.webkitTransform =
       target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
+      'translate(' + x + 'px, ' + y + 'px) rotate(-5deg)';
 
     // update the posiion attributes
     target.setAttribute('data-x', x);
