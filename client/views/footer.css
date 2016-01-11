@@ -1,0 +1,10 @@
+footer {
+  border-top: 1px dotted #ccc;
+  margin: 40px 0;
+}
+footer p {
+  text-align: center;
+  font-size: 0.8em;
+  padding: 40px 0 20px;
+  color: #999;
+}
