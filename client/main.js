@@ -1,5 +1,7 @@
 Session.setDefault('selectedJob', null);
 
+Session.setDefault('jobsSortOrder', {submitted: -1, jobNum: -1})
+
 // Randomly tada the logo.
 Meteor.setInterval(function(){
    $('.pc-logo').transition('tada');

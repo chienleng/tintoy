@@ -1,5 +1,5 @@
 Template.jobs.helpers({
   jobs: function() {
-    return Jobs.find({}, {sort: {submitted: -1}});
+    return Jobs.find({}, {sort: Session.get('jobsSortOrder')});
   }
 });
