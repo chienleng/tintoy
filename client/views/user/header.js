@@ -5,3 +5,9 @@ Template.userHeader.helpers({
     return _.isUndefined(user) ? "" : user.username;
   }
 });
+
+Template.userHeader.events({
+  "click a.logout": function(event, template){
+     AccountsTemplates.logout();
+  }
+});
