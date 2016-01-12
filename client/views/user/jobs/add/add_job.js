@@ -3,7 +3,10 @@ var newJob = {
   customName: '',
   filename: 'newfile.stl',
   fileExtension: '.stl',
-  userId: 'Steven Tan',
+  user: {
+    id: null,
+    name: ''
+  },
   pickupDate: new Date(),
   status: 'incoming',
   submitted: new Date(), // current time
@@ -40,6 +43,11 @@ Template.addJob.events({
 });
 
 Template.addJob.onRendered(function() {
+  console.log(this.data.currentUser);
+  var user = {
+    id: this.data.currentUser._id,
+    names: this.data.currentUser.names
+  }
   $('.code.field, .account-selection.field').hide();
 
   $('.modal')
@@ -47,6 +55,7 @@ Template.addJob.onRendered(function() {
       onApprove: function() {
         newJob.customName = $('input.job-custom-name').val();
         newJob.jobNum = getNextSequence('jobNum'); // manually insert job num here.
+        newJob.user = user;
         Jobs.insert(newJob);
       }
     })

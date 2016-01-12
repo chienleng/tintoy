@@ -4,13 +4,13 @@
       <div class="item">
         <span class="">
           <img class="pc-logo" src="/img/logotype.png" alt="PaperCut Logo" />
-          {{username}}
+          {{fullName names}}
         </span>
       </div>
       <div class="right menu">
         <a href="/user/settings" class="item"><i class="settings icon"></i> Settings</a>
         <a href="#" class="item"><i class="help icon"></i> Help</a>
-        <a href="#" class="item logout"><i class="sign out icon"></i>Logout</a>
+        <a href="/" class="item logout"><i class="sign out icon"></i>Logout</a>
       </div>
     </div>
   </header>
@@ -19,7 +19,8 @@
       <a href="#" class="item">Summary</a>
       <a href="/operator" class="active item">3D Printing</a>
       <div class="right menu">
-        <div class="item" style="position: absolute; right: 0; padding: 1.5em; background-color: teal; margin-top: -12px; border-radius: 3px;">Current Balance: <span style="font-size: 1.5em; margin-left: 5px;">$20.50</span></div>
+        <div class="item" style="position: absolute; right: 0; padding: 1.5em; background-color: teal; margin-top: -12px; border-radius: 3px;">
+          Current Balance: <span style="font-size: 1.5em; margin-left: 5px;">{{balance}}</span></div>
       </div>
     </div>
   </div>

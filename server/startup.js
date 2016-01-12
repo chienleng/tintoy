@@ -8,5 +8,38 @@ Meteor.startup(function () {
     })
   }
 
-  //TODO: create user accounts if none available
+  if (LabUsers.find().count() === 0) {
+    LabUsers.insert({
+      names: {
+        given: 'Malcolm',
+        surname: 'Reynolds'
+      },
+      balance: 20.5,
+      email: 'malcolm@serenity.org'
+    });
+    LabUsers.insert({
+      names: {
+        given: 'Hoban',
+        surname: 'Washburne'
+      },
+      balance: 13,
+      email: 'hoban@serenity.org'
+    })
+  }
+
+  /*
+    LABS - workflow
+  */
+  if (Labs.find().count() === 0) {
+    Labs.insert({
+      name: 'Lab Tinny',
+      icon: 'cubes',
+      workflow: 1
+    });
+    Labs.insert({
+      name: 'Lab Billy',
+      icon: 'university',
+      worflow: 2
+    })
+  }
 });

@@ -1,5 +1,8 @@
 Template.home.helpers({
   users: function() {
-    return Meteor.users.find();
+    return LabUsers.find();
+  },
+  labs: function() {
+    return Labs.find();
   }
 });

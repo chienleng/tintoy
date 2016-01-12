@@ -11,7 +11,7 @@
         <div class="ui huge fluid vertical buttons">
           {{#each users}}
           <a href="/user/{{_id}}" class="ui olive right labeled icon button">
-            <i class="send outline icon"></i> {{username}}
+            <i class="send outline icon"></i> {{fullName names}}
           </a>
           {{/each}}
         </div>
@@ -21,14 +21,11 @@
   </div>
       <div class="center aligned column">
         <div class="ui huge fluid vertical buttons">
-          <a href="/operator" class="ui green right labeled icon button">
-            <i class="university icon"></i>
-            Lab Billy
+          {{#each labs}}
+          <a href="/operator/{{_id}}" class="ui green right labeled icon button">
+            <i class="{{icon}} icon"></i> {{name}}
           </a>
-          <a href="/operator" class="ui green right labeled icon button">
-            <i class="cubes icon"></i>
-            Lab Tinny
-          </a>
+          {{/each}}
         </div>
       </div>
     </div>

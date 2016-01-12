@@ -3,6 +3,11 @@
 
   <div class="ui container">
 
+    {{#if noJobs}}
+    <h2 class="ui header">
+      No Jobs — put something fun here.
+    </h2>
+    {{else}}
     <div class="ui stackable padded grid jobs-kanban">
       <!-- <div class="one column center aligned row">
         <div class="column">
@@ -24,20 +29,17 @@
         </div>
 
         <div class="column">
-          {{> acceptedJobs}}
-          {{> rejectedJobs}}
+          {{> acceptedJobs}} {{> rejectedJobs}}
         </div>
 
         <div class="column">
           {{> doneJobs}}
         </div>
-
       </div>
-
     </div>
+    {{/if}}
+
   </div>
 
-  {{> jobModals}}
-
-  {{> footer}}
+  {{> jobModals}} {{> footer}}
 </template>

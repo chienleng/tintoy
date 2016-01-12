@@ -1,5 +1,9 @@
 Template.operator.helpers({
-
+  noJobs: function() {
+    var jobCount = Jobs.find().count();
+    console.log(jobCount);
+    return jobCount === 0 ? true : false;
+  }
 });
 
 Template.operator.events({
