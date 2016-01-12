@@ -8,9 +8,10 @@
     transition: all ease-out .1s;
 }
 .drop-zone {
-  height: 200px;
+  height: 100px;
   display: none;
-  opacity: 0;
+  padding: 20px 10px;
+  border-radius: 3px;
   -webkit-transition: all ease-out .1s;
     -moz-transition: all ease-out .1s;
     -o-transition: all ease-out .1s;
@@ -18,12 +19,63 @@
 }
 .drop-zone.drop-active {
   display: block;
-  background-color: #eee;
-  opacity: 1;
 }
 .drop-zone.drop-target {
-  background-color: #ddd;
-  opacity: 1;
+  -webkit-transform: scale(1.2,1.2);
+  -moz-transform:    scale(1.2,1.2);
+  -ms-transform:     scale(1.2,1.2);
+  -o-transform:      scale(1.2,1.2);
+  transform:         scale(1.2,1.2);
+
+}
+.drop-zone span {
+  font-size: 0.8em;
+  /*font-weight: 100;*/
+  line-height: 0.9em;
+  color: #000;
+}
+.drop-zone i {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+  margin-right: 10px;
+  margin-top: 10px;
+  float: left;
+  color: #000;
+}
+/*.rejected-jobs .drop-zone {
+  background-color: rgba(219,40,40,.1);
+}*/
+.rejected-jobs .drop-zone span,
+.rejected-jobs .drop-zone i {
+  color: rgba(219,40,40,1);
+}
+.rejected-jobs .drop-zone.drop-active {
+  background-color: rgba(219,40,40,.1);
+}
+.rejected-jobs .drop-zone.drop-target {
+  background-color: rgba(219,40,40,.5);
+}
+
+.accepted-jobs .drop-zone span,
+.accepted-jobs .drop-zone i {
+  color: rgba(33,133,208,1);
+}
+.accepted-jobs .drop-zone.drop-active {
+  background-color: rgba(33,133,208,.1);
+}
+.accepted-jobs .drop-zone.drop-target {
+  background-color: rgba(33,133,208,.5);
+}
+
+.done-jobs .drop-zone span,
+.done-jobs .drop-zone i {
+  color: rgba(33,186,69,1);
+}
+.done-jobs .drop-zone.drop-active {
+  background-color: rgba(33,186,69,.1);
+}
+.done-jobs .drop-zone.drop-target {
+  background-color: rgba(33,186,69,.1);
 }
 .card.can-drop {
 
