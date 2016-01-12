@@ -1,3 +1,6 @@
+.jobs-kanban .ui.segment {
+  border-top-width: 5px !important;
+}
 .accepted-jobs, .rejected-jobs {
   min-height: 50px;
 }
@@ -29,10 +32,6 @@
 
 }
 .drop-zone span {
-  font-size: 0.8em;
-  /*font-weight: 100;*/
-  line-height: 0.9em;
-  color: #000;
 }
 .drop-zone i {
   font-size: 1.5em;
@@ -75,7 +74,7 @@
   background-color: rgba(33,186,69,.1);
 }
 .done-jobs .drop-zone.drop-target {
-  background-color: rgba(33,186,69,.1);
+  background-color: rgba(33,186,69,.5);
 }
 .card.can-drop {
 
