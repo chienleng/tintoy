@@ -29,9 +29,16 @@ semantic:ui
 flemay:less-autoprefixer
 momentjs:moment
 fortawesome:fontawesome
+simple:json-routes
+meteorhacks:npm
 
 dbarrett:dropzonejs
 ryanswapp:spectrum-colorpicker
 richsilv:pikaday
 ryanswapp:interactjs
 # ahref:dragula
+
+
+
+
+npm-container

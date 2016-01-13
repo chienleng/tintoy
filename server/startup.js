@@ -1,5 +1,4 @@
 Meteor.startup(function () {
-
   // Store the last recorded sequence
   if (Counters.find().count() === 0) {
     Counters.insert({
