@@ -1,4 +1,4 @@
-Template.incomingJob.events({
+Template.rejectedJob.events({
   "click .link.card": function(event, template) {
     Session.set('selectedJob', this._id);
     // $('.job-details.modal').modal('show');
@@ -6,12 +6,12 @@ Template.incomingJob.events({
 
 });
 
-Template.incomingJob.onRendered(function() {
+Template.rejectedJob.onRendered(function() {
   var x = 0,
     y = 0;
   var startX = 0,
     startY = 0;
-  interact('.incoming-job')
+  interact('.rejected-job')
     .draggable({
       // enable inertial throwing
       inertia: false,

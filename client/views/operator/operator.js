@@ -12,7 +12,7 @@ Template.operator.events({
 
 Template.operator.onRendered(function() {
   interact('.rejected-jobs .drop-zone').dropzone({
-    accept: '.incoming-job',
+    accept: '.incoming-job, .accepted-job, .done-job',
     overlap: 0.75,
     ondropactivate: function(event) {
       $(event.target).closest('.segment').addClass('drop-active');
@@ -62,9 +62,47 @@ Template.operator.onRendered(function() {
     }
   })
 
+  interact('.incoming-jobs .drop-zone').dropzone({
+    accept: '.accepted-job, .rejected-job, .done-job',
+    overlap: 0.75,
+    ondropactivate: function(event) {
+      $(event.target).closest('.segment').addClass('drop-active');
+      event.target.classList.add('drop-active');
+      console.log('ondropactivate');
+
+    },
+    ondropdeactivate: function(event) {
+      // remove active dropzone feedback
+      $(event.target).closest('.segment').removeClass('drop-active');
+      event.target.classList.remove('drop-active');
+      event.target.classList.remove('drop-target');
+      console.log('ondropdeactivate')
+    },
+    ondragenter: function(event) {
+      var draggableElement = event.relatedTarget,
+        dropzoneElement = event.target;
+
+      console.log('ondragenter')
+      dropzoneElement.classList.add('drop-target');
+      draggableElement.classList.add('can-drop');
+    },
+    ondragleave: function(event) {
+      console.log('ondragleave')
+      event.target.classList.remove('drop-target');
+      event.relatedTarget.classList.remove('can-drop');
+    },
+    ondrop: function(event) {
+      var draggableElement = event.relatedTarget;
+      var jobId = $(draggableElement).data('id');
+
+      Session.set('selectedJob', jobId);
+
+      Jobs.update(jobId, {$set: {status: 'incoming'}});
+    }
+  })
 
   interact('.accepted-jobs .drop-zone').dropzone({
-    accept: '.incoming-job',
+    accept: '.incoming-job, .rejected-job, .done-job',
     overlap: 0.75,
     ondropactivate: function(event) {
       $(event.target).closest('.segment').addClass('drop-active');
@@ -104,7 +142,7 @@ Template.operator.onRendered(function() {
 
 
   interact('.done-jobs .drop-zone').dropzone({
-    accept: '.accepted-job',
+    accept: '.accepted-job, .incoming-job, .rejected-job',
     overlap: 0.75,
     ondropactivate: function(event) {
       $(event.target).closest('.segment').addClass('drop-active');

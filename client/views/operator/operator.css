@@ -47,6 +47,17 @@
 /*.rejected-jobs .drop-zone {
   background-color: rgba(219,40,40,.1);
 }*/
+.incoming-jobs .drop-zone span,
+.incoming-jobs .drop-zone i {
+  color: rgba(34,36,38,1);
+}
+.incoming-jobs .drop-zone.drop-active {
+  background-color: rgba(34,36,38,.1);
+}
+.incoming-jobs .drop-zone.drop-target {
+  background-color: rgba(34,36,38,.5);
+}
+
 .rejected-jobs .drop-zone span,
 .rejected-jobs .drop-zone i {
   color: rgba(219,40,40,1);
