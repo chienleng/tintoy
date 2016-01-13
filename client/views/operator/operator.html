@@ -1,7 +1,7 @@
 <template name="operator">
   {{> operatorHeader}}
 
-  <div class="ui container">
+  <div class="ui">
 
     {{#if noJobs}}
     <h2 class="ui header">
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div> -->
-      <div class="three column row">
+      <div class="four column row">
         <div class="column">
           {{> submittedJobs}}
         </div>
@@ -34,6 +34,9 @@
 
         <div class="column">
           {{> doneJobs}}
+        </div>
+
+        <div class="column">
           {{> rejectedJobs}}
         </div>
       </div>
@@ -42,5 +45,6 @@
 
   </div>
 
-  {{> jobModals}} {{> footer}}
+  {{> jobModals}}
+  {{> footer}}
 </template>

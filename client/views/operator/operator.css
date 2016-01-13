@@ -1,7 +1,9 @@
 .jobs-kanban .ui.segment {
   border-top-width: 5px !important;
 }
-.accepted-jobs, .rejected-jobs {
+.incoming-jobs,
+.accepted-jobs,
+.rejected-jobs {
   min-height: 50px;
 }
 .rejected-jobs {
@@ -94,6 +96,7 @@
 
 }
 
+.incoming-jobs.drop-active .card,
 .rejected-jobs.drop-active .card,
 .accepted-jobs.drop-active .card,
 .done-jobs.drop-active .card {
