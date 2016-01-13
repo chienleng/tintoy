@@ -1,11 +1,11 @@
 <template name="home">
-  <div class="ui two column centered grid">
+  <div id="home" class="ui two column centered grid">
     <div class="column">
       <h1 class="home-title">Choose a persona</h1>
     </div>
 
-    <div class="three column centered row">
-      <div class="center aligned column">
+    <div class="three column row">
+      <div class="column">
         <div class="ui huge fluid vertical buttons">
           {{#each users}}
           <a href="/user/{{_id}}" class="ui olive right labeled icon button">
@@ -14,10 +14,10 @@
           {{/each}}
         </div>
       </div>
-      <div class="ui vertical divider">
-    Or
-  </div>
-      <div class="center aligned column">
+
+      <div class="ui vertical divider"><i class="spy icon"></i></div>
+
+      <div class="column">
         <div class="ui huge fluid vertical buttons">
           {{#each labs}}
           <a href="/operator/{{_id}}" class="ui green right labeled icon button">

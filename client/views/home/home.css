@@ -1,0 +1,13 @@
+#home .divider i {
+  font-size: 1.6em;
+  position: relative;
+  left: 2px;
+  text-shadow: 2px 2px 0 #ccc;
+  color: #999;
+}
+#home .vertical.buttons {
+  margin: 0 10px
+}
+#home .button {
+  text-align: left;
+}
