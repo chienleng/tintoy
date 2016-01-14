@@ -29,9 +29,13 @@ var newJob = {
 // for auto incrementing jobNum
 function getNextSequence(name) {
   try {
-    Counters.update(name, {$inc: {seq: 1}});
+    Counters.update(name, {
+      $inc: {
+        seq: 1
+      }
+    });
     return Counters.findOne(name).seq;
-  } catch(e) {
+  } catch (e) {
     console.error("getNextSequence", e.message);
   }
 }
@@ -102,4 +106,33 @@ Template.addJob.onRendered(function() {
 
     }
   });
+
+  filepicker.setKey(Session.get('filestackKey'));
+  filepicker.makeDropPane($('#exampleDropPane')[0], {
+    multiple: true,
+    dragEnter: function() {
+      $("#exampleDropPane").html("Drop to upload").css({
+        'backgroundColor': "#E0E0E0",
+        'border': "1px solid #000"
+      });
+    },
+    dragLeave: function() {
+      console.log('d')
+      $("#exampleDropPane").html("Drop files here").css({
+        'backgroundColor': "#F6F6F6",
+        'border': "1px dashed #666"
+      });
+    },
+    onSuccess: function(Blobs) {
+      $("#exampleDropPane").text("Done, see result below");
+      $("#localDropResult").text(JSON.stringify(Blobs));
+    },
+    onError: function(type, message) {
+      $("#localDropResult").text('(' + type + ') ' + message);
+    },
+    onProgress: function(percentage) {
+      $("#exampleDropPane").text("Uploading (" + percentage + "%)");
+    }
+  });
+
 });
