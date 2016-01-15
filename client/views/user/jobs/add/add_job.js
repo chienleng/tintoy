@@ -47,10 +47,10 @@ Template.addJob.events({
 });
 
 Template.addJob.onRendered(function() {
-  console.log(this.data.currentUser);
+  var currentUser = this.data.currentUser;
   var user = {
-    id: this.data.currentUser._id,
-    names: this.data.currentUser.names
+    id: currentUser._id,
+    names: currentUser.names
   }
   $('.code.field, .account-selection.field').hide();
 

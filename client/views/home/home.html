@@ -8,7 +8,7 @@
       <div class="column">
         <div class="ui huge fluid vertical buttons">
           {{#each users}}
-          <a href="/user/{{_id}}" class="ui olive right labeled icon button">
+          <a href="/user/{{_id}}" class="lab-user ui olive right labeled icon button">
             <i class="send outline icon"></i> {{fullName names}}
           </a>
           {{/each}}
@@ -20,7 +20,7 @@
       <div class="column">
         <div class="ui huge fluid vertical buttons">
           {{#each labs}}
-          <a href="/operator/{{_id}}" class="ui green right labeled icon button">
+          <a href="/operator/{{_id}}" class="lab-op ui green right labeled icon button">
             <i class="{{icon}} icon"></i> {{name}}
           </a>
           {{/each}}
