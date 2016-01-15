@@ -1,7 +1,19 @@
 <template name="addJob">
   <!-- {{> dropzone dictDefaultMessage='<i class="cloud upload icon"></i> Drop your files here to be printed' url='http://somewebsite.com/upload' id='dropzoneDiv2'}} -->
 
-  <div id="exampleDropPane" style="width: 100%; height: 300px;">Droppy</div>
+  <div id="exampleDropPane" class="ui basic segment">
+    <div class="ui teal progress" id="example2">
+      <div class="bar">
+        <div class="progress"></div>
+      </div>
+      <div class="label">Sending...</div>
+    </div>
+    <div class="drop-zone">
+      <i class="paw icon"></i>
+      <span class="description">The Droopy Zone</span>
+    </div>
+  </div>
+
   <div id="localDropResult"></div>
 
   <button class="ui green large button" id="addJob">

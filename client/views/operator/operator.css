@@ -12,43 +12,14 @@
     -o-transition: all ease-out .1s;
     transition: all ease-out .1s;
 }
-.drop-zone {
-  height: 140px;
-  display: none;
-  padding: 25px;
-  text-align: center;
-  border-radius: 3px;
-  -webkit-transition: all ease-out .1s;
-    -moz-transition: all ease-out .1s;
-    -o-transition: all ease-out .1s;
-    transition: all ease-out .1s;
-}
-.drop-zone.drop-active {
-  display: block;
-}
-.drop-zone.drop-target {
-  -webkit-transform: scale(1.2,1.2);
-  -moz-transform:    scale(1.2,1.2);
-  -ms-transform:     scale(1.2,1.2);
-  -o-transform:      scale(1.2,1.2);
-  transform:         scale(1.2,1.2);
 
+.operator-page .drop-zone {
+  display: none;
 }
-.drop-zone span {
+.operator-page .drop-zone.drop-active {
   display: block;
 }
-.drop-zone i {
-  display: block;
-  font-size: 2.5em;
-  margin: 10px auto 0;
-  /*margin-bottom: 30px;
-  margin-right: 10px;
-  margin-top: 10px;
-  float: left;*/
-}
-/*.rejected-jobs .drop-zone {
-  background-color: rgba(219,40,40,.1);
-}*/
+
 .incoming-jobs .drop-zone span,
 .incoming-jobs .drop-zone i {
   color: rgba(34,36,38,1);
@@ -91,9 +62,6 @@
 }
 .done-jobs .drop-zone.drop-target {
   background-color: rgba(33,186,69,.5);
-}
-.card.can-drop {
-
 }
 
 .incoming-jobs.drop-active .card,

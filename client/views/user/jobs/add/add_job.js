@@ -108,30 +108,34 @@ Template.addJob.onRendered(function() {
   });
 
   filepicker.setKey(Session.get('filestackKey'));
+  $('#example2').hide();
+
   filepicker.makeDropPane($('#exampleDropPane')[0], {
-    multiple: true,
     dragEnter: function() {
-      $("#exampleDropPane").html("Drop to upload").css({
-        'backgroundColor': "#E0E0E0",
-        'border': "1px solid #000"
-      });
+      $("#exampleDropPane").find('.drop-zone').addClass('drop-target');
     },
     dragLeave: function() {
-      console.log('d')
-      $("#exampleDropPane").html("Drop files here").css({
-        'backgroundColor': "#F6F6F6",
-        'border': "1px dashed #666"
-      });
+      $("#exampleDropPane").find('.drop-zone').removeClass('drop-target');
     },
     onSuccess: function(Blobs) {
-      $("#exampleDropPane").text("Done, see result below");
+      $('#example2').hide();
+      $("#exampleDropPane").find('.drop-zone').fadeIn();
+      $("#exampleDropPane").find('.drop-zone .description').text("Done, see result below");
       $("#localDropResult").text(JSON.stringify(Blobs));
+
+      // [{"url":"https://cdn.filestackcontent.com/4PLkBOltSbSgIv2pQzRq","filename":"diagram.pdf","mimetype":"application/pdf","size":4805044,"isWriteable":false}]
+      // [{"url":"https://cdn.filestackcontent.com/Ki6XMGKcRpR4aCEap7XD","filename":"slotted_disk (1).stl","mimetype":"application/sla","size":82878,"isWriteable":false}]
     },
     onError: function(type, message) {
-      $("#localDropResult").text('(' + type + ') ' + message);
+      // $("#localDropResult").text('(' + type + ') ' + message);
+      $("#exampleDropPane").find('.drop-zone').show();
     },
     onProgress: function(percentage) {
-      $("#exampleDropPane").text("Uploading (" + percentage + "%)");
+      $("#exampleDropPane").find('.drop-zone').removeClass('drop-target').hide();
+      $('#example2').fadeIn();
+      $('#example2').progress({
+        percent: percentage
+      });
     }
   });
 
