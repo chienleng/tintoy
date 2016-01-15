@@ -7,6 +7,9 @@ Template.user.events({
 });
 
 Template.user.onCreated(function() {
-  var userId = this.data.userId();
-  this.data.currentUser = GetUser(userId);
+  var self = this;
+  self.autorun(function(){
+    var userId = self.data.userId();
+    self.data.currentUser = GetUser(userId);
+  });
 });
