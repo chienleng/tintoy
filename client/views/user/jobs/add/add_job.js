@@ -1,43 +1,14 @@
 var newJob = {
   jobNum: null,
   customName: '',
-  filename: 'newfile.stl',
-  fileExtension: '.stl',
-  user: {
-    id: null,
-    name: ''
-  },
-  pickupDate: new Date(),
-  status: 'incoming',
-  submitted: new Date(), // current time
-  account: {
-    type: 'Personal',
-    accountId: '',
-    code: ''
-  },
-  settings: {
-    colour: 'dodgerBlue',
-    material: '',
-    size: {
-      width: 16,
-      height: 16,
-      unit: 'cm'
-    }
-  }
-}
-
-// for auto incrementing jobNum
-function getNextSequence(name) {
-  try {
-    Counters.update(name, {
-      $inc: {
-        seq: 1
-      }
-    });
-    return Counters.findOne(name).seq;
-  } catch (e) {
-    console.error("getNextSequence", e.message);
-  }
+  files: [],
+  user: null,
+  pickupDate: null,
+  status: 'pending',
+  added: null,
+  submitted: null,
+  account: {},
+  settings: {}
 }
 
 Template.addJob.events({
@@ -47,18 +18,21 @@ Template.addJob.events({
 });
 
 Template.addJob.onRendered(function() {
-  var currentUser = this.data.currentUser;
-  var user = {
-    id: currentUser._id,
-    names: currentUser.names
-  }
+  var user = null;
+  var self = this;
+
+  self.autorun(function() {
+    user = GetUser(self.data.userId());
+    filepicker.setKey(Session.get('filestackKey'));
+  })
+
   $('.code.field, .account-selection.field').hide();
 
   $('.modal')
     .modal({
       onApprove: function() {
         newJob.customName = $('input.job-custom-name').val();
-        newJob.jobNum = getNextSequence('jobNum'); // manually insert job num here.
+        newJob.jobNum = GetNextSequence('jobNum'); // manually insert job num here.
         newJob.user = user;
         Jobs.insert(newJob);
       }
@@ -107,7 +81,6 @@ Template.addJob.onRendered(function() {
     }
   });
 
-  filepicker.setKey(Session.get('filestackKey'));
   $('#example2').hide();
 
   filepicker.makeDropPane($('#exampleDropPane')[0], {
@@ -122,6 +95,13 @@ Template.addJob.onRendered(function() {
       $("#exampleDropPane").find('.drop-zone').fadeIn();
       $("#exampleDropPane").find('.drop-zone .description').text("Done, see result below");
       $("#localDropResult").text(JSON.stringify(Blobs));
+      var fileId = Blobs[0].url.substring(Blobs[0].url.lastIndexOf("/")+1, Blobs[0].url.length);
+      newJob.user = user;
+      newJob.files = Blobs;
+      newJob.added = new Date();
+      var jobId = Jobs.insert(newJob);
+      
+      FlowRouter.go('/user/' + user._id +'/submit/' + jobId);
 
       // [{"url":"https://cdn.filestackcontent.com/4PLkBOltSbSgIv2pQzRq","filename":"diagram.pdf","mimetype":"application/pdf","size":4805044,"isWriteable":false}]
       // [{"url":"https://cdn.filestackcontent.com/Ki6XMGKcRpR4aCEap7XD","filename":"slotted_disk (1).stl","mimetype":"application/sla","size":82878,"isWriteable":false}]

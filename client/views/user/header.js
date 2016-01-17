@@ -1,15 +1,16 @@
 Template.userHeader.helpers({
-  names: function(){
-    var user = Template.instance().data.currentUser;
+  names: function() {
+    var userId = Template.instance().data.userId();
+    var user = GetUser(userId);
     return _.isUndefined(user) ? "" : user.names;
   },
   balance: function() {
-    var user = Template.instance().data.currentUser;
+    var userId = Template.instance().data.userId();
+    var user = GetUser(userId);
     return _.isUndefined(user) ? "" : "$"+user.balance.toFixed(2);
   }
 });
 
 Template.userHeader.onCreated(function() {
-  var userId = this.data.userId();
-  this.data.currentUser = GetUser(userId);
+
 });
