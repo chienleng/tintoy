@@ -14,7 +14,8 @@ Meteor.startup(function () {
         surname: 'Reynolds'
       },
       balance: 20.5,
-      email: 'malcolm@serenity.org'
+      email: 'malcolm@serenity.org',
+      colour: '#f2711c'
     });
     LabUsers.insert({
       names: {
@@ -22,7 +23,8 @@ Meteor.startup(function () {
         surname: 'Washburne'
       },
       balance: 13,
-      email: 'hoban@serenity.org'
+      email: 'hoban@serenity.org',
+      colour: '#2185d0'
     })
   }
 
