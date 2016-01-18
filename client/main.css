@@ -47,6 +47,25 @@ a.take-pill:hover {
   background-color: #eee;
 }
 
+.ui.card {
+  /*z-index: 999;*/
+  border-radius: 1px;
+  /*border: 1px solid #f1f1f1;*/
+  -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+.ui.card.dragged {
+  z-index: 999;
+}
+.ui.card .content a {
+  color: #31797D;
+}
+.ui.card .content a:hover {
+  border-bottom: 1px solid #31797D;
+}
+
 /* headers */
 .ui.secondary.pointing.menu {
   border: none;

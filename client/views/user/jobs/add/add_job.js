@@ -46,7 +46,7 @@ Template.addJob.onRendered(function() {
       newJob.added = new Date();
       var jobId = Jobs.insert(newJob);
 
-      FlowRouter.go('/user/' + user._id +'/submit/' + jobId);
+      FlowRouter.go('/users/' + user._id +'/submit/' + jobId);
 
       // [{"url":"https://cdn.filestackcontent.com/4PLkBOltSbSgIv2pQzRq","filename":"diagram.pdf","mimetype":"application/pdf","size":4805044,"isWriteable":false}]
       // [{"url":"https://cdn.filestackcontent.com/Ki6XMGKcRpR4aCEap7XD","filename":"slotted_disk (1).stl","mimetype":"application/sla","size":82878,"isWriteable":false}]

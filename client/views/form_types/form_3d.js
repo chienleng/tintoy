@@ -22,7 +22,13 @@ Template.form3D.events({
 
     Jobs.update(job._id, job);
 
-    FlowRouter.go('/user/'+userId);
+    FlowRouter.go('/users/'+userId);
+    return false;
+  },
+  "click .cancel.button": function() {
+    var job = Template.instance().data.job;
+    var userId = job.user._id;
+    FlowRouter.go('/users/'+userId);
     return false;
   }
 });
@@ -30,7 +36,6 @@ Template.form3D.events({
 Template.form3D.onCreated(function() {
   this.autorun(function() {
      this.data.job = GetJob(this.data.jobId());
-     console.log(this.data.job)
   }.bind(this));
 });
 
