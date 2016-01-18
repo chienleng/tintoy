@@ -10,13 +10,22 @@
     </div>
     <div class="content">
       <span class="ui right corner label" style="border-color: #F23C55; color: #fff;"><i class="cube icon"></i></span>
+
       <div class="description">
-        <a href="#" style="color: #31797D;"><i class="download icon"></i>{{filename}}</a>
         <span class="right floated">
           <small>
             {{fromNow submitted}}
           </small>
         </span>
+
+        {{#if customName}}
+        <strong>{{customName}}</strong>
+        <br>
+        {{/if}}
+        <a href="{{downloadLink files}}" style="color: #31797D;">
+          <i class="download icon" style="position: relative; top: 2px;"></i>
+          <small>{{filename files}}</small>
+        </a>
       </div>
 
     </div>

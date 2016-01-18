@@ -10,6 +10,9 @@ Template.form3D.events({
     job.status = JobStatus.INCOMING;
     job.type = JobType.THREE_D;
     job.submitted = new Date();
+    var fileObj = job.files[0];
+    var fileId = fileObj.url.substring(fileObj.url.lastIndexOf("/")+1, fileObj.url.length);
+    job.files[0].downloadLink = 'https://www.filestackapi.com/api/file/' + fileId;
     // default Personal Account
     job.account = {
       type: Account.PERSONAL
