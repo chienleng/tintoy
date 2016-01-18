@@ -1,5 +1,6 @@
 Template.jobs.helpers({
   jobs: function() {
-    return Jobs.find({}, {sort: Session.get('jobsSortOrder')});
+    var userId = Template.instance().data.userId();
+    return Jobs.find({user: GetUser(userId)}, {sort: Session.get('jobsSortOrder')});
   }
 });

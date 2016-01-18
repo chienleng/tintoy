@@ -42,4 +42,4 @@ this.GetNextSequence = function(name) {
 // Randomly tada the logo.
 Meteor.setInterval(function(){
    $('.pc-logo').transition('tada');
-}, Math.floor(Math.random() * (120000 - 60000 + 1)) + 60000);
+}, Math.floor(Math.random() * (240000 - 120000 + 1)) + 120000);

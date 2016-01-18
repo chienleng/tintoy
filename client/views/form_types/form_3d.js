@@ -5,13 +5,15 @@ Template.form3D.helpers({
 Template.form3D.events({
   "submit .new-3d-submission": function() {
     var job = Template.instance().data.job;
+    var fileObj = job.files[0];
+    var fileId = fileObj.url.substring(fileObj.url.lastIndexOf("/")+1, fileObj.url.length);
+    var userId = job.user._id;
+
     job.customName = $('input.job-custom-name').val();
     job.jobNum = GetNextSequence('jobNum'); // manually insert job num here.
     job.status = JobStatus.INCOMING;
     job.type = JobType.THREE_D;
     job.submitted = new Date();
-    var fileObj = job.files[0];
-    var fileId = fileObj.url.substring(fileObj.url.lastIndexOf("/")+1, fileObj.url.length);
     job.files[0].downloadLink = 'https://www.filestackapi.com/api/file/' + fileId;
     // default Personal Account
     job.account = {
@@ -19,6 +21,8 @@ Template.form3D.events({
     }
 
     Jobs.update(job._id, job);
+
+    FlowRouter.go('/user/'+userId);
     return false;
   }
 });
