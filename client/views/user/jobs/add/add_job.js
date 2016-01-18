@@ -26,61 +26,6 @@ Template.addJob.onRendered(function() {
     filepicker.setKey(Session.get('filestackKey'));
   })
 
-  $('.code.field, .account-selection.field').hide();
-
-  $('.modal')
-    .modal({
-      onApprove: function() {
-        newJob.customName = $('input.job-custom-name').val();
-        newJob.jobNum = GetNextSequence('jobNum'); // manually insert job num here.
-        newJob.user = user;
-        Jobs.insert(newJob);
-      }
-    })
-    .modal('setting', 'transition', 'fade up')
-    .modal('setting', 'duration', 250)
-
-  //https://bgrins.github.io/spectrum/#options-showPaletteOnly
-  $("#colorpicker").spectrum({
-    showPaletteOnly: true,
-    showPalette: true,
-    color: 'dodgerBlue',
-    palette: [
-      ['black', 'dodgerBlue', 'darkred', 'green', 'gray', 'linen', 'orangeRed', 'white']
-    ]
-  });
-
-  var picker = new Pikaday({
-    field: document.getElementById('datepicker'),
-    format: 'MMM D YYYY',
-    onSelect: function() {
-      newJob.pickupDate = this.getMoment().toISOString();
-    }
-  });
-
-  $('.ui.dropdown').dropdown({
-    onChange: function(value, text, $choice) {
-      var $accountCharge = $choice.closest('.account-charge');
-      if ($accountCharge.length) {
-        $('.code.field, .account-selection.field').hide();
-        switch (value) {
-          case 'personal':
-            console.log('personal');
-            break;
-          case 'shared':
-            $('.account-selection.field').fadeIn();
-            break;
-          case 'code':
-            $('.code.field').fadeIn();
-            break;
-          default:
-            console.warn('nothing selected.')
-        }
-      }
-
-    }
-  });
-
   $('#example2').hide();
 
   filepicker.makeDropPane($('#exampleDropPane')[0], {
@@ -100,7 +45,7 @@ Template.addJob.onRendered(function() {
       newJob.files = Blobs;
       newJob.added = new Date();
       var jobId = Jobs.insert(newJob);
-      
+
       FlowRouter.go('/user/' + user._id +'/submit/' + jobId);
 
       // [{"url":"https://cdn.filestackcontent.com/4PLkBOltSbSgIv2pQzRq","filename":"diagram.pdf","mimetype":"application/pdf","size":4805044,"isWriteable":false}]

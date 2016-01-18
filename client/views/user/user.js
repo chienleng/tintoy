@@ -7,10 +7,8 @@ Template.user.events({
 });
 
 Template.user.onCreated(function() {
-  var self = this;
-  self.autorun(function(){
-    console.log('autorun')
-    var userId = self.data.userId();
-    self.data.currentUser = GetUser(userId);
-  });
+  this.autorun(function(){
+    var userId = this.data.userId();
+    this.data.currentUser = GetUser(userId);
+  }.bind(this));
 });

@@ -1,0 +1,16 @@
+/*colour picker*/
+.sp-container {
+  border: none;
+}
+.sp-replacer {
+  border: none;
+  margin: 1px;
+  padding: 8px;
+  color: #888
+}
+.sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner {
+  background-image: url(/img/tick_white.png);
+}
+.sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner {
+  background-image: url(/img/tick_black.png);
+}
