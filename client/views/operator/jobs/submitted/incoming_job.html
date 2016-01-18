@@ -12,19 +12,20 @@
     <div class="content">
       <span class="ui right corner label" style="border-color: #F23C55; color: #fff;"><i class="cube icon"></i></span>
       <div class="description">
-        <span class="right floated">
-          <small>
-            {{fromNow submitted}}
-          </small>
-        </span>
-
         {{#if customName}}
         <strong>{{customName}}</strong>
         <br>
         {{/if}}
         <small>{{filename files}}</small>
       </div>
-
+    </div>
+    <div class="extra content">
+      <span>{{filesize files}}</span>
+      <span class="right floated">
+        <small>
+          {{fromNow submitted}}
+        </small>
+      </span>
     </div>
 
   </div>

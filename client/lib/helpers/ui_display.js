@@ -16,8 +16,11 @@ Template.registerHelper('filename', function(files) {
   var fileObj = (!_.isUndefined(files) && files.length > 0) ? files[0] : null; // assume single file
   return fileObj ? fileObj.filename : "";
 });
-
 Template.registerHelper('downloadLink', function(files) {
   var fileObj = (!_.isUndefined(files) && files.length > 0) ? files[0] : null; // assume single file
   return fileObj ? fileObj.downloadLink : "";
+});
+Template.registerHelper('filesize', function(files) {
+  var fileObj = (!_.isUndefined(files) && files.length > 0) ? files[0] : null; // assume single file
+  return fileObj ? (fileObj.size/1000).toFixed(0) + "KB" : "n/a";
 });
