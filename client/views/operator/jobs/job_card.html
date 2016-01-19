@@ -1,13 +1,12 @@
 <template name="jobCard">
-  <div class="content" style="padding: 0.5em 1em;">
+  <!-- <div class="content" style="padding: 0.5em 1em;">
     <span class="" style="font-weight: bold; margin-right: 40px;">
       #{{jobNum}}
       {{#if customName}}
       <strong>— {{customName}}</strong>
       {{/if}}
     </span>
-
-  </div>
+  </div> -->
   <div class="content">
     <span class="ui right corner label" style="border-color: {{user.colour}}; color: #fff;"><i class="cube icon"></i></span>
     <div class="description">
@@ -16,19 +15,31 @@
       </div>
 
       <div class="jobNames">
-        <a href="{{downloadLink files}}" style="color: #31797D; font-size: 0.9em;">
+        <span class="" style="font-weight: bold; margin-right: 40px;">
+          #{{jobNum}}
+          {{#if customName}}
+          <strong>— {{customName}}</strong>
+          {{/if}}
+        </span>
+        <br>
+        <!-- <a href="{{downloadLink files}}" style="color: #31797D; font-size: 0.9em;">
           <i class="download icon" style="position: relative; top: 2px;"></i>
           {{filename files}}
         </a>
         <br>
         <small>{{filesize files}}</small>
+        <br> -->
+        <span class="" style="font-size: 0.8em;">
+          <i class="user icon"></i>{{fullName user.names}}
+        </span>
+        <span class="right floated" style="font-size: 0.8em; margin-top: 17px;">{{fromNow submitted}}</span>
       </div>
     </div>
   </div>
-  <div class="extra content">
+  <!-- <div class="extra content">
     <span class="" style="">
       <i class="user icon"></i>{{fullName user.names}}
     </span>
     <span class="right floated">{{fromNow submitted}}</span>
-  </div>
+  </div> -->
 </template>

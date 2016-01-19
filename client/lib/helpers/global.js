@@ -15,6 +15,11 @@ this.Account = {
   PIN: 'PIN'
 }
 
+this.companyType = {
+  EDUCATION: 'Education', // no account selection charges
+  CORPORATE: 'Corporate'
+}
+
 this.GetUser = function(userId) {
   return LabUsers.findOne(userId);
 };
