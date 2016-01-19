@@ -54,4 +54,6 @@ Template.incomingJob.onRendered(function() {
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
   }
+
+  
 });

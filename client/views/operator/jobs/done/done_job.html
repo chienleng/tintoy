@@ -11,23 +11,25 @@
     <div class="content">
       <span class="ui right corner label" style="border-color: {{user.colour}}; color: #fff;"><i class="cube icon"></i></span>
       <div class="description">
-        {{#if customName}}
-        <strong>{{customName}}</strong>
-        <br>
-        {{/if}}
-        <a href="{{downloadLink files}}" style="color: #31797D;">
-          <i class="download icon" style="position: relative; top: 2px;"></i>
-          <small>{{filename files}}</small>
-        </a>
+        <div class="thumbnail">
+          {{> thumbnail3D}}
+        </div>
+
+        <div class="jobNames">
+          {{#if customName}}
+          <strong>{{customName}}</strong>
+          <br>
+          {{/if}}
+          <a href="{{downloadLink files}}" style="color: #31797D;">
+            <i class="download icon" style="position: relative; top: 2px;"></i>
+            <small>{{filename files}}</small>
+          </a>
+        </div>
       </div>
     </div>
     <div class="extra content">
       <span>{{filesize files}}</span>
-      <span class="right floated">
-        <small>
-          {{fromNow submitted}}
-        </small>
-      </span>
+      <span class="right floated">{{fromNow submitted}}</span>
     </div>
   </div>
 </template>

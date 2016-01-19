@@ -1,6 +1,33 @@
 .jobs-kanban .ui.segment {
   border-top-width: 5px !important;
 }
+
+.thumbnail {
+   float: left;
+   height: 100px;
+   margin-right: 1em;
+}
+
+.operator-page .drop-zone {
+  display: none;
+}
+.operator-page .drop-zone.drop-active {
+  display: block;
+}
+.operator-page .ui.card {
+  cursor: move;
+}
+.operator-page .ui.card > .content {
+  padding: 0;
+}
+.operator-page .jobNames {
+  padding: 1em;
+}
+.operator-page .ui.card > .extra.content {
+  padding: 0.7em;
+  font-size: 12px;
+}
+
 .incoming-jobs,
 .accepted-jobs,
 .rejected-jobs {
@@ -12,14 +39,6 @@
     -o-transition: all ease-out .1s;
     transition: all ease-out .1s;
 }
-
-.operator-page .drop-zone {
-  display: none;
-}
-.operator-page .drop-zone.drop-active {
-  display: block;
-}
-
 .incoming-jobs .drop-zone span,
 .incoming-jobs .drop-zone i {
   color: rgba(34,36,38,1);
@@ -69,8 +88,4 @@
 .accepted-jobs.drop-active .card,
 .done-jobs.drop-active .card {
   display: none;
-}
-
-.operator-page .ui.card {
-  cursor: move;
 }
