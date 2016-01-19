@@ -1,11 +1,13 @@
 Template.jobs.helpers({
   jobs: function() {
     var userId = Template.instance().data.userId();
-    return Jobs.find({user: GetUser(userId), status: {$ne: 'pending'}}, {sort: Session.get('jobsSortOrder')});
+    var user = GetUser(userId);
+    return Jobs.find({'user._id': user._id, status: {$ne: 'pending'}}, {sort: Session.get('jobsSortOrder')});
   },
   pendingJobs: function() {
     var userId = Template.instance().data.userId();
-    return Jobs.find({user: GetUser(userId), status: 'pending'}, {sort: Session.get('jobsSortOrder')});
+    var user = GetUser(userId);
+    return Jobs.find({'user._id': user._id, status: 'pending'}, {sort: Session.get('jobsSortOrder')});
   }
 });
 Template.jobs.events({
