@@ -1,32 +1,5 @@
 <template name="rejectedJob">
   <div data-id="{{_id}}" class="ui fluid card rejected-job">
-    <div class="content" style="padding: 0.5em 1em; color: #31797D;">
-      <span class="left floated" style="font-weight: light;">
-        #{{jobNum}}
-      </span>
-      <span class="right floated" style="font-size: 0.8em; margin-right: 40px;">
-        <i class="user icon"></i>{{fullName user.names}}
-      </span>
-    </div>
-    <div class="content">
-      <span class="ui right corner label" style="border-color: {{user.colour}}; color: #fff;"><i class="cube icon"></i></span>
-      <div class="description">
-        <div class="thumbnail">
-          {{> thumbnail3D}}
-        </div>
-
-        <div class="jobNames">
-          {{#if customName}}
-          <strong>{{customName}}</strong>
-          <br>
-          {{/if}}
-          <small>{{filename files}}</small>
-        </div>
-      </div>
-    </div>
-    <div class="extra content">
-      <span>{{filesize files}}</span>
-      <span class="right floated">{{fromNow submitted}}</span>
-    </div>
+    {{> jobCard}}
   </div>
 </template>
