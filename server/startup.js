@@ -7,6 +7,53 @@ Meteor.startup(function () {
     })
   }
 
+  if (SharedAccounts.find().count() === 0) {
+    SharedAccounts.insert({
+      label: 'Biology Science',
+      balance: 1100
+    });
+    SharedAccounts.insert({
+      label: 'Business',
+      balance: 2200
+    });
+    SharedAccounts.insert({
+      label: 'Communications & Arts',
+      balance: 3300
+    });
+    SharedAccounts.insert({
+      label: 'Computing & Security',
+      balance: 4400
+    });
+    SharedAccounts.insert({
+      label: 'Engineering & Technology',
+      balance: 5500
+    });
+    SharedAccounts.insert({
+      label: 'Exercise & Health Science',
+      balance: 6600
+    });
+    SharedAccounts.insert({
+      label: 'Medical Sciences',
+      balance: 7700
+    });
+    SharedAccounts.insert({
+      label: 'Nursing & Midwifery',
+      balance: 8800
+    });
+    SharedAccounts.insert({
+      label: 'Performing Arts',
+      balance: 9900
+    });
+    SharedAccounts.insert({
+      label: 'Psychology Science',
+      balance: 11000
+    });
+    SharedAccounts.insert({
+      label: 'Teacher Education',
+      balance: 12000
+    });
+  }
+
   if (LabUsers.find().count() === 0) {
     LabUsers.insert({
       names: {

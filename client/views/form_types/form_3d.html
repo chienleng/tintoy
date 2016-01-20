@@ -48,21 +48,13 @@
         <div class="account-selection field">
           <label>Account</label>
           <div class="ui search selection dropdown" style="">
-            <input type="hidden" name="country">
+            <input type="hidden" name="sharedAccountId">
             <i class="dropdown icon"></i>
             <div class="default text">Choose department</div>
             <div class="menu">
-              <div class="item" data-value="1">Biology Science</div>
-              <div class="item" data-value="2">Business</div>
-              <div class="item" data-value="3">Communications & Arts</div>
-              <div class="item" data-value="4">Computing & Security</div>
-              <div class="item" data-value="5">Engineering & Technology</div>
-              <div class="item" data-value="6">Exercise & Health Sciences</div>
-              <div class="item" data-value="7">Medical Sciences</div>
-              <div class="item" data-value="8">Nursing & Midwifery</div>
-              <div class="item" data-value="9">Performing Arts</div>
-              <div class="item" data-value="10">Psychology Science</div>
-              <div class="item" data-value="11">Teacher Education</div>
+              {{#each sharedAccounts}}
+              <div class="item" data-value="{{_id}}">{{label}}</div>
+              {{/each}}
             </div>
           </div>
         </div>

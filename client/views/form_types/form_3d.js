@@ -1,5 +1,7 @@
 Template.form3D.helpers({
-
+  sharedAccounts: function() {
+    return SharedAccounts.find({}, {sort: {label: 1}});
+  }
 });
 
 Template.form3D.events({
@@ -15,13 +17,14 @@ Template.form3D.events({
     job.type = JobType.THREE_D;
     job.submitted = new Date();
     job.files[0].downloadLink = 'https://www.filestackapi.com/api/file/' + fileId;
-    // default Personal Account
-    job.account = {
-      type: Account.PERSONAL
+    if (job.account.type === Account.SHARED) {
+      job.account.accountId = Template.instance().data.sharedAccountId;
+    } else if (_.isEmpty(job.account)) {
+      job.account = {
+        type: Account.PERSONAL
+      }
     }
-
     Jobs.update(job._id, job);
-
     FlowRouter.go('/users/'+userId);
     return false;
   },
@@ -55,14 +58,13 @@ Template.form3D.onRendered(function() {
   });
 
   $('.code.field, .account-selection.field').hide();
-  $('.ui.dropdown').dropdown({
+  $('.account-charge .ui.dropdown').dropdown({
     onChange: function(value, text, $choice) {
       var $accountCharge = $choice.closest('.account-charge');
       if ($accountCharge.length) {
         $('.code.field, .account-selection.field').hide();
         switch (value) {
           case 'personal':
-            console.log('personal');
             self.data.job.account = {
               type: Account.PERSONAL
             }
@@ -86,6 +88,12 @@ Template.form3D.onRendered(function() {
         }
       }
 
+    }
+  });
+
+  $('.account-selection .ui.dropdown').dropdown({
+    onChange: function(value, text, $choice) {
+      self.data.sharedAccountId = value;
     }
   });
 
