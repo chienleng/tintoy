@@ -1,8 +1,8 @@
 Template.thumbnail3D.onRendered(function() {
+  console.log(this.data)
   render(this.data._id, this.data.files[0].url);
 
   function render(id, fileUrl) {
-    var previewClass = '[data-id='+id+'] .preview-column';
     var preview3DClass = '[data-id='+id+'] .preview-3d';
     var viewer = null, canvas = null;
     var JSC3D = JSC3DWrapper();

@@ -1,6 +1,6 @@
 <template name="jobs">
 
-  <table class="ui selectable stackable padded table">
+  <!-- <table class="ui selectable stackable padded table">
     <tbody class="pending-jobs">
       {{#each pendingJobs}}
       <tr class="job-row">
@@ -11,34 +11,41 @@
       </tr>
       {{/each}}
     </tbody>
-  </table>
-
-  <table class="ui selectable stackable padded table">
-    <thead>
-      <tr>
-        <th>Job#</th>
-        <th>Filename</th>
-        <th>Status</th>
-        <th>Charged to</th>
-        <th>Submitted</th>
-        <th>Required by</th>
-      </tr>
-    </thead>
-
-    <tbody class="submitted-jobs">
-      {{#each jobs}}
-      <tr class="job-row">
-        <td>#{{jobNum}}</td>
-        <td class="collapsing">
-          <i class="cube icon"></i> {{filename files}}
-        </td>
-        <td>{{jobStatusUser status}}</td>
-        <td>{{account.type}}</td>
-        <td class="right aligned collapsing">{{calendarDate submitted}}</td>
-        <td class="right aligned collapsing">{{calendarDate pickupDate}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+  </table> -->
+  <div class="ui small header" style="margin-bottom: 0; text-align: center; color: #6A6F7B">YOUR 3D PRINT JOBS</div>
+  <div class="ui link items jobs">
+    {{#each jobs}}
+    <div class="item" data-id="{{_id}}">
+      <div class="content">
+        <div class="ui padded grid description">
+          <div class="three wide column {{status}}">
+            {{jobStatusUser status}}
+          </div>
+          <div class="three wide column" style="padding: 0;">
+            <div class="thumbnail" style="float: left; margin-right: 5px;">
+              {{> thumbnail3D}}
+            </div>
+            <span class="" style="font-weight: 100; position: relative; top: 6px; font-size: 1.1em;">
+              #{{jobNum}}
+            </span>
+          </div>
+          <div class="four wide column" style="padding: 0; font-size: 0.9em; padding-top: 5px;">
+            {{#if customName}}
+            <strong>{{customName}}</strong>
+            {{/if}}
+            <br>
+            <small style="position: relative; top: -2px;">{{filename files}}</small>
+          </div>
+          <div class="three wide column" style="padding: 0; font-size: 0.9em; padding-top: 5px;">
+            <span>{{fromNow submitted}}</span>
+          </div>
+          <div class="three wide column">
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 
 </template>

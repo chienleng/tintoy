@@ -1,17 +1,19 @@
-
 .ui.form .inline.field > label {
   width: 100px;
 }
-
 .user-page .drop-zone {
-  background-color: rgba(33,186,69,.1);
+  background-color: rgba(98,196,133,.2);
 }
 .user-page .drop-zone span,
 .user-page .drop-zone i {
-  color: rgba(33,186,69,1);
+  /*color: rgba(98,196,133,1);*/
+  font-size: 1.3em;
+  color: #6A6F7B;
+  font-weight: bold;
+  padding-top: 10px;
 }
 .user-page .drop-zone.drop-target {
-  background-color: rgba(33,186,69,.3);
+  background-color: rgba(98,196,133,.3);
   -webkit-transform: scale(1.05,1.05);
   -moz-transform:    scale(1.05,1.05);
   -ms-transform:     scale(1.05,1.05);

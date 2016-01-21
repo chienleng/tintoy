@@ -4,3 +4,40 @@
 .ui.secondary.vertical.menu .active.item {
   color: #333;
 }
+.user-page .ui.items {
+  padding: 10px;
+  margin: 0;
+  position: relative;
+  left: -2px;
+}
+.user-page .ui.items .item {
+  margin: 2px;
+  border: 0;
+  box-shadow: none;
+  background-color: #F1F1F1;
+}
+.user-page .ui.items .item :hover {
+  background-color: #DBDBDB;
+}
+.user-page .item > .content {
+  padding: 0;
+}
+.user-page .jobNames {
+  padding: 1em;
+}
+.user-page .item > .extra.content {
+  padding: 0.7em;
+  font-size: 12px;
+}
+.description .incoming {
+
+}
+.description .accepted {
+  color: #4A90E2;
+}
+.description .done {
+  color: #00AF56;
+}
+.description .rejected {
+  color: #B93D4C;
+}

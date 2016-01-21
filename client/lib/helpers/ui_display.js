@@ -33,7 +33,7 @@ Template.registerHelper('jobStatusUser', function(status) {
       display = 'Not submitted';
       break;
     case JobStatus.ACCEPTED:
-      display = 'Waiting to be printed';
+      display = 'In Progress';
       break;
     case JobStatus.REJECTED:
       display = 'Rejected';
