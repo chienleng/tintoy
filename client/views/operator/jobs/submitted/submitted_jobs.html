@@ -1,17 +1,21 @@
 <template name="submittedJobs">
   <div class="ui segment incoming-jobs">
-    <div class="ui small header">
-      QUEUED — {{count}} jobs
+    <div class="ui small count header">
+      <span class="ui grey circular label">{{count}}</span> SUBMITTED
       <!-- <small style="float: right;">
         <a href="#"><i class="sort icon"></i></a>
       </small> -->
     </div>
+
+    <!-- <div style="background-color: #999; height: 30px;"></div> -->
 
     <div class="drop-zone">
       <i class="road icon"></i>
       <span>Drop here to put it back into queue</span>
     </div>
 
-    {{#each incoming}} {{> incomingJob}} {{/each}}
+    <div class="jobs">
+      {{#each incoming}} {{> incomingJob}} {{/each}}
+    </div>
   </div>
 </template>

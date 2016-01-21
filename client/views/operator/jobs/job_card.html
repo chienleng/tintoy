@@ -9,12 +9,34 @@
   </div> -->
   <div class="content">
     <span class="ui right corner label" style="border-color: {{user.colour}}; color: #fff;"><i class="cube icon"></i></span>
-    <div class="description">
-      <div class="thumbnail">
-        {{> thumbnail3D}}
+    <div class="ui padded grid description">
+      <div class="five wide column" style="padding: 0;">
+        <div class="thumbnail" style="float: left; margin-right: 5px;">
+          {{> thumbnail3D}}
+        </div>
+        <span class="" style="font-weight: 100; position: relative; top: 6px; font-size: 1.1em;">
+          #{{jobNum}}
+        </span>
+      </div>
+      <div class="eleven wide column" style="padding: 0; font-size: 0.9em; padding-top: 5px;">
+        {{#if customName}}
+        <strong>{{customName}}</strong>
+        {{/if}}
+        <br>
+        <small style="position: relative; top: -2px;">{{filename files}}</small>
+        <span style="font-size: 0.8em; position: absolute; bottom: 0; right: 15px;">{{fromNow submitted}}</span>
       </div>
 
-      <div class="jobNames">
+
+      <!-- <a href="{{downloadLink files}}" style="color: #31797D; font-size: 0.9em;">
+        <i class="download icon" style="position: relative; top: 2px;"></i>
+        {{filename files}}
+      </a>
+      <br>
+      <small>{{filesize files}}</small>
+      <br> -->
+
+      <!-- <div class="jobNames">
         <span class="" style="font-weight: bold; margin-right: 40px;">
           #{{jobNum}}
           {{#if customName}}
@@ -22,18 +44,12 @@
           {{/if}}
         </span>
         <br>
-        <!-- <a href="{{downloadLink files}}" style="color: #31797D; font-size: 0.9em;">
-          <i class="download icon" style="position: relative; top: 2px;"></i>
-          {{filename files}}
-        </a>
-        <br>
-        <small>{{filesize files}}</small>
-        <br> -->
+
         <span class="" style="font-size: 0.8em;">
           <i class="user icon"></i>{{fullName user.names}}
         </span>
         <span class="right floated" style="font-size: 0.8em; margin-top: 17px;">{{fromNow submitted}}</span>
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- <div class="extra content">

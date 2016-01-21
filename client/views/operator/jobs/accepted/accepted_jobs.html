@@ -1,7 +1,7 @@
 <template name="acceptedJobs">
   <div class="ui blue segment accepted-jobs">
-    <div class="ui small header">
-      IN PROGRESS
+    <div class="ui small count header">
+      <span class="ui blue circular label">{{count}}</span> IN PROGRESS
       <!-- <small style="float: right;">
         <a href="#"><i class="sort icon"></i></a>
       </small> -->
@@ -11,6 +11,8 @@
       <span>Drop here to mark as accepted and download the file</span>
     </div>
 
-    {{#each accepted}} {{> acceptedJob}} {{/each}}
+    <div class="jobs">
+      {{#each accepted}} {{> acceptedJob}} {{/each}}
+    </div>
   </div>
 </template>
