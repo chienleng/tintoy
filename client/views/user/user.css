@@ -1,0 +1,6 @@
+.ui.secondary.vertical.menu .item {
+  color: #898989;
+}
+.ui.secondary.vertical.menu .active.item {
+  color: #333;
+}

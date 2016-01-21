@@ -7,21 +7,13 @@
         </span>
       </div>
       <div class="right menu">
-        <a href="/user/settings" class="item"><i class="settings icon"></i> Settings</a>
-        <a href="#" class="item"><i class="help icon"></i> Help</a>
-        <a href="/" class="item logout"><i class="sign out icon"></i>Logout</a>
+        <div class="item" href="#" style="color: #333; text-shadow: 1px 1px 1px #ccc;">
+          {{fullName names}}
+        </div>
+        <!-- <div class="">
+          <span class="ui teal tag label">{{balance}}</span>
+        </div> -->
       </div>
     </div>
   </header>
-  <div class="ui secondary pointing menu" style="background: #9DAEB2">
-    <div class="ui container" style="position: relative">
-      <a href="#" class="item">Summary</a>
-      <a href="/operator" class="active item">3D Printing</a>
-      <div class="right menu">
-        <div class="item" href="#" style="color: #333; text-shadow: 1px 1px 1px #ccc;">{{fullName names}}</div>
-        <div class="item" style="position: relative; bottom: -11px; padding: 1.5em; background-color: teal; margin-top: -23px; border-radius: 3px;">
-          Current Balance: <span style="font-size: 1.5em; margin-left: 5px;">{{balance}}</span></div>
-      </div>
-    </div>
-  </div>
 </template>
