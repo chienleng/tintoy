@@ -3274,7 +3274,7 @@ this.JSC3DWrapper = function() {
     if (this.onprogress) {
       this.onprogress("Loading obj file ...", 0);
       c.onprogress = function(f) {
-        d.onprogress("Loading obj file ...", f.position / f.totalSize)
+        d.onprogress("Loading obj file ...", f.loaded / f.total)
       }
     }
     this.requests.push(c);
@@ -3312,7 +3312,7 @@ this.JSC3DWrapper = function() {
     if (this.onprogress) {
       this.onprogress("Loading mtl file ...", 0);
       g.onprogress = function(h) {
-        f.onprogress("Loading mtl file ...", h.position / h.totalSize)
+        f.onprogress("Loading mtl file ...", h.loaded / h.total)
       }
     }
     this.requests.push(g);
@@ -3550,7 +3550,7 @@ this.JSC3DWrapper = function() {
     if (this.onprogress) {
       this.onprogress("Loading STL file ...", 0);
       d.onprogress = function(f) {
-        c.onprogress("Loading STL file ...", f.position / f.totalSize)
+        c.onprogress("Loading STL file ...", f.loaded / f.total)
       }
     }
     this.request = d;
