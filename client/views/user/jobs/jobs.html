@@ -12,7 +12,13 @@
       {{/each}}
     </tbody>
   </table> -->
-  <div class="ui small header" style="margin-bottom: 0; text-align: center; color: #6A6F7B">YOUR 3D PRINT JOBS</div>
+  <div class="ui small header" style="margin-bottom: 0; text-align: center; color: #6A6F7B">
+  {{#if hasJobs}}
+    RECENT 10
+  {{else}}
+    NO RECENT JOBS
+  {{/if}}
+  </div>
   <div class="ui link items jobs">
     {{#each jobs}}
     <div class="item" data-id="{{_id}}">

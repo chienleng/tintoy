@@ -20,7 +20,7 @@ Template.preview3D.onRendered(function() {
   }.bind(this));
 
   function render(fileUrl) {
-    var previewClass = '.preview .card';
+    var previewClass = '.preview';
     var preview3DClass = '.preview-3d';
     var viewer = null, canvas = null;
     var JSC3D = JSC3DWrapper();

@@ -26,6 +26,15 @@ Template.userJob.helpers({
   }
 });
 
+Template.userJob.events({
+  "click .done.button": function() {
+    var job = Template.instance().data.job;
+    var userId = job.user._id;
+    FlowRouter.go('/users/'+userId);
+    return false;
+  }
+})
+
 Template.userJob.onCreated(function() {
   this.autorun(function() {
      this.data.job = GetJob(this.data.jobId());

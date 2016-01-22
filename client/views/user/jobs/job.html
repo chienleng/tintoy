@@ -1,20 +1,43 @@
 <template name="userJob">
   {{> userHeader}}
-  <div class="ui container" style="margin-top: 40px;">
-    <h2 class="ui header">
-      Job #{{jobNum}} — {{jobStatusUser status}}
-    </h2>
-    <div class="ui grid">
-      <div class="eight wide column preview">
-        {{#if is3d}}
-          {{> preview3D}}
-        {{/if}}
+  <div class="ui container user-page">
+    <div class="ui stackable padded grid">
+
+      <div class="three wide column">
+        {{> userMenu}}
       </div>
-      <div class="eight wide column">
-        {{#if is3d}}
-          {{> form3D}}
-        {{/if}}
+
+      <div class="thirteen wide column" style="padding: 0;">
+        <div class="ui segment" style="box-shadow: none; background-color: #f2f6f7; padding: 20px;">
+          <h3 class="ui header right floated">{{jobStatusUser status}}</h3>
+          <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
+            #{{jobNum}}
+          </h2>
+          <form action="#" class="new-3d-submission ui form" style="margin: 0; width: 100%">
+            <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
+              <div class="ui grid">
+                <div class="eight wide column preview">
+                  {{#if is3d}}
+                    {{> preview3D}}
+                  {{/if}}
+                </div>
+                <div class="eight wide column">
+                  {{#if is3d}}
+                    {{> view3D}}
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+
+            <div class="" style="text-align: right; margin: 30px 0 20px;">
+              <button type="button" class="ui green done button">
+                Done
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
+
   </div>
 </template>

@@ -1,0 +1,32 @@
+<template name="form3D">
+    <div class="field">
+      <label>Document name</label>
+      <input type="text" class="job-custom-name" placeholder="Optional">
+    </div>
+
+    <div class="fields">
+      <div class="three wide field">
+        <label>Color</label>
+        <input type='text' id="colorpicker" />
+      </div>
+
+      <div class="thirteen wide field">
+        <label>Required by</label>
+        <input type="text" id="datepicker">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Delivery method</label>
+      <select class="delivery-method ui dropdown" name="" id="">
+        <option value="">Collect</option>
+        <option value="">Internal Delivery</option>
+        <option value="">External Delivery</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Additional Instructions</label>
+      <textarea class="instructions"></textarea>
+    </div>
+</template>

@@ -1,23 +1,15 @@
 <template name="user">
-  {{#if Template.subscriptionsReady}} {{> userHeader}}
+  {{#if Template.subscriptionsReady}}
+  {{> userHeader}}
   <div class="ui container user-page">
     <div class="ui stackable padded grid">
 
       <div class="three wide column">
-        <div class="ui secondary vertical menu">
-          <a class="item">Summary</a>
-          <a class="item">Rates</a>
-          <a class="item">Redeem Card</a>
-          <a class="item">Transaction History</a>
-          <a class="item">Recent Print Jobs</a>
-          <a class="item">Web Print</a>
-          <a class="active item">3D Print</a>
-          <a href="/" class="item logout"><i class="sign out icon"></i>Logout</a>
-        </div>
+        {{> userMenu}}
       </div>
 
       <div class="thirteen wide column" style="padding: 0;">
-        <div class="ui segment" style="box-shadow: none; padding: 0;">
+        <div class="ui segment" style="box-shadow: none; padding: 0; background-color: #f2f6f7">
           {{> userAnnouncements}}
 
           {{> addJob}}

@@ -1,0 +1,35 @@
+<template name="view3D">
+  {{#with job}}
+    <div class="field">
+      <label>Document name</label>
+      <div>{{customName}}</div>
+    </div>
+
+    <div class="fields">
+      <div class="three wide field">
+        <label>Color</label>
+        <div>--colour--</div>
+      </div>
+
+      <div class="thirteen wide field">
+        <label>Required by</label>
+        <div>{{calendarDate pickupDate}}</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Delivery method</label>
+      <div>--delivery--</div>
+    </div>
+
+    <div class="field">
+      <label>Additional Instructions</label>
+      <div>--instructions--</div>
+    </div>
+
+    <div class="field">
+      <label>Charged to</label>
+      <div>{{accountType}}</div>
+    </div>
+  {{/with}}
+</template>

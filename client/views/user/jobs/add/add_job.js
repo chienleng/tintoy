@@ -64,4 +64,10 @@ Template.addJob.onRendered(function() {
     }
   });
 
+  // Randomly tada the upload icon.
+  Meteor.setInterval(function(){
+     $('.file-upload-icon').transition('tada');
+  }, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
+
 });

@@ -16,13 +16,40 @@ Template.jobSubmission.helpers({
 });
 
 Template.jobSubmission.events({
-  "click #foo": function(event, template) {
+  "submit .new-3d-submission": function() {
+    var job = Template.instance().data.job;
+    var fileObj = job.files[0];
+    var fileId = fileObj.url.substring(fileObj.url.lastIndexOf("/")+1, fileObj.url.length);
+    var userId = job.user._id;
 
-  }
-});
+    job.customName = $('input.job-custom-name').val();
+    job.jobNum = GetNextSequence('jobNum'); // manually insert job num here.
+    job.status = JobStatus.INCOMING;
+    job.type = JobType.THREE_D;
+    job.submitted = new Date();
+    job.files[0].downloadLink = 'https://www.filestackapi.com/api/file/' + fileId;
+    if (job.account.type === Account.SHARED) {
+      job.account.accountId = Template.instance().data.sharedAccountId;
+    } else if (_.isEmpty(job.account)) {
+      job.account = {
+        type: Account.PERSONAL
+      }
+    }
+    Jobs.update(job._id, job);
+    FlowRouter.go('/users/'+userId);
+    return false;
+  },
+  "click .cancel.button": function() {
+    var job = Template.instance().data.job;
+    var userId = job.user._id;
+    FlowRouter.go('/users/'+userId);
+    return false;
+  }});
 
 Template.jobSubmission.onCreated(function() {
-
+  this.autorun(function() {
+     this.data.job = GetJob(this.data.jobId());
+  }.bind(this));
 });
 
 Template.jobSubmission.onRendered(function() {
