@@ -65,9 +65,11 @@ Template.addJob.onRendered(function() {
   });
 
   // Randomly tada the upload icon.
-  Meteor.setInterval(function(){
+  this.data.intervalId = Meteor.setInterval(function(){
      $('.file-upload-icon').transition('tada');
   }, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
-
-
 });
+
+Template.addJob.onDestroyed(function() {
+  Meteor.clearInterval(this.data.intervalId);
+})
