@@ -9,7 +9,7 @@
 
       <div class="thirteen wide column" style="padding: 0;">
         <div class="ui segment" style="box-shadow: none; background-color: #f2f6f7; padding: 20px;">
-          <h3 class="ui header right floated">{{jobStatusUser status}}</h3>
+          <h3 class="ui header right floated">{{jobStatusUser latestStatus}}</h3>
           <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
             #{{jobNum}}
           </h2>
@@ -28,6 +28,7 @@
                 </div>
 
                 <div class="sixteen wide column">
+                  <h4 class="ui small header">Job progress</h4>
                   <table class="ui single line table">
                     <thead>
                       <tr>
@@ -38,7 +39,7 @@
                     </thead>
                     <tbody>
                       {{#each jobLogs}}
-                      <tr>
+                      <tr class="{{isRejected}} {{isDone}}">
                         <td>{{calendarDate date}}</td>
                         <td>{{jobStatusUser status}}</td>
                         <td>{{message}}</td>

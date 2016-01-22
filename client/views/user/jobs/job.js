@@ -22,6 +22,17 @@ Template.userJob.helpers({
   jobLogs: function() {
     var jobId = Template.instance().data.jobId();
     return GetLogsByJobId(jobId);
+  },
+  latestStatus: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return (_.isUndefined(job)) ? "" : job.latestLog.status;
+  },
+  isRejected: function() {
+    return this.status === JobStatus.REJECTED ? 'error' : '';
+  },
+  isDone: function() {
+    return this.status === JobStatus.DONE ? 'positive' : '';
   }
 });
 
