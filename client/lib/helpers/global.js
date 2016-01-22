@@ -38,6 +38,21 @@ this.GetFileByJobId = function(jobId) {
   return fileObj;
 };
 
+this.GetLogsByJobId = function(jobId) {
+  return JobLogs.find({jobId: jobId}, {sort: {date: -1}});
+}
+
+this.AddJobLog = function(jobId, jobStatus, message) {
+  var log = {
+    jobId: jobId,
+    date: new Date(),
+    status: jobStatus,
+    message: message
+  }
+  var jobLogId = JobLogs.insert(log);
+  Jobs.update(jobId, {$set: {latestLog: JobLogs.findOne(jobLogId)}});
+}
+
 // for auto incrementing jobNum
 this.GetNextSequence = function(name) {
   try {

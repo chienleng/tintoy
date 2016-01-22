@@ -1,9 +1,9 @@
 Template.acceptedJobs.helpers({
   accepted: function() {
-    return Jobs.find({status: 'accepted'}, {sort: Session.get('jobsSortOrder')});
+    return Jobs.find({'latestLog.status': 'accepted'}, {sort: Session.get('jobsSortOrder')});
   },
   count: function() {
-    return Jobs.find({status: 'accepted'}).count();
+    return Jobs.find({'latestLog.status': 'accepted'}).count();
   }
 
 });

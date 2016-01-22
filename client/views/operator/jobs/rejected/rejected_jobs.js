@@ -1,5 +1,5 @@
 Template.rejectedJobs.helpers({
   rejected: function() {
-    return Jobs.find({status: 'rejected'}, {sort: Session.get('jobsSortOrder')});
+    return Jobs.find({'latestLog.status': 'rejected'}, {sort: Session.get('jobsSortOrder')});
   }
 });

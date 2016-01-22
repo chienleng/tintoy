@@ -11,13 +11,13 @@ Template.jobSubmission.helpers({
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);
     var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
-    return fileObj.mimetype === "application/sla" ? true : false;
+    return fileObj && fileObj.mimetype === "application/sla" ? true : false;
   },
   overFilesizeLimit: function() {
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);
     var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
-    var filesizeMB = fileObj.size/1024/1024;
+    var filesizeMB = fileObj ? fileObj.size/1024/1024 : 0;
     return filesizeMB >= 1 ? true : false;
   }
 });
@@ -31,7 +31,6 @@ Template.jobSubmission.events({
 
     job.customName = $('input.job-custom-name').val();
     job.jobNum = GetNextSequence('jobNum'); // manually insert job num here.
-    job.status = JobStatus.INCOMING;
     job.type = JobType.THREE_D;
     job.submitted = new Date();
     job.files[0].downloadLink = 'https://www.filestackapi.com/api/file/' + fileId;
@@ -43,6 +42,7 @@ Template.jobSubmission.events({
       }
     }
     Jobs.update(job._id, job);
+    AddJobLog(job._id, JobStatus.INCOMING, null);
     FlowRouter.go('/users/'+userId);
     return false;
   },

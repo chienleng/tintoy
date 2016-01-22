@@ -4,7 +4,6 @@ var newJob = {
   files: [],
   user: null,
   pickupDate: null,
-  status: 'pending',
   added: null,
   submitted: null,
   account: {},

@@ -49,8 +49,8 @@ Template.operator.onRendered(function() {
       $('.reject-message.modal')
         .modal({
           onApprove: function() {
-            console.log('confirm');
-            Jobs.update(jobId, {$set: {status: 'rejected'}});
+            var message = $('.rejection-message textarea').val();
+            AddJobLog(jobId, JobStatus.REJECTED, message);
           },
           onDeny: function() {
             console.log('deny');
@@ -97,7 +97,7 @@ Template.operator.onRendered(function() {
 
       Session.set('selectedJob', jobId);
 
-      Jobs.update(jobId, {$set: {status: 'incoming'}});
+      AddJobLog(jobId, JobStatus.INCOMING, null);
     }
   })
 
@@ -136,7 +136,7 @@ Template.operator.onRendered(function() {
 
       Session.set('selectedJob', jobId);
 
-      Jobs.update(jobId, {$set: {status: 'accepted'}});
+      AddJobLog(jobId, JobStatus.ACCEPTED, null);
     }
   })
 
@@ -176,7 +176,7 @@ Template.operator.onRendered(function() {
 
       Session.set('selectedJob', jobId);
 
-      Jobs.update(jobId, {$set: {status: 'done'}});
+      AddJobLog(jobId, JobStatus.DONE, null);
     }
   })
 
