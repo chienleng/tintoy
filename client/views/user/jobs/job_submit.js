@@ -7,11 +7,18 @@ Template.jobSubmission.helpers({
     var job = GetJob(jobId);
     return (_.isUndefined(job)) ? "" : job.files[0].url;
   },
-  is3d: function() {
+  threeD: function() {
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);
-    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : {}; // assume single file
+    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
     return fileObj.mimetype === "application/sla" ? true : false;
+  },
+  overFilesizeLimit: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
+    var filesizeMB = fileObj.size/1024/1024;
+    return filesizeMB >= 1 ? true : false;
   }
 });
 

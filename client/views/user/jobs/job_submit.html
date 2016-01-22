@@ -16,10 +16,10 @@
             <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
               <div class="ui grid">
                 <div class="eight wide column preview">
-                  {{#if is3d}} {{> preview3D}} {{/if}}
+                  {{#if threeD}} {{> preview3D}} {{/if}}
                 </div>
                 <div class="eight wide column">
-                  {{#if is3d}}
+                  {{#if threeD}}
                     {{> form3D}}
                   {{/if}}
 
@@ -29,6 +29,14 @@
             </div>
 
             <div class="" style="text-align: right; margin: 30px 0 20px;">
+              {{#if overFilesizeLimit}}
+              <div class="inline field">
+                <div class="ui checkbox">
+                  <input type="checkbox" id="confirm-approval">
+                  <label for="confirm-approval">I have approval from my supervior to print this file.</label>
+                </div>
+              </div>
+              {{/if}}
               <button type="button" class="ui cancel button">Cancel</button>
               <button type="submit" class="ui green right labeled icon button">
                 Submit

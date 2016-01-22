@@ -18,7 +18,7 @@ Template.userJob.helpers({
     var job = GetJob(jobId);
     return (_.isUndefined(job)) ? "" : job.status;
   },
-  is3d: function() {
+  threeD: function() {
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);
     var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : {}; // assume single file

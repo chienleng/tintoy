@@ -22,7 +22,7 @@ Template.registerHelper('downloadLink', function(files) {
 });
 Template.registerHelper('filesize', function(files) {
   var fileObj = (!_.isUndefined(files) && files.length > 0) ? files[0] : null; // assume single file
-  return fileObj ? (fileObj.size/1000).toFixed(0) + "KB" : "n/a";
+  return fileObj ? (fileObj.size/1024).toFixed(0) + "KB" : "n/a";
 });
 
 /* job */
