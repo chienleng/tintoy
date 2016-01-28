@@ -1,11 +1,43 @@
 <template name="acceptedJobs">
   <div class="ui blue segment accepted-jobs">
     <div class="ui small count header">
-      <span class="ui blue circular label">{{count}}</span> IN PROGRESS
-      <!-- <small style="float: right;">
-        <a href="#"><i class="sort icon"></i></a>
-      </small> -->
+      IN PROGRESS
+      <span class="ui blue circular label" style="float: right">{{count}}</span>
     </div>
+
+    {{#if hasJobs}}
+    <div class="sort-div animated fadeIn">
+      <form action="#" class="filter-form ui form">
+        <div class="field">
+          <div class="ui icon input">
+            <input type="text" placeholder="Filter jobs...">
+            <i class="search icon"></i>
+          </div>
+        </div>
+
+        {{#if showAcceptedFilters}}
+        <div class="animated fadeIn">
+          <div class="field">
+            <label>SORT BY</label>
+            <select class="sort-selection ui dropdown">
+              <option value="">Job Number</option>
+              <option value="">User</option>
+            </select>
+          </div>
+          <!-- <div class="buttons" style="text-align: right;">
+            <button class="cancel ui tiny button">Cancel</button>
+            <button class="apply ui tiny green button">Apply</button>
+          </div> -->
+        </div>
+        {{else}}
+        <div class="current-sort">
+          <a href="#"><i class="sort icon"></i> Required By (Latest — Oldest)</a>
+        </div>
+        {{/if}}
+      </form>
+    </div>
+    {{/if}}
+
     <div class="drop-zone">
       <i class="download icon"></i>
       <span>Drop here to mark as accepted and download the file</span>

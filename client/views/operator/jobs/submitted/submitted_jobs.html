@@ -1,13 +1,42 @@
 <template name="submittedJobs">
   <div class="ui segment incoming-jobs">
     <div class="ui small count header">
-      <span class="ui grey circular label">{{count}}</span> SUBMITTED
-      <!-- <small style="float: right;">
-        <a href="#"><i class="sort icon"></i></a>
-      </small> -->
+      SUBMITTED
+      <span class="ui grey circular label" style="float: right">{{count}}</span>
     </div>
 
-    <!-- <div style="background-color: #999; height: 30px;"></div> -->
+    {{#if hasJobs}}
+    <div class="sort-div animated fadeIn">
+      <form action="#" class="filter-form ui form">
+        <div class="field">
+          <div class="ui icon input">
+            <input type="text" placeholder="Filter jobs...">
+            <i class="search icon"></i>
+          </div>
+        </div>
+
+        {{#if showSubmittedFilters}}
+        <div class="animated fadeIn">
+          <div class="field">
+            <label>SORT BY</label>
+            <select class="sort-selection ui dropdown">
+              <option value="">Job Number</option>
+              <option value="">User</option>
+            </select>
+          </div>
+          <!-- <div class="buttons" style="text-align: right;">
+            <button class="cancel ui tiny button">Cancel</button>
+            <button class="apply ui tiny green button">Apply</button>
+          </div> -->
+        </div>
+        {{else}}
+        <div class="current-sort">
+          <a href="#"><i class="sort icon"></i> Required By (Latest — Oldest)</a>
+        </div>
+        {{/if}}
+      </form>
+    </div>
+    {{/if}}
 
     <div class="drop-zone">
       <i class="road icon"></i>
