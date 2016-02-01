@@ -9,6 +9,10 @@ Template.preview3D.helpers({
   }
 });
 
+Template.preview3D.onCreated(function() {
+  // this.data.colour =
+});
+
 Template.preview3D.onRendered(function() {
   var viewer = null;
   var JSC3D = JSC3DWrapper();
@@ -16,11 +20,13 @@ Template.preview3D.onRendered(function() {
 
   this.autorun(function() {
      this.data.job = GetJob(this.data.jobId());
-     var hasJob = _.isUndefined(this.data.job);
+
+     var hasJob = !_.isUndefined(this.data.job);
+     console.log(this.data.job)
      var colour = hasJob && !_.isUndefined(this.data.job.settings.colour) ?
                           this.data.job.settings.colour : Session.get('3dColour');
 
-     if (!hasJob) {
+     if (hasJob) {
        if (viewer) {
          var mesh = viewer.getScene().getChildren()[0];
          var hexNumber = parseInt(colour.replace(/^#/, ''), 16);
