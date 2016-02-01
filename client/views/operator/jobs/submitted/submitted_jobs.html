@@ -10,7 +10,7 @@
       <form action="#" class="filter-form ui form">
         <div class="field">
           <div class="ui icon input">
-            <input type="text" placeholder="Filter jobs...">
+            <input class="submitted-jobs-filter" value="{{searchString}}" type="text" placeholder="Filter jobs by job name or user names...">
             <i class="search icon"></i>
           </div>
         </div>
@@ -44,7 +44,8 @@
     </div>
 
     <div class="jobs">
-      {{#each incoming}} {{> incomingJob}} {{/each}}
+      <!-- {{#each incoming}} {{> incomingJob}} {{/each}} -->
+      {{#each filteredJobs}} {{> incomingJob}} {{/each}}
     </div>
   </div>
 </template>

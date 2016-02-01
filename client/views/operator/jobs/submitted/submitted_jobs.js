@@ -9,8 +9,25 @@ Template.submittedJobs.helpers({
     return Jobs.find({'latestLog.status': 'incoming'}).count();
   },
   showSubmittedFilters: function() {
-    console.log(Template.instance().data.showSubmittedFilters.get())
     return Template.instance().data.showSubmittedFilters.get();
+  },
+  searchString: function() {
+    return Session.get('submittedJobsSearch');
+  },
+  filteredJobs: function() {
+    var searchString = Session.get('submittedJobsSearch');
+
+    if (!searchString) {
+      return Jobs.find({'latestLog.status': 'incoming'});
+    }
+
+    var list = Jobs.find({'latestLog.status': 'incoming'}).fetch();
+    return _.filter(list, function(job) {
+      var findCustomName = job.customName.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      var findGivenName = job.user.names.given.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      var findSurname = job.user.names.surname.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      return findCustomName || findGivenName || findSurname;
+    })
   }
 });
 
@@ -30,6 +47,9 @@ Template.submittedJobs.events({
   },
   'change .incoming-jobs .sort-selection': function() {
     Template.instance().data.showSubmittedFilters.set(false);
+  },
+  'keyup .submitted-jobs-filter': function(event) {
+    Session.set('submittedJobsSearch', $(event.currentTarget).val());
   }
 });
 

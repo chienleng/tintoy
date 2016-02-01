@@ -11,6 +11,24 @@ Template.acceptedJobs.helpers({
   showAcceptedFilters: function() {
     console.log(Template.instance().data.showAcceptedFilters.get())
     return Template.instance().data.showAcceptedFilters.get();
+  },
+  searchString: function() {
+    return Session.get('acceptedJobsSearch');
+  },
+  filteredJobs: function() {
+    var searchString = Session.get('acceptedJobsSearch');
+
+    if (!searchString) {
+      return Jobs.find({'latestLog.status': 'accepted'});
+    }
+
+    var list = Jobs.find({'latestLog.status': 'accepted'}).fetch();
+    return _.filter(list, function(job) {
+      var findCustomName = job.customName.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      var findGivenName = job.user.names.given.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      var findSurname = job.user.names.surname.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      return findCustomName || findGivenName || findSurname;
+    })
   }
 });
 Template.acceptedJobs.events({
@@ -29,6 +47,9 @@ Template.acceptedJobs.events({
   },
   'change .accepted-jobs .sort-selection': function() {
     Template.instance().data.showAcceptedFilters.set(false);
+  },
+  'keyup .accepted-jobs-filter': function(event) {
+    Session.set('acceptedJobsSearch', $(event.currentTarget).val());
   }
 });
 
