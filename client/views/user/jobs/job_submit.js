@@ -32,6 +32,9 @@ Template.jobSubmission.events({
     job.customName = $('input.job-custom-name').val();
     job.jobNum = GetNextSequence('jobNum'); // manually insert job num here.
     job.type = JobType.THREE_D;
+    job.settings = {
+      colour: Session.get('3dColour')
+    };
     job.submitted = new Date();
     job.files[0].downloadLink = 'https://www.filestackapi.com/api/file/' + fileId;
     if (job.account.type === Account.SHARED) {

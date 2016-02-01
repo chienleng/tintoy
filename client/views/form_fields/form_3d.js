@@ -31,9 +31,13 @@ function setupColorPicker() {
   $("#colorpicker").spectrum({
     showPaletteOnly: true,
     showPalette: true,
+    hideAfterPaletteSelect: true,
     color: 'dodgerBlue',
     palette: [
-      ['black', 'dodgerBlue', 'darkred', 'green', 'gray', 'linen', 'orangeRed', 'white']
-    ]
+      ['dodgerBlue', 'darkred', 'green', 'gray', 'linen', 'orangeRed', 'white']
+    ],
+    change: function(color) {
+      Session.set('3dColour', color.toHexString());
+    }
   });
 };

@@ -62,7 +62,8 @@ Meteor.startup(function () {
       },
       balance: 20.5,
       email: 'malcolm@serenity.org',
-      icon: '/img/users/emoticon-monster.png'
+      icon: '/img/users/emoticon-monster.png',
+      colour: '#313B4A'
     });
     LabUsers.insert({
       names: {
@@ -71,7 +72,8 @@ Meteor.startup(function () {
       },
       balance: 13,
       email: 'zoe@serenity.org',
-      icon: '/img/users/emoticon-alien.png'
+      icon: '/img/users/emoticon-alien.png',
+      colour: '#FF5447'
     });
     LabUsers.insert({
       names: {
@@ -80,7 +82,8 @@ Meteor.startup(function () {
       },
       balance: 13,
       email: 'simon@serenity.org',
-      icon: '/img/users/emoticon-nerd.png'
+      icon: '/img/users/emoticon-nerd.png',
+      colour: '#00BDBD'
     });
     // LabUsers.insert({
     //   names: {

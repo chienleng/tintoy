@@ -10,21 +10,33 @@ Template.preview3D.helpers({
 });
 
 Template.preview3D.onRendered(function() {
+  var viewer = null;
+  var JSC3D = JSC3DWrapper();
+  var obj = null;
+
   this.autorun(function() {
      this.data.job = GetJob(this.data.jobId());
-     console.log(this.data.job);
+     var hasJob = _.isUndefined(this.data.job);
+     var colour = hasJob && !_.isUndefined(this.data.job.settings.colour) ?
+                          this.data.job.settings.colour : Session.get('3dColour');
 
-     if (!_.isUndefined(this.data.job)) {
-       render(this.data.job.files[0].url);
+     if (!hasJob) {
+       if (viewer) {
+         var mesh = viewer.getScene().getChildren()[0];
+         var hexNumber = parseInt(colour.replace(/^#/, ''), 16);
+         mesh.setMaterial(new JSC3D.Material('', 0, hexNumber, 0, true));
+         viewer.update();
+       } else {
+         render(this.data.job.files[0].url, colour);
+       }
      }
   }.bind(this));
 
-  function render(fileUrl) {
+  function render(fileUrl, colour) {
     var previewClass = '.preview';
     var preview3DClass = '.preview-3d';
-    var viewer = null, canvas = null;
-    var JSC3D = JSC3DWrapper();
-
+    var canvas = null;
+    console.log(colour)
     // set canvas width based on its container
     $(previewClass).find(preview3DClass).attr('width', $(previewClass).width());
 
@@ -33,9 +45,9 @@ Template.preview3D.onRendered(function() {
     viewer = new JSC3D.Viewer(canvas);
     viewer.setParameter('InitRotationY', 0);
     viewer.setParameter('InitRotationZ', 0);
-    viewer.setParameter('ModelColor', '#16CBF3');
-    viewer.setParameter('BackgroundColor1', '#333333');
-    viewer.setParameter('BackgroundColor2', '#333333');
+    viewer.setParameter('ModelColor', colour);
+    viewer.setParameter('BackgroundColor1', '#000000');
+    viewer.setParameter('BackgroundColor2', '#000000');
     viewer.setParameter('RenderMode', 'smooth');
     viewer.setParameter('MipMapping', JSC3D.PlatformInfo.supportWebGL ? 'off' : 'on');
     viewer.setParameter('Renderer', 'webgl');
@@ -44,7 +56,8 @@ Template.preview3D.onRendered(function() {
 
     var stlLoader = new JSC3D.StlLoader(
       function(load) {
-        viewer.replaceScene(load)
+        obj = load;
+        viewer.replaceScene(obj);
       },
       function() {},
       function() {},

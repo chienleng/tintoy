@@ -1,8 +1,9 @@
 Template.thumbnail3D.onRendered(function() {
-  console.log(this.data)
-  render(this.data._id, this.data.files[0].url);
+  console.log(this.data);
+  var colour = _.isUndefined(this.data.settings.colour) ? '#16CBF3' : this.data.settings.colour;
+  render(this.data._id, this.data.files[0].url, colour);
 
-  function render(id, fileUrl) {
+  function render(id, fileUrl, colour) {
     var preview3DClass = '[data-id='+id+'] .preview-3d';
     var viewer = null, canvas = null;
     var JSC3D = JSC3DWrapper();
@@ -12,7 +13,7 @@ Template.thumbnail3D.onRendered(function() {
     viewer = new JSC3D.Viewer(canvas);
     viewer.setParameter('InitRotationY', 0);
     viewer.setParameter('InitRotationZ', 0);
-    viewer.setParameter('ModelColor', '#16CBF3');
+    viewer.setParameter('ModelColor', colour);
     viewer.setParameter('BackgroundColor1', '#333333');
     viewer.setParameter('BackgroundColor2', '#333333');
     viewer.setParameter('RenderMode', 'smooth');
