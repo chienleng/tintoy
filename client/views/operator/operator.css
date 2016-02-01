@@ -13,6 +13,7 @@
 .operator-page .jobs {
    position: relative;
    left: -2px;
+   padding-bottom: 10px;
 }
 
 .thumbnail {

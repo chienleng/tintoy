@@ -43,8 +43,8 @@ Template.preview3D.onRendered(function() {
     // render the 3D file
     canvas = $(preview3DClass)[0];
     viewer = new JSC3D.Viewer(canvas);
-    viewer.setParameter('InitRotationY', 0);
-    viewer.setParameter('InitRotationZ', 0);
+    viewer.setParameter('InitRotationY', 45);
+    viewer.setParameter('InitRotationZ', 45);
     viewer.setParameter('ModelColor', colour);
     viewer.setParameter('BackgroundColor1', '#000000');
     viewer.setParameter('BackgroundColor2', '#000000');
