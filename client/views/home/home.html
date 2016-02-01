@@ -1,31 +1,35 @@
 <template name="home">
   <div id="home" class="ui two column centered grid">
     <div class="column">
-      <h1 class="home-title">Choose a persona</h1>
+      <header class="home-title">
+        <img class="pc-logo" src="/img/logotype.png" alt="PaperCut Logo" />
+        <h1>print room demo</h1>
+      </header>
     </div>
 
-    <div class="three column row">
-      <div class="column">
-        <div class="ui huge fluid vertical buttons">
-          {{#each users}}
-          <a href="/users/{{_id}}" class="lab-user ui olive right labeled icon button">
-            <i class="send outline icon"></i> {{fullName names}}
-          </a>
-          {{/each}}
-        </div>
-      </div>
-
-      <div class="ui vertical divider"><i class="spy icon"></i></div>
-
-      <div class="column">
-        <div class="ui huge fluid vertical buttons">
-          {{#each labs}}
-          <a href="/operator/{{_id}}" class="lab-op ui green right labeled icon button">
-            <i class="{{icon}} icon"></i> {{name}}
-          </a>
-          {{/each}}
-        </div>
+    <div class="row">
+      <div class="users column" style="background: #fff; padding: 20px; border-radius: 6px; text-align: center;">
+        <h4>users</h4>
+        {{#each users}}
+        <a href="/users/{{_id}}" class="lab-user">
+          <img src="{{icon}}" alt="">
+          <span class="name">{{fullName names}}</span>
+        </a>
+        {{/each}}
       </div>
     </div>
+
+    <div class="row">
+      <div class="operators column" style="padding: 20px; text-align: center;">
+        <h4>operators</h4>
+        {{#each labs}}
+        <a href="/operator/{{_id}}" class="lab-op">
+          <img src="{{icon}}" alt="">
+          <span class="name">{{name}}</span>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+
   </div>
 </template>

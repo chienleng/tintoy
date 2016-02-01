@@ -62,17 +62,35 @@ Meteor.startup(function () {
       },
       balance: 20.5,
       email: 'malcolm@serenity.org',
-      colour: '#f2711c'
+      icon: '/img/users/emoticon-monster.png'
     });
     LabUsers.insert({
       names: {
-        given: 'Hoban',
+        given: 'Zoe',
         surname: 'Washburne'
       },
       balance: 13,
-      email: 'hoban@serenity.org',
-      colour: '#2185d0'
-    })
+      email: 'zoe@serenity.org',
+      icon: '/img/users/emoticon-alien.png'
+    });
+    LabUsers.insert({
+      names: {
+        given: 'Simon',
+        surname: 'Tam'
+      },
+      balance: 13,
+      email: 'simon@serenity.org',
+      icon: '/img/users/emoticon-nerd.png'
+    });
+    // LabUsers.insert({
+    //   names: {
+    //     given: 'Kaylee',
+    //     surname: 'Frye'
+    //   },
+    //   balance: 13,
+    //   email: 'kaylee@serenity.org',
+    //   icon: '/img/users/emoticon-devil.png'
+    // });
   }
 
   /*
@@ -80,13 +98,13 @@ Meteor.startup(function () {
   */
   if (Labs.find().count() === 0) {
     Labs.insert({
-      name: 'Lab Tinny',
-      icon: 'cubes',
+      name: 'Operator Tinny',
+      icon: '/img/users/emoticon-pirate.png',
       workflow: 1
     });
     Labs.insert({
-      name: 'Lab Billy',
-      icon: 'university',
+      name: 'Operator Billy',
+      icon: '/img/users/emoticon-ninja.png',
       worflow: 2
     })
   }

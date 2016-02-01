@@ -11,3 +11,48 @@
 #home .button {
   text-align: left;
 }
+#home header .pc-logo {
+  /*height: 65px;*/
+}
+#home .home-title {
+  margin: 70px auto 0;
+}
+#home .home-title h1 {
+  font-weight: 100;
+  margin-top: 0;
+  color: #888;
+  position: relative;
+  top: -3px;
+  left: -2px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+#home a.lab-user,
+#home a.lab-op {
+  display: inline-block;
+  text-align: center;
+  padding: 20px;
+  -webkit-transition: all ease-out .1s;
+  -moz-transition: all ease-out .1s;
+  -o-transition: all ease-out .1s;
+  transition: all ease-out .1s;
+}
+#home a:hover {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 6px;
+}
+#home a span.name {
+  display: block;
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+#home .column h4 {
+  /*position: absolute;
+  top: 3px;
+  right: 6px;*/
+  color: #000;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 1.4em;
+}
