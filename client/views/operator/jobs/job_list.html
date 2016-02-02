@@ -1,0 +1,54 @@
+<template name="jobList">
+  {{> operatorHeader menuItem='All Jobs'}}
+
+  <div class="ui container operator-page">
+
+    {{#if noJobs}}
+    <h2 class="ui header">
+      No Jobs — put something fun here.
+    </h2>
+    {{else}}
+    <div class="ui grid">
+      <div class="sixteen column">
+        <div class="ui link items jobs">
+          {{#each jobs}}
+          <div class="item" data-id="{{_id}}">
+            <div class="content">
+              <div class="ui padded grid description">
+                <div class="three wide column {{status}}">
+                  {{jobStatusUser latestLog.status}}
+                </div>
+                <div class="three wide column" style="padding: 0;">
+                  <div class="thumbnail" style="float: left; margin-right: 5px;">
+                    {{> thumbnail3D}}
+                  </div>
+                  <span class="" style="font-weight: 100; position: relative; top: 6px; font-size: 1.1em;">
+                    #{{jobNum}}
+                  </span>
+                </div>
+                <div class="four wide column" style="padding: 0; font-size: 0.9em; padding-top: 5px;">
+                  {{#if customName}}
+                  <strong>{{customName}}</strong>
+                  {{/if}}
+                  <br>
+                  <small style="position: relative; top: -2px;">{{filename files}}</small>
+                </div>
+                <div class="three wide column" style="padding: 0; font-size: 0.9em; padding-top: 5px;">
+                  <span>{{fromNow submitted}}</span>
+                </div>
+                <div class="three wide column">
+                  ...
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{/if}}
+
+  </div>
+
+  {{> footer}}
+</template>

@@ -22,7 +22,6 @@ Template.preview3D.onRendered(function() {
      this.data.job = GetJob(this.data.jobId());
 
      var hasJob = !_.isUndefined(this.data.job);
-     console.log(this.data.job)
      var colour = hasJob && !_.isUndefined(this.data.job.settings.colour) ?
                           this.data.job.settings.colour : Session.get('3dColour');
 
@@ -42,7 +41,6 @@ Template.preview3D.onRendered(function() {
     var previewClass = '.preview';
     var preview3DClass = '.preview-3d';
     var canvas = null;
-    console.log(colour)
     // set canvas width based on its container
     $(previewClass).find(preview3DClass).attr('width', $(previewClass).width());
 

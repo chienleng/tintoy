@@ -1,0 +1,59 @@
+<template name="operatorJob">
+  {{> operatorHeader}}
+
+  <div class="ui container operator-page">
+    <div class="ui stackable padded grid">
+
+      <div class="sixteen wide column" style="padding: 0;">
+        <div class="ui segment" style="box-shadow: none; background-color: #f2f6f7; padding: 20px;">
+          <h3 class="ui header right floated">{{jobStatusUser latestStatus}}</h3>
+          <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
+            #{{jobNum}}
+          </h2>
+          <form action="#" class="new-3d-submission ui form" style="margin: 0; width: 100%">
+            <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
+              <div class="ui grid">
+                <div class="eight wide column preview">
+                  {{#if threeD}} {{> preview3D}} {{/if}}
+                </div>
+                <div class="eight wide column">
+                  {{#if threeD}} {{> view3D}} {{/if}}
+                </div>
+
+                <div class="sixteen wide column">
+                  <h4 class="ui small header">Job progress</h4>
+                  <table class="ui single line table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Message</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each jobLogs}}
+                      <tr class="{{isRejected}} {{isDone}}">
+                        <td>{{calendarDate date}}</td>
+                        <td>{{jobStatusUser status}}</td>
+                        <td>{{message}}</td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="" style="text-align: right; margin: 30px 0 20px;">
+              <button type="button" class="ui green done button">
+                Done
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+
+</template>
