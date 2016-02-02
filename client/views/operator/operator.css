@@ -111,8 +111,6 @@
 .sort-div {
   border-top: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
-  /*background-color: rgba(30,30,30,.1);*/
-  /*box-shadow: inset 0 0 2px rgba(0,0,0,0.1);*/
   -webkit-transition: all ease-out .1s;
   -moz-transition: all ease-out .1s;
   -o-transition: all ease-out .1s;
@@ -127,7 +125,6 @@
 }
 .sort-div .current-sort a {
   display: block;
-  /*padding: 3px 20px;*/
   opacity: 0.8;
   -webkit-transition: all ease-out .1s;
   -moz-transition: all ease-out .1s;
@@ -140,10 +137,6 @@
 .sort-div .filter-form {
   padding: 10px;
   background-color: rgba(200,200,200,.3);
-  /*border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-*/
-  /*box-shadow: inset 1px 1px 12px rgba(0,0,0,0.1);*/
 }
 .sort-div .ui.form .field > label {
   font-size: 0.8em;

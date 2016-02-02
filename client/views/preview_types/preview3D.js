@@ -9,10 +9,6 @@ Template.preview3D.helpers({
   }
 });
 
-Template.preview3D.onCreated(function() {
-  // this.data.colour =
-});
-
 Template.preview3D.onRendered(function() {
   var viewer = null;
   var JSC3D = JSC3DWrapper();
