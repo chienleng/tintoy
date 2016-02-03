@@ -7,10 +7,10 @@
 .jobs-kanban .ui.segment > .small.header {
   color: #6A6F7B;
   font-weight: light;
-  padding: 15px 20px 0;
+  padding: 15px 15px 0;
 }
 
-.operator-page .jobs {
+.lab-page .jobs {
    position: relative;
    left: -2px;
    padding-bottom: 10px;
@@ -22,26 +22,26 @@
    margin-right: 1em;
 }
 
-.operator-page .drop-zone {
+.lab-page .drop-zone {
   display: none;
 }
-.operator-page .drop-zone.drop-active {
+.lab-page .drop-zone.drop-active {
   display: block;
 }
-.operator-page .ui.card {
+.lab-page .ui.card {
   cursor: move;
   margin: 2px;
   border: 0;
   box-shadow: none;
   background-color: #fff;
 }
-.operator-page .ui.card > .content {
+.lab-page .ui.card > .content {
   padding: 0;
 }
-.operator-page .jobNames {
+.lab-page .jobNames {
   padding: 1em;
 }
-.operator-page .ui.card > .extra.content {
+.lab-page .ui.card > .extra.content {
   padding: 0.7em;
   font-size: 12px;
 }

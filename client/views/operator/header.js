@@ -6,6 +6,10 @@ Template.operatorHeader.helpers({
   isAlJobsActive: function() {
     var isAllJobs = Template.instance().data.menuItem === 'All Jobs' || false;
     return isAllJobs ? 'active' : '';
+  },
+  isPrintRoomsActive: function() {
+    var isPrintRooms = Template.instance().data.menuItem === 'Print Rooms' || false;
+    return isPrintRooms ? 'active' : '';
   }
 });
 

@@ -1,16 +1,26 @@
-Template.operator.helpers({
+Template.lab.helpers({
   noJobs: function() {
     var jobCount = Jobs.find().count();
     console.log(jobCount);
     return jobCount === 0 ? true : false;
+  },
+  labName: function() {
+    var labId = Template.instance().data.labId();
+    var lab = Labs.findOne(labId);
+    return _.isUndefined(lab) ? "" : lab.name;
+  },
+  labJobs: function() {
+    var jobs = Jobs.find({type: 'paper'});
+    return jobs;
   }
 });
 
-Template.operator.events({
+Template.lab.events({
 
 });
 
-Template.operator.onRendered(function() {
+Template.lab.onRendered(function() {
+  console.log(this.data.labId())
   interact('.rejected-jobs .drop-zone').dropzone({
     accept: '.incoming-job, .accepted-job, .done-job',
     overlap: 0.5,

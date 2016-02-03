@@ -101,14 +101,40 @@ Meteor.startup(function () {
   */
   if (Labs.find().count() === 0) {
     Labs.insert({
-      name: 'Operator Tinny',
+      name: 'Lab 1',
       icon: '/img/users/emoticon-pirate.png',
-      workflow: 1
+      devices: [
+        {
+          label: 'Formlabs Form 1+',
+          type: '3d'
+        },
+        {
+          label: 'MakerBot Replicator Desktop',
+          type: '3d'
+        },
+        {
+          label: 'MakerBot Replicator Z18',
+          type: '3d'
+        }
+      ]
     });
     Labs.insert({
-      name: 'Operator Billy',
+      name: 'Lab 2',
       icon: '/img/users/emoticon-ninja.png',
-      worflow: 2
+      devices: [
+        {
+          label: 'Lexmark E462dtn',
+          type: 'paper'
+        },
+        {
+          label: 'Xerox Phaser 6500',
+          type: 'paper'
+        },
+        {
+          label: 'Kyocera Mita FS-1370DN',
+          type: 'paper'
+        }
+      ]
     })
   }
 });

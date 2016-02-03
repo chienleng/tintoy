@@ -3,21 +3,29 @@
     <!-- <span class="ui right corner label job-link-label" title="Detail" style="border-color: {{user.colour}};">
       <i class="unhide icon"></i>
     </span> -->
-    <div class="ui padded grid description" style="border-bottom: 1px solid #ccc;">
-      <div class="sixteen wide column" style="padding: 2px 10px; background-color: {{user.colour}}; color: #fff; font-size: 0.9em;">
-        #{{jobNum}}
-      </div>
+
+    <!-- border-left: 5px solid {{user.colour}}; -->
+    <div class="ui padded grid description" style="">
+      <!-- <div class="sixteen wide column" style="padding: 2px 10px; background-color: {{user.colour}}; color: #fff; font-size: 0.9em;">
+
+      </div> -->
       <div class="sixteen wide column" style="padding: 5px;">
         <span class="thumbnail" style="float: left; margin-right: 5px;">
           {{> thumbnail3D}}
         </span>
+        <div>
+          <span style="font-weight: bold; width: 63px; display: inline-block; font-size: 14px; color: {{user.colour}}; border-top: 5px solid {{user.colour}}; margin-top: 0px;">#{{jobNum}}</span>
+          <span class="ui horizontal label" style="font-size: 0.8em; float: right; margin-right: 0">{{fromNow submitted}}</span>
+        </div>
+
         {{#if customName}}
-        <strong>{{customName}}</strong>
+        <small style="font-weight: bold;">{{customName}}</small>
+        {{else}}
+        <small style="font-weight: bold">{{filename files}}</small>
         {{/if}}
         <br>
-        <!-- <small style="position: relative; top: -2px;">{{filename files}}</small> -->
         <small style="position: relative; top: -3px;">{{fullName user.names}}</small>
-        <span style="font-size: 0.8em; position: absolute; top: 5px; right: 5px;">{{fromNow submitted}}</span>
+      
       </div>
 
     </div>

@@ -23,10 +23,15 @@ Template.submittedJobs.helpers({
 
     var list = Jobs.find({'latestLog.status': 'incoming'}).fetch();
     return _.filter(list, function(job) {
-      var findCustomName = job.customName.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      var findName = false;
+      if (_.isEmpty(job.customName)) {
+        findName = job.files[0].filename.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      } else {
+        findName = job.customName.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
+      }
       var findGivenName = job.user.names.given.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
       var findSurname = job.user.names.surname.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
-      return findCustomName || findGivenName || findSurname;
+      return findName || findGivenName || findSurname;
     })
   }
 });
@@ -55,4 +60,7 @@ Template.submittedJobs.events({
 
 Template.submittedJobs.onCreated(function() {
   this.data.showSubmittedFilters = new ReactiveVar(false);
+
+  var labId = Template.instance().data.labId();
+  var lab = Labs.findOne(labId);
 });
