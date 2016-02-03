@@ -46,8 +46,8 @@ Template.preview3D.onRendered(function() {
     viewer.setParameter('InitRotationY', 45);
     viewer.setParameter('InitRotationZ', 45);
     viewer.setParameter('ModelColor', colour);
-    viewer.setParameter('BackgroundColor1', '#FFFFFF');
-    viewer.setParameter('BackgroundColor2', '#FFFFFF');
+    viewer.setParameter('BackgroundColor1', '#efefef');
+    viewer.setParameter('BackgroundColor2', '#efefef');
     viewer.setParameter('RenderMode', 'smooth');
     viewer.setParameter('MipMapping', JSC3D.PlatformInfo.supportWebGL ? 'off' : 'on');
     viewer.setParameter('Renderer', 'webgl');
