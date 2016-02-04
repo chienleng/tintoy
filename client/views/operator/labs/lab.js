@@ -20,41 +20,54 @@ Template.lab.events({
 });
 
 Template.lab.onRendered(function() {
-  console.log(this.data.labId())
+  console.log(this.data.labId());
+
+  var x = 0, y = 0;
+  var startX = 0, startY = 0;
+  var jobsContext = document.querySelector('.jobs-kanban');
+
+  interact('.ui.card', {context: jobsContext})
+    .draggable({
+      // enable inertial throwing
+      inertia: false,
+      // enable autoScroll
+      autoScroll: true,
+
+      // call this function on every dragmove event
+      onmove: dragMoveListener,
+      onstart: function(event) {
+        var target = event.target;
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+        $(target).addClass('dragged');
+      },
+      // call this function on every dragend event
+      onend: function(event) {
+        var target = event.target;
+        target.style.webkitTransform =
+          target.style.transform =
+            'translate(' + startX + 'px, ' + startY + 'px)';
+
+        target.setAttribute('data-x', startX);
+        target.setAttribute('data-y', startY);
+        $(target).removeClass('dragged');
+      }
+    });
+
+  interact('.ui.card', {context: jobsContext}).on('tap', function (event) {
+    $('.job-detail-modal').modal('show');
+  })
+
   interact('.rejected-jobs .drop-zone').dropzone({
     accept: '.incoming-job, .accepted-job, .done-job',
     overlap: 0.5,
-    ondropactivate: function(event) {
-      $(event.target).closest('.segment').addClass('drop-active');
-      event.target.classList.add('drop-active');
-      console.log('ondropactivate');
-
-    },
-    ondropdeactivate: function(event) {
-      // remove active dropzone feedback
-      $(event.target).closest('.segment').removeClass('drop-active');
-      event.target.classList.remove('drop-active');
-      event.target.classList.remove('drop-target');
-      console.log('ondropdeactivate')
-    },
-    ondragenter: function(event) {
-      var draggableElement = event.relatedTarget,
-        dropzoneElement = event.target;
-
-      console.log('ondragenter')
-      dropzoneElement.classList.add('drop-target');
-      draggableElement.classList.add('can-drop');
-    },
-    ondragleave: function(event) {
-      console.log('ondragleave')
-      event.target.classList.remove('drop-target');
-      event.relatedTarget.classList.remove('can-drop');
-    },
+    ondropactivate: ondropactivate,
+    ondropdeactivate: ondropdeactivate,
+    ondragenter: ondragenter,
+    ondragleave: ondragleave,
     ondrop: function(event) {
       var draggableElement = event.relatedTarget;
       var jobId = $(draggableElement).data('id');
-
-      Session.set('selectedJob', jobId);
 
       $('.reject-message.modal')
         .modal({
@@ -75,32 +88,10 @@ Template.lab.onRendered(function() {
   interact('.incoming-jobs .drop-zone').dropzone({
     accept: '.accepted-job, .rejected-job, .done-job',
     overlap: 0.5,
-    ondropactivate: function(event) {
-      $(event.target).closest('.segment').addClass('drop-active');
-      event.target.classList.add('drop-active');
-      console.log('ondropactivate');
-
-    },
-    ondropdeactivate: function(event) {
-      // remove active dropzone feedback
-      $(event.target).closest('.segment').removeClass('drop-active');
-      event.target.classList.remove('drop-active');
-      event.target.classList.remove('drop-target');
-      console.log('ondropdeactivate')
-    },
-    ondragenter: function(event) {
-      var draggableElement = event.relatedTarget,
-        dropzoneElement = event.target;
-
-      console.log('ondragenter')
-      dropzoneElement.classList.add('drop-target');
-      draggableElement.classList.add('can-drop');
-    },
-    ondragleave: function(event) {
-      console.log('ondragleave')
-      event.target.classList.remove('drop-target');
-      event.relatedTarget.classList.remove('can-drop');
-    },
+    ondropactivate: ondropactivate,
+    ondropdeactivate: ondropdeactivate,
+    ondragenter: ondragenter,
+    ondragleave: ondragleave,
     ondrop: function(event) {
       var draggableElement = event.relatedTarget;
       var jobId = $(draggableElement).data('id');
@@ -114,32 +105,10 @@ Template.lab.onRendered(function() {
   interact('.accepted-jobs .drop-zone').dropzone({
     accept: '.incoming-job, .rejected-job, .done-job',
     overlap: 0.5,
-    ondropactivate: function(event) {
-      $(event.target).closest('.segment').addClass('drop-active');
-      event.target.classList.add('drop-active');
-      console.log('ondropactivate');
-
-    },
-    ondropdeactivate: function(event) {
-      // remove active dropzone feedback
-      $(event.target).closest('.segment').removeClass('drop-active');
-      event.target.classList.remove('drop-active');
-      event.target.classList.remove('drop-target');
-      console.log('ondropdeactivate')
-    },
-    ondragenter: function(event) {
-      var draggableElement = event.relatedTarget,
-        dropzoneElement = event.target;
-
-      console.log('ondragenter')
-      dropzoneElement.classList.add('drop-target');
-      draggableElement.classList.add('can-drop');
-    },
-    ondragleave: function(event) {
-      console.log('ondragleave')
-      event.target.classList.remove('drop-target');
-      event.relatedTarget.classList.remove('can-drop');
-    },
+    ondropactivate: ondropactivate,
+    ondropdeactivate: ondropdeactivate,
+    ondragenter: ondragenter,
+    ondragleave: ondragleave,
     ondrop: function(event) {
       var draggableElement = event.relatedTarget;
       var jobId = $(draggableElement).data('id');
@@ -154,32 +123,10 @@ Template.lab.onRendered(function() {
   interact('.done-jobs .drop-zone').dropzone({
     accept: '.accepted-job, .incoming-job, .rejected-job',
     overlap: 0.5,
-    ondropactivate: function(event) {
-      $(event.target).closest('.segment').addClass('drop-active');
-      event.target.classList.add('drop-active');
-      console.log('ondropactivate');
-
-    },
-    ondropdeactivate: function(event) {
-      // remove active dropzone feedback
-      $(event.target).closest('.segment').removeClass('drop-active');
-      event.target.classList.remove('drop-active');
-      event.target.classList.remove('drop-target');
-      console.log('ondropdeactivate')
-    },
-    ondragenter: function(event) {
-      var draggableElement = event.relatedTarget,
-        dropzoneElement = event.target;
-
-      console.log('ondragenter')
-      dropzoneElement.classList.add('drop-target');
-      draggableElement.classList.add('can-drop');
-    },
-    ondragleave: function(event) {
-      console.log('ondragleave')
-      event.target.classList.remove('drop-target');
-      event.relatedTarget.classList.remove('can-drop');
-    },
+    ondropactivate: ondropactivate,
+    ondropdeactivate: ondropdeactivate,
+    ondragenter: ondragenter,
+    ondragleave: ondragleave,
     ondrop: function(event) {
       var draggableElement = event.relatedTarget;
       var jobId = $(draggableElement).data('id');
@@ -190,28 +137,51 @@ Template.lab.onRendered(function() {
     }
   })
 
-  // Meteor.call('dndSetup');
-  $('.ui.dropdown').dropdown();
-
-  //https://bgrins.github.io/spectrum/#options-showPaletteOnly
-  $("#colorpicker").spectrum({
-    showPaletteOnly: true,
-    showPalette: true,
-    color: 'dodgerBlue',
-    palette: [
-      ['black', 'dodgerBlue', 'darkred', 'green', 'gray', 'linen', 'orangeRed', 'white']
-    ]
-  });
-
-  // $('.modal')
-  //   .modal({
-  //     allowMultiple: false
-  //   })
-  //   .modal('setting', 'transition', 'fade up')
-  //   .modal('setting', 'duration', 250);
-  //
-  // $('.reject-message.modal')
-  //   .modal('attach events', '.job-details.modal .reject.button');
-
-  // $('.job-details.modal').modal('show');
 });
+
+function dragMoveListener(event) {
+  var target = event.target,
+    // keep the dragged position in the data-x/data-y attributes
+    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+  // translate the element
+  target.style.webkitTransform =
+    target.style.transform =
+    'translate(' + x + 'px, ' + y + 'px) rotate(-5deg)';
+
+  // update the posiion attributes
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+}
+
+function ondropactivate(event) {
+  $(event.target).closest('.segment').addClass('drop-active');
+  event.target.classList.add('drop-active');
+  console.log('ondropactivate');
+};
+
+function ondropdeactivate(event) {
+  // remove active dropzone feedback
+  $(event.target).closest('.segment').removeClass('drop-active');
+  event.target.classList.remove('drop-active');
+  event.target.classList.remove('drop-target');
+  console.log('ondropdeactivate')
+}
+
+function ondragenter(event) {
+  var draggableElement = event.relatedTarget,
+    dropzoneElement = event.target;
+  var jobId = $(draggableElement).data('id');
+
+  console.log('ondragenter')
+  Session.set('selectedJob', jobId);
+  dropzoneElement.classList.add('drop-target');
+  draggableElement.classList.add('can-drop');
+}
+
+function ondragleave(event) {
+  console.log('ondragleave')
+  event.target.classList.remove('drop-target');
+  event.relatedTarget.classList.remove('can-drop');
+}

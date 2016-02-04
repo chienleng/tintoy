@@ -5,7 +5,7 @@
     </span> -->
 
     <!-- border-left: 5px solid {{user.colour}}; -->
-    <div class="ui padded grid description" style="">
+    <div class="ui padded grid job-card" style="">
       <!-- <div class="sixteen wide column" style="padding: 2px 10px; background-color: {{user.colour}}; color: #fff; font-size: 0.9em;">
 
       </div> -->
@@ -15,17 +15,32 @@
         </span>
         <div>
           <span style="font-weight: bold; width: 63px; display: inline-block; font-size: 14px; color: {{user.colour}}; border-top: 5px solid {{user.colour}}; margin-top: 0px;">#{{jobNum}}</span>
-          <span class="ui horizontal label" style="font-size: 0.8em; float: right; margin-right: 0">{{fromNow submitted}}</span>
+          <span class="ui {{stale}} basic horizontal tiny label" style="float: right; margin-right: 0; opacity: 0.75; border: 0;">{{fromNow submitted}}</span>
         </div>
 
-        {{#if customName}}
-        <small style="font-weight: bold;">{{customName}}</small>
-        {{else}}
-        <small style="font-weight: bold">{{filename files}}</small>
-        {{/if}}
+        <!-- <a href="{{downloadLink}}" title="Download">
+          <small style="font-weight: bold;">
+            <i class="download icon"></i>
+            {{#if customName}}
+              {{customName}}
+            {{else}}
+              {{filename files}}
+            {{/if}}
+          </small>
+        </a> -->
+        <small style="font-weight: bold;">
+          {{#if customName}}
+            {{customName}}
+          {{else}}
+            {{filename files}}
+          {{/if}}
+        </small>
         <br>
-        <small style="position: relative; top: -3px;">{{fullName user.names}}</small>
-      
+        <small style="position: relative; top: -3px;">
+          <!-- <i class="user icon"></i> -->
+          {{fullName user.names}}
+        </small>
+
       </div>
 
     </div>

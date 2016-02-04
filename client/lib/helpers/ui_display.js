@@ -52,3 +52,30 @@ Template.registerHelper('jobStatusUser', function(status) {
   }
   return display;
 });
+
+Template.registerHelper('statusClass', function(status) {
+  var cssClass = '';
+  switch(status) {
+    case JobStatus.PENDING:
+      cssClass = '';
+      break;
+    case JobStatus.ACCEPTED:
+      cssClass = 'positive';
+      break;
+    case JobStatus.REJECTED:
+      cssClass = 'error';
+      break;
+    case JobStatus.DONE:
+      cssClass = 'positive';
+      break;
+    case JobStatus.RECEIVED:
+      cssClass = 'positive';
+      break;
+    case JobStatus.INCOMING:
+      cssClass = '';
+      break;
+    default:
+      cssClass = '';
+  }
+  return cssClass;
+});

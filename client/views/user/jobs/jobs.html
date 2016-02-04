@@ -13,13 +13,47 @@
     </tbody>
   </table> -->
   <div class="ui small header" style="margin-bottom: 0; text-align: center; color: #6A6F7B">
-  {{#if hasJobs}}
-    RECENT 10
-  {{else}}
-    NO RECENT JOBS
-  {{/if}}
+    {{#if hasJobs}} RECENT 10 {{else}} NO RECENT JOBS {{/if}}
   </div>
-  <div class="ui link items jobs">
+
+  <!-- <div class="ui four cards">
+    <div class="card">
+
+    </div>
+  </div> -->
+
+  <div style="margin: 20px;">
+    <table class="ui single line compact table">
+      <thead>
+        <tr>
+          <th>Date submitted</th>
+          <th>Current status</th>
+          <th>Job details</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each jobs}}
+        <tr class="{{statusClass latestLog.status}}">
+          <td><span>{{fromNow submitted}}</span></td>
+          <td>{{jobStatusUser latestLog.status}}</td>
+          <td>
+            <!-- <div class="thumbnail" style="float: left; margin-right: 5px;">
+              {{> thumbnail3D}}
+            </div> -->
+            {{#if customName}}
+            <strong>{{customName}}</strong> —{{/if}}
+            <small style="position: relative; top: -2px;">{{filename files}}</small>
+          </td>
+
+          <td>$5.20</td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- <div class="ui link items jobs">
     {{#each jobs}}
     <div class="item" data-id="{{_id}}">
       <div class="content">
@@ -37,13 +71,12 @@
           </div>
           <div class="four wide column" style="padding: 0; font-size: 0.9em; padding-top: 5px;">
             {{#if customName}}
-            <strong>{{customName}}</strong>
-            {{/if}}
+            <strong>{{customName}}</strong> {{/if}}
             <br>
             <small style="position: relative; top: -2px;">{{filename files}}</small>
           </div>
           <div class="three wide column" style="padding: 0; font-size: 0.9em; padding-top: 5px;">
-            <span>{{fromNow submitted}}</span>
+
           </div>
           <div class="three wide column">
             ...
@@ -52,6 +85,6 @@
       </div>
     </div>
     {{/each}}
-  </div>
+  </div> -->
 
 </template>

@@ -13,7 +13,7 @@
 .lab-page .jobs {
    position: relative;
    left: -2px;
-   padding-bottom: 10px;
+   padding-bottom: 15px;
 }
 
 .thumbnail {
@@ -29,11 +29,14 @@
   display: block;
 }
 .lab-page .ui.card {
-  cursor: move;
   margin: 2px;
   border: 0;
   box-shadow: none;
   background-color: #fff;
+}
+.lab-page .ui.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 .lab-page .ui.card > .content {
   padding: 0;
