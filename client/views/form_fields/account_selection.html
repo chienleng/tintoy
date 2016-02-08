@@ -1,43 +1,46 @@
 <template name="accountSelection">
   <div class="fields">
-    <div class="nine wide field">
-      <div class="account-charge field" style="margin-bottom: 10px;">
-        <label>Charged to</label>
-        <div class="ui dropdown labeled search icon green basic button">
-          <i class="fa fa-folder-o icon"></i>
-          <input type="hidden" name="account" value="personal">
-          <!-- <i class="dropdown icon"></i> -->
-          <div class="text"></div>
-          <div class="menu">
-            <div class="item" data-value="personal">Personal Account</div>
-            <div class="item" data-value="shared">Shared Account</div>
-            <div class="item" data-value="code">Account with PIN / Code</div>
-          </div>
+    <div class="account-charge inline field" style="margin-bottom: 10px;">
+      <label>Charged to</label>
+      <div class="ui dropdown labeled search icon green basic button">
+        <i class="fa fa-folder-o icon"></i>
+        <input type="hidden" name="account" value="personal">
+        <!-- <i class="dropdown icon"></i> -->
+        <div class="text"></div>
+        <div class="menu">
+          <div class="item" data-value="personal">Personal Account</div>
+          <div class="item" data-value="shared">Shared Account</div>
+          <div class="item" data-value="code">Account with PIN / Code</div>
         </div>
       </div>
-
-      <div class="account-selection field">
-        <label>Account</label>
-        <div class="ui search selection dropdown" style="">
-          <input type="hidden" name="sharedAccountId">
-          <i class="dropdown icon"></i>
-          <div class="default text">Choose department</div>
-          <div class="menu">
-            {{#each sharedAccounts}}
-            <div class="item" data-value="{{_id}}">{{label}}</div>
-            {{/each}}
-          </div>
-        </div>
-      </div>
-
-      <div class="code field">
-        <label>PIN / Code</label>
-        <input type="number" style="width: 100px;">
-      </div>
-
     </div>
+  </div>
 
-    <div class="seven wide field">
+  <div class="fields">
+    <div class="account-selection inline field">
+      <label>Account</label>
+      <div class="ui search selection dropdown" style="">
+        <input type="hidden" name="sharedAccountId">
+        <i class="dropdown icon"></i>
+        <div class="default text">Choose department</div>
+        <div class="menu">
+          {{#each sharedAccounts}}
+          <div class="item" data-value="{{_id}}">{{label}}</div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fields">
+    <div class="code inline field">
+      <label>PIN / Code</label>
+      <input type="number" style="width: 100px;">
+    </div>
+  </div>
+
+  <div class="fields">
+    <div class="inline field">
       <label>Balance</label>
       <div class="ui big label">{{balance}}</div>
     </div>

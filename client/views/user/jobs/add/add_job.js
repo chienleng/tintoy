@@ -40,6 +40,10 @@ Template.addJob.onRendered(function() {
       $("#exampleDropPane").find('.drop-zone .description').text("Done, see result below");
       $("#localDropResult").text(JSON.stringify(Blobs));
       var fileId = Blobs[0].url.substring(Blobs[0].url.lastIndexOf("/")+1, Blobs[0].url.length);
+      var getInfo = 'https://www.filepicker.io/api/file/'+fileId+'/convert?getpdfinfo=true'
+      Blobs[0].viewerUrl = 'https://www.filestackapi.com/api/preview/' + fileId;
+
+      
       newJob.user = user;
       newJob.files = Blobs;
       newJob.added = new Date();

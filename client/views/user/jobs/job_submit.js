@@ -7,6 +7,11 @@ Template.jobSubmission.helpers({
     var job = GetJob(jobId);
     return (_.isUndefined(job)) ? "" : job.files[0].url;
   },
+  viewerUrl: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return (_.isUndefined(job)) ? "" : job.files[0].viewerUrl;
+  },
   threeD: function() {
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);
@@ -63,5 +68,8 @@ Template.jobSubmission.onCreated(function() {
 });
 
 Template.jobSubmission.onRendered(function() {
-
+  $.getJSON('https://www.filepicker.io/api/file/q1LtpFaURKyk3mSK3gbr/convert?getpdfinfo=true')
+    .done(function(response) {
+      console.log(response)
+    })
 })

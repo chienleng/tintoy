@@ -20,6 +20,153 @@ this.companyType = {
   CORPORATE: 'Corporate'
 }
 
+this.PaperSizes = [
+  {
+    label: 'A0',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '841',
+        h: '1189',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'A1',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '594',
+        h: '841',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'A2',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '420',
+        h: '594',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'A3',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '297',
+        h: '420',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'A4',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '210',
+        h: '297',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'A5',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '148',
+        h: '210',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'A6',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '105',
+        h: '148',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'A7',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '74',
+        h: '105',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'Letter',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '216',
+        h: '279',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'Legal',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '216',
+        h: '356',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'Junior Legal',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '127',
+        h: '203',
+        unit: 'mm'
+      }
+    }
+  },
+  {
+    label: 'Ledger / Tabloid',
+    dimensions: {
+      imperial: {
+      },
+      metric: {
+        w: '279',
+        h: '432',
+        unit: 'mm'
+      }
+    }
+  }
+]
+
 this.GetUser = function(userId) {
   return LabUsers.findOne(userId);
 };

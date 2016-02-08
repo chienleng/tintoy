@@ -16,7 +16,7 @@ Template.jobs.helpers({
   }
 });
 Template.jobs.events({
-  "click .jobs .item": function() {
+  "click .jobs-table .job-row": function() {
     var path = '/users/' + this.user._id + '/jobs/' + this._id;
     FlowRouter.go(path);
   },

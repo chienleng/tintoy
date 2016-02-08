@@ -1,0 +1,174 @@
+<template name="form1">
+  <script type="javascript">
+    $('#lab-selection').on('change', function() {
+      alert('lab changed')
+    })
+  </script>
+
+  <div class="field">
+    <label>Document name</label>
+    <input type="text" class="job-custom-name" placeholder="Optional">
+  </div>
+
+  <h3 class="ui dividing header">Destination</h3>
+  <div class="fields">
+    <div class="eight wide field">
+      <label>Lab</label>
+      <select class="labs ui dropdown" name="" id="lab-selection">
+        <option value="lab1">Lab 1</option>
+        <option value="lab2">Lab 2</option>
+        <option value="lab3">Lab 3</option>
+      </select>
+    </div>
+
+    <div class="eight wide field">
+      <label>Printer</label>
+      <select class="printer ui dropdown" name="" id="">
+        <option value="printer3">Canon LBP9660C</option>
+        <option value="printer1">Dell-C7765</option>
+        <option value="printer2">HP Officejet Color X555</option>
+        <option value="printer3">Sharp MX-4111N</option>
+        <option value="printer3">Xerox ColorQube 8700S</option>
+      </select>
+    </div>
+  </div>
+
+  <h3 class="ui dividing header">
+    Print Settings
+    <a href="#" class="more-settings" style="font-size: 0.8em; float: right;">show more settings</a>
+  </h3>
+  <div class="fields">
+    <div class="inline field">
+      <label>Copies</label>
+      <input type="number" value="1" style="width:80px;">
+    </div>
+    <div class="inline field" style="margin-top: 8px;">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden">
+        <label>Two-Sided</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="fields">
+    <div class="inline field">
+      <label>Paper Size</label>
+      <select class="paper-size ui dropdown">
+        {{#each paperSizes}}
+          <option value="{{label}}">
+            <span>{{label}}</span>
+            <small>({{dimensions.metric.w}} x {{dimensions.metric.h}}{{dimensions.metric.unit}})</small>
+          </option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+
+  <div class="more-settings-fields" style="background-color: #f8ffff; color: #276f86; border: 1px solid #ddd; border-radius: 2px; padding: 15px; margin-left: -15px;">
+    <div class="fields">
+      <div class="inline field">
+        <label>Paper Colour</label>
+        <select class="paper-colour ui dropdown" name="" id="">
+          <option value="lab1">White</option>
+          <option value="lab2">Red</option>
+          <option value="lab3">Blue</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="inline field">
+        <label>Front Cover</label>
+        <select class="front-cover ui dropdown" name="" id="">
+          <option value="none">None</option>
+          <option value="clear">Clear</option>
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="inline field">
+        <label>Back Cover</label>
+        <select class="back-cover ui dropdown" name="" id="">
+          <option value="none">None</option>
+          <option value="clear">Clear</option>
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="inline field">
+        <label>Paper Type</label>
+        <select class="paper-type ui dropdown" name="" id="">
+          <option value="normal">Normal (80 gsm)</option>
+          <option value="gloss">Gloss (80 gsm)</option>
+          <option value="heavy">Heavy duty (120 gsm)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <h3 class="ui dividing header">Job Handling</h3>
+  <div class="fields">
+    <div class="inline field">
+      <label>Collate</label>
+      <select class="collate ui dropdown">
+        <option value="none">Don't collate</option>
+        <option value="staple">Staple</option>
+        <option value="drill">Drill holes</option>
+        <option value="fold">Fold</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="fields">
+    <div class="inline field">
+      <label>Bind</label>
+      <select class="bind ui dropdown">
+        <option value="none">None</option>
+        <option value="wire">Wire</option>
+        <option value="comb">Comb</option>
+        <option value="saddle">Saddle staple</option>
+        <option value="gluetape">Glue and tape left side</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Additional Instructions</label>
+    <textarea class="instructions" rows="3"></textarea>
+  </div>
+
+  <h3 class="ui dividing header">Proof Copy & Delivery</h3>
+  <div class="fields">
+    <div class="inline field">
+      <label>Proof</label>
+      <select class="proof ui dropdown">
+        <option value="no">No proof required</option>
+        <option value="pdf">PDF</option>
+        <option value="hardCopy">Hard copy</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="fields">
+    <div class="inline field">
+      <label>Delivery</label>
+      <select class="delivery-method ui dropdown" name="" id="">
+        <option value="pickup">Pick-up</option>
+        <option value="courier">Courier Delivery</option>
+         <!-- (Fee: $8 first case, $1 each additional case) -->
+        <option value="campus">Campus Mail</option>
+         <!-- (NO CHARGE - size/weight restrictions, allow 1-2 days) -->
+        <option value="delivery">Delivery address</option>
+        <!-- complete ONLY if different than Co -->
+      </select>
+    </div>
+  </div>
+
+</template>

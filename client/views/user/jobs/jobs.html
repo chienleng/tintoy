@@ -23,7 +23,7 @@
   </div> -->
 
   <div style="margin: 20px;">
-    <table class="ui single line compact table">
+    <table class="ui single line selectable compact table jobs-table">
       <thead>
         <tr>
           <th>Date submitted</th>
@@ -34,7 +34,7 @@
       </thead>
       <tbody>
       {{#each jobs}}
-        <tr class="{{statusClass latestLog.status}}">
+        <tr class="{{statusClass latestLog.status}} job-row">
           <td><span>{{fromNow submitted}}</span></td>
           <td>{{jobStatusUser latestLog.status}}</td>
           <td>
