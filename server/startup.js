@@ -8,99 +8,51 @@ Meteor.startup(function () {
   }
 
   if (SharedAccounts.find().count() === 0) {
-    SharedAccounts.insert({
-      label: 'Biology Science',
-      balance: 1100
-    });
-    SharedAccounts.insert({
-      label: 'Business',
-      balance: 2200
-    });
-    SharedAccounts.insert({
-      label: 'Communications & Arts',
-      balance: 3300
-    });
-    SharedAccounts.insert({
-      label: 'Computing & Security',
-      balance: 4400
-    });
-    SharedAccounts.insert({
-      label: 'Engineering & Technology',
-      balance: 5500
-    });
-    SharedAccounts.insert({
-      label: 'Exercise & Health Science',
-      balance: 6600
-    });
-    SharedAccounts.insert({
-      label: 'Medical Sciences',
-      balance: 7700
-    });
-    SharedAccounts.insert({
-      label: 'Nursing & Midwifery',
-      balance: 8800
-    });
-    SharedAccounts.insert({
-      label: 'Performing Arts',
-      balance: 9900
-    });
-    SharedAccounts.insert({
-      label: 'Psychology Science',
-      balance: 11000
-    });
-    SharedAccounts.insert({
-      label: 'Teacher Education',
-      balance: 12000
-    });
+    _.each(fakeSharedAccounts(), function(fakeAccount) {
+      SharedAccounts.insert(fakeAccount);
+    })
   }
 
   if (LabUsers.find().count() === 0) {
-    LabUsers.insert({
-      names: {
-        given: 'Malcolm',
-        surname: 'Reynolds'
-      },
-      balance: 20.5,
-      email: 'malcolm@serenity.org',
-      icon: '/img/users/emoticon-monster.png',
-      colour: '#313B4A'
-    });
-    LabUsers.insert({
-      names: {
-        given: 'Zoe',
-        surname: 'Washburne'
-      },
-      balance: 13,
-      email: 'zoe@serenity.org',
-      icon: '/img/users/emoticon-alien.png',
-      colour: '#FF5447'
-    });
-    LabUsers.insert({
-      names: {
-        given: 'Simon',
-        surname: 'Tam'
-      },
-      balance: 13,
-      email: 'simon@serenity.org',
-      icon: '/img/users/emoticon-nerd.png',
-      colour: '#00BDBD'
-    });
-    // LabUsers.insert({
-    //   names: {
-    //     given: 'Kaylee',
-    //     surname: 'Frye'
-    //   },
-    //   balance: 13,
-    //   email: 'kaylee@serenity.org',
-    //   icon: '/img/users/emoticon-devil.png'
-    // });
+    _.each(fakeLabUsers(), function(fakeLabUser) {
+      LabUsers.insert(fakeLabUser);
+    })
   }
 
-  /*
-    LABS - workflow
-  */
   if (Labs.find().count() === 0) {
-    Labs.insert({
+    _.each(fakeLabs(), function(fakeLab) {
+      Labs.insert(fakeLab);
+    })
+  }
+
+  if (Announcements.find().count() === 0) {
+    _.each(fakeAnnouncements(), function(fakeAnnouncement) {
+      Announcements.insert(fakeAnnouncement);
+    })
+  }
+});
+
+/*
+  Fake data generators below
+*/
+function fakeAnnouncements() {
+  return [
+    {
+      time: new Date(),
+      message: 'All jobs sent after 5pm today will not be available until the following week.',
+      status: 'published'
+    },
+    {
+      time: new Date(),
+      message: 'We have ran out of green. They will be ordered on Thursday.',
+      status: 'published'
+    }
+  ]
+}
+
+function fakeLabs() {
+  return [
+    {
       name: '3D Print Lab',
       devices: [
         {
@@ -116,8 +68,8 @@ Meteor.startup(function () {
           type: '3d'
         }
       ]
-    });
-    Labs.insert({
+    },
+    {
       name: 'PaperCut Print Room',
       devices: [
         {
@@ -133,6 +85,90 @@ Meteor.startup(function () {
           type: 'paper'
         }
       ]
-    })
-  }
-});
+    }
+  ]
+}
+
+function fakeLabUsers() {
+ return [
+   {
+     names: {
+       given: 'Malcolm',
+       surname: 'Reynolds'
+     },
+     balance: 20.5,
+     email: 'malcolm@serenity.org',
+     icon: '/img/users/emoticon-monster.png',
+     colour: '#313B4A'
+   },
+   {
+     names: {
+       given: 'Zoe',
+       surname: 'Washburne'
+     },
+     balance: 13,
+     email: 'zoe@serenity.org',
+     icon: '/img/users/emoticon-alien.png',
+     colour: '#FF5447'
+   },
+   {
+     names: {
+       given: 'Simon',
+       surname: 'Tam'
+     },
+     balance: 13,
+     email: 'simon@serenity.org',
+     icon: '/img/users/emoticon-nerd.png',
+     colour: '#00BDBD'
+   }
+ ]
+}
+
+function fakeSharedAccounts() {
+  return [
+    {
+      label: 'Biology Science',
+      balance: 1100
+    },
+    {
+      label: 'Business',
+      balance: 2200
+    },
+    {
+      label: 'Communications & Arts',
+      balance: 3300
+    },
+    {
+      label: 'Computing & Security',
+      balance: 4400
+    },
+    {
+      label: 'Engineering & Technology',
+      balance: 5500
+    },
+    {
+      label: 'Exercise & Health Science',
+      balance: 6600
+    },
+    {
+      label: 'Medical Sciences',
+      balance: 7700
+    },
+    {
+      label: 'Nursing & Midwifery',
+      balance: 8800
+    },
+    {
+      label: 'Performing Arts',
+      balance: 9900
+    },
+    {
+      label: 'Psychology Science',
+      balance: 11000
+    },
+    {
+      label: 'Teacher Education',
+      balance: 12000
+    }
+  ]
+}
