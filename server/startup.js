@@ -101,8 +101,7 @@ Meteor.startup(function () {
   */
   if (Labs.find().count() === 0) {
     Labs.insert({
-      name: 'Lab 1',
-      icon: '/img/users/emoticon-pirate.png',
+      name: '3D Print Lab',
       devices: [
         {
           label: 'Formlabs Form 1+',
@@ -119,8 +118,7 @@ Meteor.startup(function () {
       ]
     });
     Labs.insert({
-      name: 'Lab 2',
-      icon: '/img/users/emoticon-ninja.png',
+      name: 'PaperCut Print Room',
       devices: [
         {
           label: 'Lexmark E462dtn',

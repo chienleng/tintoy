@@ -15,8 +15,13 @@ Template.jobs.helpers({
     return _.isUndefined(user) ? [] : Jobs.find({'user._id': user._id, 'latestLog.status': {$ne: 'pending'}}, {sort: Session.get('jobsSortOrder')}).count() > 0;
   }
 });
+
 Template.jobs.events({
   "click .jobs-table .job-row": function() {
+    var path = '/users/' + this.user._id + '/jobs/' + this._id;
+    FlowRouter.go(path);
+  },
+  'click .jobs .item': function() {
     var path = '/users/' + this.user._id + '/jobs/' + this._id;
     FlowRouter.go(path);
   },

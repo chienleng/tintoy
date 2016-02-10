@@ -6,3 +6,5 @@ SharedAccounts = new Mongo.Collection('sharedAccounts');
 
 LabUsers = new Mongo.Collection('labUsers');
 Labs = new Mongo.Collection('labs');
+
+Announcements = new Mongo.Collection('announcements')

@@ -19,7 +19,6 @@ Template.accountSelection.onCreated(function() {
 
 Template.accountSelection.onRendered(function() {
   var self = this;
-
   $('.code.field, .account-selection.field').hide();
   $('.account-charge .ui.dropdown').dropdown({
     onChange: function(value, text, $choice) {

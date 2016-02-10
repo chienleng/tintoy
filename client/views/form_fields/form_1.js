@@ -1,6 +1,9 @@
 Template.form1.helpers({
   paperSizes: function() {
-    return PaperSizes;
+    return _.map(PaperSizes, function(size) {
+      size.label === 'A4' ? size.selected = 'selected' : size.selected = '';
+      return size;
+    });
   }
 });
 
@@ -17,6 +20,9 @@ Template.form1.events({
       $('.more-settings-fields').fadeOut();
     }
     return false;
+  },
+  'click .image-selection a': function() {
+    return false;
   }
 });
 
@@ -28,9 +34,33 @@ Template.form1.onCreated(function() {
 
 Template.form1.onRendered(function() {
   var self = this;
-  $('.more-settings-fields').hide();
   $('.ui.checkbox').checkbox();
   $('.ui.dropdown').dropdown();
+  $('.image-selection').hide();
+
+  $('.collate.ui.dropdown').dropdown({
+    onChange: function(value, text, $choice) {
+      switch (value) {
+        case 'bind':
+          $('.image-selection').hide();
+          $('.bind-types').fadeIn();
+          break;
+        case 'drill':
+          $('.image-selection').hide();
+          break;
+        case 'fold':
+          $('.image-selection').hide();
+          $('.fold-types').fadeIn();
+          break;
+        case 'staple':
+          $('.image-selection').hide();
+          break;
+        default:
+          $('.image-selection').hide();
+          console.warn('nothing selected.')
+      }
+    }
+  });
   //
   // setupColorPicker();
   // var picker = new Pikaday({

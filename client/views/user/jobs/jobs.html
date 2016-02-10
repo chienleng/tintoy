@@ -12,9 +12,19 @@
       {{/each}}
     </tbody>
   </table> -->
-  <div class="ui small header" style="margin-bottom: 0; text-align: center; color: #6A6F7B">
-    {{#if hasJobs}} RECENT 10 {{else}} NO RECENT JOBS {{/if}}
+
+  <!-- <div style="float: right; margin-right: 18px; margin-top: 20px;">
+    <div class="ui icon small buttons">
+      <button class="ui basic teal button"><i class="block layout icon"></i></button>
+      <button class="ui active teal button"><i class="list layout icon"></i></button>
+    </div>
+    <button class="ui basic teal small button">Archive <strong>Done</strong> and <strong>Rejected</strong></button>
+  </div> -->
+
+  <div class="ui small header" style="margin-bottom: 0; color: #6A6F7B; margin-left: 20px">
+    {{#if hasJobs}} YOUR PRINT JOBS {{else}} NO RECENT JOBS {{/if}}
   </div>
+
 
   <!-- <div class="ui four cards">
     <div class="card">
@@ -22,7 +32,7 @@
     </div>
   </div> -->
 
-  <div style="margin: 20px;">
+  <!-- <div class="animated fadeInDown" style="margin: 20px;">
     <table class="ui single line selectable compact table jobs-table">
       <thead>
         <tr>
@@ -38,9 +48,6 @@
           <td><span>{{fromNow submitted}}</span></td>
           <td>{{jobStatusUser latestLog.status}}</td>
           <td>
-            <!-- <div class="thumbnail" style="float: left; margin-right: 5px;">
-              {{> thumbnail3D}}
-            </div> -->
             {{#if customName}}
             <strong>{{customName}}</strong> —{{/if}}
             <small style="position: relative; top: -2px;">{{filename files}}</small>
@@ -51,9 +58,9 @@
       {{/each}}
       </tbody>
     </table>
-  </div>
+  </div> -->
 
-  <!-- <div class="ui link items jobs">
+  <div class="ui link items jobs">
     {{#each jobs}}
     <div class="item" data-id="{{_id}}">
       <div class="content">
@@ -85,6 +92,6 @@
       </div>
     </div>
     {{/each}}
-  </div> -->
+  </div>
 
 </template>
