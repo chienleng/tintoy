@@ -1,0 +1,42 @@
+<template name="addAnnouncement">
+  <!-- <div class="ui labeled icon top right pointing popup button" style="position: absolute; right: 0; top: 0;">
+    <i class="plus icon"></i>
+    <span class="text">Add announcement</span>
+  </div>
+  <div class="ui form menu" style="padding: 10px;">
+    <div class="item">
+      <textarea name="" rows="3"></textarea>
+    </div>
+    <div class="item" style="text-align: right">
+      <button class="ui button">Add</button>
+    </div>
+  </div> -->
+  <div style="position: absolute; right: 0; top: 0;">
+    <div class="ui right labeled icon button show-add-announcement">
+      <i class="add icon"></i>
+      Add lab status
+    </div>
+    <div class="ui flowing popup transition hidden add-announcement-form" style="width: 300px;">
+      <div class="ui form">
+        <div class="field">
+          <label for="">Status</label>
+          {{#if isAdded}}
+          <div class="ui success message" style="display: block">
+            <div class="header">Status published!</div>
+          </div>
+          {{else}}
+          <textarea class="announcement-message" rows="3"></textarea>
+          {{/if}}
+        </div>
+        <div class="field" style="text-align: right">
+          {{#if isAdded}}
+          <button class="ui button close-announcement-btn">Close</button>
+          {{else}}
+          <button class="ui button close-announcement-btn">Cancel</button>
+          <button class="ui green button add-announcement-btn">Add</button>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

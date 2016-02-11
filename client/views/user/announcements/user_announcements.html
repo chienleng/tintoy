@@ -1,24 +1,33 @@
 <template name="userAnnouncements">
+
   <div class="ui feed" style="padding: 20px; margin: 0;">
-    <div class="event">
+    {{#with latestAnnouncement}}
+    <div class="event animated fadeIn">
       <div class="label">
         <i class="newspaper icon" style="position: relative; top: 4px; color: #777;"></i>
       </div>
       <div class="content">
         <div class="date">
-          2 hours ago
+          {{fromNow time}}
         </div>
         <div class="summary">
-          All jobs sent after 5pm today will not be available until the following week.
+          {{message}}
         </div>
         <div class="meta">
+          {{#if notLastAnnouncement}}
           <a class="#">
-            <i class="arrow right icon"></i> more
+            <i class="arrow left icon"></i> back
           </a>
+          {{/if}}
+          {{#if notFirstAnnouncement}}
+          <a class="#">
+            <i class="arrow right icon"></i> next
+          </a>
+          {{/if}}
         </div>
 
       </div>
     </div>
-
+    {{/with}}
   </div>
 </template>

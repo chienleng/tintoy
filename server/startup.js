@@ -21,13 +21,11 @@ Meteor.startup(function () {
 
   if (Labs.find().count() === 0) {
     _.each(fakeLabs(), function(fakeLab) {
-      Labs.insert(fakeLab);
-    })
-  }
-
-  if (Announcements.find().count() === 0) {
-    _.each(fakeAnnouncements(), function(fakeAnnouncement) {
-      Announcements.insert(fakeAnnouncement);
+      var labId = Labs.insert(fakeLab);
+      _.each(fakeAnnouncements(), function(fakeAnnouncement) {
+        fakeAnnouncement.labId = labId;
+        Announcements.insert(fakeAnnouncement);
+      })
     })
   }
 });
