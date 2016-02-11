@@ -10,9 +10,9 @@
       <div class="thirteen wide column" style="padding: 0;">
         <div class="ui segment" style="box-shadow: none; background-color: #f2f6f7; ">
           <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
-            Submit your file
+            Print Job Details
           </h2>
-          <form action="#" class="new-3d-submission ui form" style="margin: 0; width: 100%">
+          <form action="#" class="new-submission ui form" style="margin: 0; width: 100%">
             <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
               <div class="ui grid">
                 {{#if threeD}}
@@ -26,19 +26,32 @@
                 </div>
                 {{else}}
                 <div class="sixteen wide column">
-                  <!-- <div class="ui green ribbon label" style="margin-bottom: 20px; font-size: 1em;">File Details</div> -->
-                  <div class="fields">
-                    <div class="field">
-                      <label for="">Filename</label>
-                      <div>sample.pdf</div>
+                  <div class="fields" style="padding: 0;">
+
+                    <div class="sixteen wide column">
+                      {{#if image}}
+                      <img src="{{docPreviewUrl}}" style='width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'>
+                      {{/if}}
+                      {{#if pdf}}
+                      <iframe src="{{docPreviewUrl}}" style='border: 0; width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'></iframe>
+                      {{/if}}
+
+                      <div class="field">
+                        <label>Job Title</label>
+                        <input type="text" class="job-custom-name" placeholder="Optional" style="width: 100%;">
+                      </div>
                     </div>
-                    <!-- <div class="field">
-                      <label for="">Filesize</label>
-                      <div>1.1Mb</div>
-                    </div> -->
-                    <div class="field">
-                      <label for="">Pages</label>
-                      <div>20</div>
+                    <div class="eight wide column">
+                      <div class="field">
+                        <label for="">Filename</label>
+                        <div>{{filename}}</div>
+                      </div>
+                    </div>
+                    <div class="eight wide column">
+                      <div class="field">
+                        <label for="">Pages</label>
+                        <div>20</div>
+                      </div>
                     </div>
                   </div>
                   {{> form1}}

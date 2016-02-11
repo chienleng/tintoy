@@ -14,6 +14,7 @@ this.Account = {
   SHARED: 'Shared',
   PIN: 'PIN'
 }
+this.ImageTypes = ['image/png', 'image/jpg']; 
 
 this.companyType = {
   EDUCATION: 'Education', // no account selection charges

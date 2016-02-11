@@ -20,9 +20,12 @@
   -o-transform:      scale(1.05,1.05);
   transform:         scale(1.05,1.05);
 }
-#exampleDropPane {
+#file-upload-zone {
   -webkit-transition: all ease-out .1s;
   -moz-transition: all ease-out .1s;
   -o-transition: all ease-out .1s;
   transition: all ease-out .1s;
+}
+#file-upload-zone .drop-zone {
+  padding: 4em 0; height: auto; border-radius: 0;
 }

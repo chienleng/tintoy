@@ -1,0 +1,25 @@
+<template name="delivery">
+  <div class="ui fluid accordion">
+    <div class="title">
+      <h3 class="ui dividing header"><i class="dropdown icon"></i> Delivery</h3>
+    </div>
+    <div class="content">
+      <div class="transition scale">
+        <div class="fields">
+          <div class="inline field">
+            <label>Delivery</label>
+            <select class="delivery-method ui dropdown" name="" id="">
+              <option value="pickup">Pick-up</option>
+              <option value="courier">Courier Delivery</option>
+              <!-- (Fee: $8 first case, $1 each additional case) -->
+              <option value="campus">Campus Mail</option>
+              <!-- (NO CHARGE - size/weight restrictions, allow 1-2 days) -->
+              <option value="delivery">Delivery address</option>
+              <!-- complete ONLY if different than Co -->
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

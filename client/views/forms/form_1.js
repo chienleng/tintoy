@@ -1,12 +1,3 @@
-Template.form1.helpers({
-  paperSizes: function() {
-    return _.map(PaperSizes, function(size) {
-      size.label === 'A4' ? size.selected = 'selected' : size.selected = '';
-      return size;
-    });
-  }
-});
-
 Template.form1.events({
   'click .more-settings': function(event) {
     var show = $(event.currentTarget).text() === 'show more settings';
@@ -36,6 +27,10 @@ Template.form1.onRendered(function() {
   var self = this;
   $('.ui.checkbox').checkbox();
   $('.ui.dropdown').dropdown();
+  $('.popup').popup();
+  $('.ui.accordion').accordion({
+    duration: 250
+  });
   $('.image-selection').hide();
 
   $('.collate.ui.dropdown').dropdown({

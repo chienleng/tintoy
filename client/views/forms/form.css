@@ -27,3 +27,13 @@
   font-size: 0.7em;
   color: #888;
 }
+
+.ui.accordion {
+  padding-bottom: 3px;
+}
+.ui.accordion .content {
+  padding: 20px !important;
+}
+.ui.accordion .title {
+  padding: 0 !important;
+}

@@ -12,11 +12,33 @@ Template.jobSubmission.helpers({
     var job = GetJob(jobId);
     return (_.isUndefined(job)) ? "" : job.files[0].viewerUrl;
   },
+  docPreviewUrl: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return (_.isUndefined(job)) ? "" : job.files[0].docPreviewUrl;
+  },
+  filename: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return (_.isUndefined(job)) ? "" : job.files[0].filename;
+  },
   threeD: function() {
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);
     var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
     return fileObj && fileObj.mimetype === "application/sla" ? true : false;
+  },
+  pdf: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
+    return fileObj && fileObj.mimetype === "application/pdf" ? true : false;
+  },
+  image: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
+    return fileObj && _.contains(ImageTypes, fileObj.mimetype) ? true : false;
   },
   overFilesizeLimit: function() {
     var jobId = Template.instance().data.jobId();
@@ -28,7 +50,7 @@ Template.jobSubmission.helpers({
 });
 
 Template.jobSubmission.events({
-  "submit .new-3d-submission": function() {
+  "submit .new-submission": function() {
     var job = Template.instance().data.job;
     var fileObj = job.files[0];
     var fileId = fileObj.url.substring(fileObj.url.lastIndexOf("/")+1, fileObj.url.length);
@@ -72,4 +94,4 @@ Template.jobSubmission.onRendered(function() {
     .done(function(response) {
       console.log(response)
     })
-})
+});

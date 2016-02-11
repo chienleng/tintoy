@@ -10,40 +10,36 @@ var newJob = {
   settings: {}
 }
 
-Template.addJob.events({
-  "click #addJob": function(event, template) {
-    $('.modal').modal('show');
-  }
-});
-
-Template.addJob.onRendered(function() {
+Template.fileUpload.onRendered(function() {
   var user = null;
   var self = this;
+  var $fileUploadZone = $('#file-upload-zone');
+  var $progressBar = $('#file-upload-progress')
+
+  $progressBar.hide();
 
   self.autorun(function() {
     user = GetUser(self.data.userId());
     filepicker.setKey(Session.get('filestackKey'));
   })
 
-  $('#example2').hide();
-
-  filepicker.makeDropPane($('#exampleDropPane')[0], {
+  filepicker.makeDropPane($('#file-upload-zone')[0], {
     dragEnter: function() {
-      $("#exampleDropPane").find('.drop-zone').addClass('drop-target');
+      $fileUploadZone.find('.drop-zone').addClass('drop-target');
     },
     dragLeave: function() {
-      $("#exampleDropPane").find('.drop-zone').removeClass('drop-target');
+      $fileUploadZone.find('.drop-zone').removeClass('drop-target');
     },
     onSuccess: function(Blobs) {
-      $('#example2').hide();
-      $("#exampleDropPane").find('.drop-zone').fadeIn();
-      $("#exampleDropPane").find('.drop-zone .description').text("Done, see result below");
-      $("#localDropResult").text(JSON.stringify(Blobs));
-      var fileId = Blobs[0].url.substring(Blobs[0].url.lastIndexOf("/")+1, Blobs[0].url.length);
-      var getInfo = 'https://www.filepicker.io/api/file/'+fileId+'/convert?getpdfinfo=true'
-      Blobs[0].viewerUrl = 'https://www.filestackapi.com/api/preview/' + fileId;
+      $progressBar.hide();
+      $fileUploadZone.find('.drop-zone').fadeIn();
+      $fileUploadZone.find('.drop-zone .description').text("Done, see result below");
 
-      
+      var fileId = Blobs[0].url.substring(Blobs[0].url.lastIndexOf("/")+1, Blobs[0].url.length);
+      Blobs[0].viewerUrl = 'https://www.filestackapi.com/api/preview/' + fileId;
+      Blobs[0].infoUrl = 'https://www.filepicker.io/api/file/'+fileId+'/convert?getpdfinfo=true';
+      Blobs[0].docPreviewUrl = 'https://www.filestackapi.com/api/file/'+fileId;
+
       newJob.user = user;
       newJob.files = Blobs;
       newJob.added = new Date();
@@ -55,13 +51,11 @@ Template.addJob.onRendered(function() {
       // [{"url":"https://cdn.filestackcontent.com/Ki6XMGKcRpR4aCEap7XD","filename":"slotted_disk (1).stl","mimetype":"application/sla","size":82878,"isWriteable":false}]
     },
     onError: function(type, message) {
-      // $("#localDropResult").text('(' + type + ') ' + message);
-      $("#exampleDropPane").find('.drop-zone').show();
     },
     onProgress: function(percentage) {
-      $("#exampleDropPane").find('.drop-zone').removeClass('drop-target').hide();
-      $('#example2').fadeIn();
-      $('#example2').progress({
+      $fileUploadZone.find('.drop-zone').removeClass('drop-target').hide();
+      $progressBar.fadeIn();
+      $progressBar.progress({
         percent: percentage
       });
     }
@@ -73,6 +67,6 @@ Template.addJob.onRendered(function() {
   }, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
 });
 
-Template.addJob.onDestroyed(function() {
+Template.fileUpload.onDestroyed(function() {
   Meteor.clearInterval(this.data.intervalId);
 })
