@@ -12,6 +12,13 @@ Template.lab.helpers({
   labJobs: function() {
     var jobs = Jobs.find({type: 'paper'});
     return jobs;
+  },
+  hasSelectedJob: function() {
+    var job = Template.instance().data.selectedJob.get();
+    return _.isUndefined(job) ? false : true;
+  },
+  selectedJob: function() {
+    return Template.instance().data.selectedJob.get();
   }
 });
 
@@ -19,12 +26,26 @@ Template.lab.events({
 
 });
 
-Template.lab.onRendered(function() {
-  console.log(this.data.labId());
+Template.lab.onCreated(function() {
+  this.data.selectedJobId = new ReactiveVar(null);
+  this.data.selectedJob = new ReactiveVar();
+})
 
+Template.lab.onRendered(function() {
   var x = 0, y = 0;
   var startX = 0, startY = 0;
   var jobsContext = document.querySelector('.jobs-kanban');
+  var self = this;
+
+  this.autorun(function(){
+     var jobId = self.data.selectedJobId.get();
+     self.data.selectedJob.set(GetJob(jobId));
+  });
+
+  interact('.ui.card', {context: jobsContext}).on('tap', function (event) {
+    self.data.selectedJobId.set($(event.currentTarget).data('id'));
+    $('.job-detail-modal').modal('show');
+  })
 
   interact('.ui.card', {context: jobsContext})
     .draggable({
@@ -53,10 +74,6 @@ Template.lab.onRendered(function() {
         $(target).removeClass('dragged');
       }
     });
-
-  interact('.ui.card', {context: jobsContext}).on('tap', function (event) {
-    $('.job-detail-modal').modal('show');
-  })
 
   interact('.rejected-jobs .drop-zone').dropzone({
     accept: '.incoming-job, .accepted-job, .done-job',
@@ -118,7 +135,6 @@ Template.lab.onRendered(function() {
       AddJobLog(jobId, JobStatus.ACCEPTED, null);
     }
   })
-
 
   interact('.done-jobs .drop-zone').dropzone({
     accept: '.accepted-job, .incoming-job, .rejected-job',

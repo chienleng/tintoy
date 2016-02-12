@@ -1,12 +1,16 @@
 Template.preview3D.helpers({
   filename: function() {
-    var fileObj = GetFileByJobId(Template.instance().data.jobId());
+    var fileObj = GetFileByJobId(Template.instance().data.id.get());
     return fileObj ? fileObj.filename : "";
   },
   filesize: function() {
-    var fileObj = GetFileByJobId(Template.instance().data.jobId());
-    return fileObj ? (fileObj.size/1000).toFixed(0) + "KB" : "n/a";
+    var fileObj = GetFileByJobId(Template.instance().data.id.get());
+    return fileObj ? (fileObj.size / 1000).toFixed(0) + "KB" : "n/a";
   }
+});
+
+Template.preview3D.onCreated(function() {
+  this.data.id = new ReactiveVar(this.data.selectedJobId);
 });
 
 Template.preview3D.onRendered(function() {
@@ -14,24 +18,33 @@ Template.preview3D.onRendered(function() {
   var JSC3D = JSC3DWrapper();
   var obj = null;
 
+  getJobDetailsAndRender(this.data.selectedJobId)
+
   this.autorun(function() {
-     this.data.job = GetJob(this.data.jobId());
-
-     var hasJob = !_.isUndefined(this.data.job);
-     var colour = hasJob && !_.isUndefined(this.data.job.settings.colour) ?
-                          this.data.job.settings.colour : Session.get('3dColour');
-
-     if (hasJob) {
-       if (viewer) {
-         var mesh = viewer.getScene().getChildren()[0];
-         var hexNumber = parseInt(colour.replace(/^#/, ''), 16);
-         mesh.setMaterial(new JSC3D.Material('', 0, hexNumber, 0, true));
-         viewer.update();
-       } else {
-         render(this.data.job.files[0].url, colour);
-       }
-     }
+    if (_.isFunction(this.data.jobId)) {
+      var jobId = this.data.jobId()
+      this.data.id.set(jobId);
+      getJobDetailsAndRender(jobId);
+    }
   }.bind(this));
+
+  function getJobDetailsAndRender(jobId) {
+    var job = GetJob(jobId);
+    var hasJob = !_.isUndefined(job);
+    var colour = hasJob && !_.isUndefined(job.settings.colour) ?
+      job.settings.colour : Session.get('3dColour');
+
+    if (hasJob) {
+      if (viewer) {
+        var mesh = viewer.getScene().getChildren()[0];
+        var hexNumber = parseInt(colour.replace(/^#/, ''), 16);
+        mesh.setMaterial(new JSC3D.Material('', 0, hexNumber, 0, true));
+        viewer.update();
+      } else {
+        render(job.files[0].url, colour);
+      }
+    }
+  }
 
   function render(fileUrl, colour) {
     var previewClass = '.preview';
@@ -41,7 +54,7 @@ Template.preview3D.onRendered(function() {
     $(previewClass).find(preview3DClass).attr('width', $(previewClass).width());
 
     // render the 3D file
-    canvas = $(preview3DClass)[0];
+    canvas = $('#preview3D .preview-3d')[0];
     viewer = new JSC3D.Viewer(canvas);
     viewer.setParameter('InitRotationY', 45);
     viewer.setParameter('InitRotationZ', 45);

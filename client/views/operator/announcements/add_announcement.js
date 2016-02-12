@@ -3,6 +3,7 @@ Template.addAnnouncement.helpers({
     return Template.instance().data.added.get();
   }
 });
+
 Template.addAnnouncement.events({
   "click .add-announcement-btn": function(event, template) {
     Announcements.insert({
@@ -21,7 +22,7 @@ Template.addAnnouncement.events({
 
 Template.addAnnouncement.onCreated(function() {
   this.data.added = new ReactiveVar(false);
-})
+});
 
 Template.addAnnouncement.onRendered(function() {
   var self = this;
@@ -34,4 +35,4 @@ Template.addAnnouncement.onRendered(function() {
       self.data.added.set(false);
     }
   });
-})
+});

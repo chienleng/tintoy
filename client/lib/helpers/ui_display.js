@@ -8,7 +8,8 @@ Template.registerHelper('fromNow', function(date) {
 
 /* user names */
 Template.registerHelper('fullName', function(names) {
-  return names.given + " " + names.surname;
+  var name = _.isUndefined(names) ? "" : names.given + " " + names.surname
+  return name;
 });
 
 /* file Obj */

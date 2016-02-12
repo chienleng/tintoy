@@ -68,7 +68,7 @@ function fakeLabs() {
       ]
     },
     {
-      name: 'PaperCut Print Room',
+      name: 'Print Room',
       devices: [
         {
           label: 'Lexmark E462dtn',
