@@ -1,5 +1,6 @@
 Template.rejectedJobs.helpers({
   rejected: function() {
-    return Jobs.find({'latestLog.status': 'rejected'}, {sort: Session.get('jobsSortOrder')});
+    var labId = Template.instance().data.labId();
+    return Jobs.find({'labId': labId, 'latestLog.status': 'rejected'}, {sort: Session.get('jobsSortOrder')});
   }
 });

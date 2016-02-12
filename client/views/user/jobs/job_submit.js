@@ -73,13 +73,13 @@ Template.jobSubmission.events({
     }
     Jobs.update(job._id, job);
     AddJobLog(job._id, JobStatus.INCOMING, null);
-    FlowRouter.go('/users/'+userId);
+    FlowRouter.go('/users/'+userId+'/labs/'+job.labId);
     return false;
   },
   "click .cancel.button": function() {
     var job = Template.instance().data.job;
     var userId = job.user._id;
-    FlowRouter.go('/users/'+userId);
+    FlowRouter.go('/users/'+userId+'/labs/'+job.labId);
     return false;
   }});
 

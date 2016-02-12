@@ -1,12 +1,15 @@
 Template.acceptedJobs.helpers({
   accepted: function() {
-    return Jobs.find({'latestLog.status': 'accepted'}, {sort: Session.get('jobsSortOrder')});
+    var filter = Template.instance().data.labAcceptedFilter;
+    return Jobs.find(filter, {sort: Session.get('jobsSortOrder')});
   },
   hasJobs: function() {
-    return Jobs.find({'latestLog.status': 'accepted'}).count() > 0;
+    var filter = Template.instance().data.labAcceptedFilter;
+    return Jobs.find(filter).count() > 0;
   },
   count: function() {
-    return Jobs.find({'latestLog.status': 'accepted'}).count();
+    var filter = Template.instance().data.labAcceptedFilter;
+    return Jobs.find(filter).count();
   },
   showAcceptedFilters: function() {
     return Template.instance().data.showAcceptedFilters.get();
@@ -15,13 +18,14 @@ Template.acceptedJobs.helpers({
     return Session.get('acceptedJobsSearch');
   },
   filteredJobs: function() {
+    var filter = Template.instance().data.labAcceptedFilter;
     var searchString = Session.get('acceptedJobsSearch');
 
     if (!searchString) {
-      return Jobs.find({'latestLog.status': 'accepted'});
+      return Jobs.find(filter);
     }
 
-    var list = Jobs.find({'latestLog.status': 'accepted'}).fetch();
+    var list = Jobs.find(filter).fetch();
     return _.filter(list, function(job) {
       var findName = false;
       if (_.isEmpty(job.customName)) {
@@ -58,5 +62,11 @@ Template.acceptedJobs.events({
 });
 
 Template.acceptedJobs.onCreated(function() {
+  var labId = this.data.labId();
   this.data.showAcceptedFilters = new ReactiveVar(false);
+  this.data.labAcceptedFilter = {
+    'labId': labId,
+    'latestLog.status': 'accepted'
+  }
+
 });

@@ -39,8 +39,9 @@ Template.userJob.helpers({
 Template.userJob.events({
   "click .done.button": function() {
     var job = Template.instance().data.job;
+    var labId = Template.instance().data.labId();
     var userId = job.user._id;
-    FlowRouter.go('/users/'+userId);
+    FlowRouter.go('/users/'+userId+'/labs/'+labId);
     return false;
   }
 })

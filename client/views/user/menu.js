@@ -1,10 +1,13 @@
 Template.userMenu.helpers({
-  is3DPrintActive: function() {
-    var cssClass = Template.instance().data.menuItem === '3D Print' || false;
-    return cssClass ? 'active' : '';
+  isActive: function() {
+    var lab = GetLab(Template.instance().data.labId());
+    return lab.name === this.name ? 'active' : ''
   },
-  isPrintRoomActive: function() {
-    var cssClass = Template.instance().data.menuItem === 'Print Room' || false;
-    return cssClass ? 'active' : '';
+  labs: function() {
+    return Labs.find();
+  },
+  labLink: function() {
+    var userId = Template.instance().data.userId();
+    return '/users/' + userId + '/labs/' + this._id;
   }
 });

@@ -1,17 +1,13 @@
 Template.lab.helpers({
   noJobs: function() {
-    var jobCount = Jobs.find().count();
-    console.log(jobCount);
+    var labId = Template.instance().data.labId();
+    var jobCount = Jobs.find({labId: labId}).count();
     return jobCount === 0 ? true : false;
   },
   labName: function() {
     var labId = Template.instance().data.labId();
     var lab = Labs.findOne(labId);
     return _.isUndefined(lab) ? "" : lab.name;
-  },
-  labJobs: function() {
-    var jobs = Jobs.find({type: 'paper'});
-    return jobs;
   },
   hasSelectedJob: function() {
     var job = Template.instance().data.selectedJob.get();
@@ -85,7 +81,7 @@ Template.lab.onRendered(function() {
     ondrop: function(event) {
       var draggableElement = event.relatedTarget;
       var jobId = $(draggableElement).data('id');
-
+      console.log('DDDD')
       $('.reject-message.modal')
         .modal({
           onApprove: function() {

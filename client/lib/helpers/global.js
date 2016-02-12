@@ -14,7 +14,7 @@ this.Account = {
   SHARED: 'Shared',
   PIN: 'PIN'
 }
-this.ImageTypes = ['image/png', 'image/jpg']; 
+this.ImageTypes = ['image/png', 'image/jpg'];
 
 this.companyType = {
   EDUCATION: 'Education', // no account selection charges
@@ -170,6 +170,10 @@ this.PaperSizes = [
 
 this.GetUser = function(userId) {
   return LabUsers.findOne(userId);
+};
+
+this.GetLab = function(labId) {
+  return Labs.findOne(labId);
 };
 
 this.GetJob = function(jobId) {

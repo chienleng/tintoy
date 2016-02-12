@@ -12,14 +12,16 @@ var newJob = {
 
 Template.fileUpload.onRendered(function() {
   var user = null;
+  var labId = null;
   var self = this;
   var $fileUploadZone = $('#file-upload-zone');
-  var $progressBar = $('#file-upload-progress')
+  var $progressBar = $('#file-upload-progress');
 
   $progressBar.hide();
 
   self.autorun(function() {
     user = GetUser(self.data.userId());
+    labId = self.data.labId();
     filepicker.setKey(Session.get('filestackKey'));
   })
 
@@ -43,9 +45,10 @@ Template.fileUpload.onRendered(function() {
       newJob.user = user;
       newJob.files = Blobs;
       newJob.added = new Date();
+      newJob.labId = labId;
       var jobId = Jobs.insert(newJob);
 
-      FlowRouter.go('/users/' + user._id +'/submit/' + jobId);
+      FlowRouter.go('/users/' + user._id +'/labs/' + labId + '/submit/' + jobId);
 
       // [{"url":"https://cdn.filestackcontent.com/4PLkBOltSbSgIv2pQzRq","filename":"diagram.pdf","mimetype":"application/pdf","size":4805044,"isWriteable":false}]
       // [{"url":"https://cdn.filestackcontent.com/Ki6XMGKcRpR4aCEap7XD","filename":"slotted_disk (1).stl","mimetype":"application/sla","size":82878,"isWriteable":false}]

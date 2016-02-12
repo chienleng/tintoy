@@ -1,5 +1,6 @@
 Template.doneJobs.helpers({
   done: function() {
-    return Jobs.find({'latestLog.status': 'done'}, {sort: Session.get('jobsSortOrder')});
+    var labId = Template.instance().data.labId();
+    return Jobs.find({'labId': labId, 'latestLog.status': 'done'}, {sort: Session.get('jobsSortOrder')});
   }
 });

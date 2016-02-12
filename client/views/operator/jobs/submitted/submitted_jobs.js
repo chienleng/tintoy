@@ -1,12 +1,15 @@
 Template.submittedJobs.helpers({
   incoming: function() {
-    return Jobs.find({'latestLog.status': 'incoming'}, {sort: Session.get('jobsSortOrder')});
+    var filter = Template.instance().data.labSubmittedFilter;
+    return Jobs.find(filter, {sort: Session.get('jobsSortOrder')});
   },
   hasJobs: function() {
-    return Jobs.find({'latestLog.status': 'incoming'}).count() > 0;
+    var filter = Template.instance().data.labSubmittedFilter;
+    return Jobs.find(filter).count() > 0;
   },
   count: function() {
-    return Jobs.find({'latestLog.status': 'incoming'}).count();
+    var filter = Template.instance().data.labSubmittedFilter;
+    return Jobs.find(filter).count();
   },
   showSubmittedFilters: function() {
     return Template.instance().data.showSubmittedFilters.get();
@@ -15,13 +18,14 @@ Template.submittedJobs.helpers({
     return Session.get('submittedJobsSearch');
   },
   filteredJobs: function() {
+    var filter = Template.instance().data.labSubmittedFilter;
     var searchString = Session.get('submittedJobsSearch');
 
     if (!searchString) {
-      return Jobs.find({'latestLog.status': 'incoming'});
+      return Jobs.find(filter);
     }
 
-    var list = Jobs.find({'latestLog.status': 'incoming'}).fetch();
+    var list = Jobs.find(filter).fetch();
     return _.filter(list, function(job) {
       var findName = false;
       if (_.isEmpty(job.customName)) {
@@ -59,7 +63,12 @@ Template.submittedJobs.events({
 });
 
 Template.submittedJobs.onCreated(function() {
+  var labId = this.data.labId();
   this.data.showSubmittedFilters = new ReactiveVar(false);
+  this.data.labSubmittedFilter = {
+    'labId': labId,
+    'latestLog.status': 'incoming'
+  }
 
   var labId = Template.instance().data.labId();
   var lab = Labs.findOne(labId);
