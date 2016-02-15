@@ -1,7 +1,15 @@
 Template.acceptedJobs.helpers({
-  accepted: function() {
-    var filter = Template.instance().data.labAcceptedFilter;
-    return Jobs.find(filter, {sort: Session.get('jobsSortOrder')});
+  isAscend: function() {
+    var cssClass = Template.instance().data.sortDirection.get() === 1 ? 'green active' : '';
+    return cssClass;
+  },
+  isDescend: function() {
+    var cssClass = Template.instance().data.sortDirection.get() === -1 ? 'green active' : '';
+    return cssClass;
+  },
+  sortTypeClass: function() {
+    var cssClass = Template.instance().data.sortType.get() === 'user.names.given' ? 'alphabet' : 'numeric';
+    return cssClass;
   },
   hasJobs: function() {
     var filter = Template.instance().data.labAcceptedFilter;
@@ -14,18 +22,29 @@ Template.acceptedJobs.helpers({
   showAcceptedFilters: function() {
     return Template.instance().data.showAcceptedFilters.get();
   },
+  doubleAngleDirection: function() {
+    var show = Template.instance().data.showAcceptedFilters.get();
+    return show ? 'up' : 'down';
+  },
   searchString: function() {
-    return Session.get('acceptedJobsSearch');
+    return Template.instance().data.jobSearch.get();
   },
   filteredJobs: function() {
+    console.log(Template.instance().data)
+    var labId = Template.instance().data.labId();
     var filter = Template.instance().data.labAcceptedFilter;
-    var searchString = Session.get('acceptedJobsSearch');
-
-    if (!searchString) {
-      return Jobs.find(filter);
+    var searchString = Template.instance().data.jobSearch.get();
+    var sortType = Template.instance().data.sortType.get();
+    var sortDirection = Template.instance().data.sortDirection.get();
+    var sort = {
+      [sortType]: sortDirection
     }
 
-    var list = Jobs.find(filter).fetch();
+    if (!searchString) {
+      return Jobs.find(filter, {sort: sort});
+    }
+
+    var list = Jobs.find(filter, {sort: sort}).fetch();
     return _.filter(list, function(job) {
       var findName = false;
       if (_.isEmpty(job.customName)) {
@@ -53,20 +72,36 @@ Template.acceptedJobs.events({
     Template.instance().data.showAcceptedFilters.set(false);
     return false
   },
-  'change .accepted-jobs .sort-selection': function() {
-    Template.instance().data.showAcceptedFilters.set(false);
+  'change .accepted-jobs .sort-selection': function(event, template) {
+    var selected = $(event.currentTarget).val();
+    template.data.sortType.set(selected);
   },
-  'keyup .accepted-jobs-filter': function(event) {
-    Session.set('acceptedJobsSearch', $(event.currentTarget).val());
+  'keyup .accepted-jobs-filter': function(event, template) {
+    template.data.jobSearch.set($(event.currentTarget).val());
+  },
+  'click .accepted-jobs .sort-direction': function(event, template) {
+    var direction = $(event.currentTarget).data('value');
+    template.data.sortDirection.set(parseInt(direction));
+    return false
+  },
+  'click .accepted-jobs .toggle-filter': function(event, template) {
+    var toggle = Template.instance().data.showAcceptedFilters.get();
+    Template.instance().data.showAcceptedFilters.set(!toggle);
+    return false
   }
 });
 
 Template.acceptedJobs.onCreated(function() {
-  var labId = this.data.labId();
-  this.data.showAcceptedFilters = new ReactiveVar(false);
-  this.data.labAcceptedFilter = {
-    'labId': labId,
-    'latestLog.status': 'accepted'
-  }
+  this.autorun(function() {
+    var labId = this.data.labId();
+    this.data.jobSearch = new ReactiveVar("");
+    this.data.sortType = new ReactiveVar('jobNum');
+    this.data.sortDirection = new ReactiveVar(1);
+    this.data.showAcceptedFilters = new ReactiveVar(false);
+    this.data.labAcceptedFilter = {
+      'labId': labId,
+      'latestLog.status': 'accepted'
+    }
+  }.bind(this))
 
 });

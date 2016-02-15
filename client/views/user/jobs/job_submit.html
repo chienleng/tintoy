@@ -27,21 +27,25 @@
                 {{else}}
                 <div class="sixteen wide column">
                   <div class="fields" style="padding: 0;">
+                    {{#if image}}
+                    <img src="{{docPreviewUrl}}" style='width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'>
+                    {{/if}}
+                    {{#if pdf}}
+                    <iframe src="{{docPreviewUrl}}" style='border: 0; width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'></iframe>
+                    {{/if}}
 
-                    <div class="sixteen wide column">
-                      {{#if image}}
-                      <img src="{{docPreviewUrl}}" style='width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'>
-                      {{/if}}
-                      {{#if pdf}}
-                      <iframe src="{{docPreviewUrl}}" style='border: 0; width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'></iframe>
-                      {{/if}}
+                    <div class="field">
+                      <label for="">Filename</label>
+                      <div>{{filename}}</div>
 
-                      <div class="field">
-                        <label>Job Title</label>
-                        <input type="text" class="job-custom-name" placeholder="Optional" style="width: 100%;">
-                      </div>
+                      <br>
+
+                      <label>Job title</label>
+                      <input type="text" class="job-custom-name" placeholder="Optional" style="width: 100%;">
+
                     </div>
-                    <div class="eight wide column">
+
+                    <!-- <div class="eight wide column">
                       <div class="field">
                         <label for="">Filename</label>
                         <div>{{filename}}</div>
@@ -52,7 +56,7 @@
                         <label for="">Pages</label>
                         <div>20</div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   {{> form1}}
                 </div>

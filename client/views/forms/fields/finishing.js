@@ -1,0 +1,3 @@
+Template.finishing.onCreated(function() {
+  
+})

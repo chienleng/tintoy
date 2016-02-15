@@ -5,16 +5,28 @@
     </div>
     <div class="content">
       <div class="transition scale">
-        <div class="fields">
-          <div class="inline field">
-            <label>Proof</label>
-            <select class="proof ui dropdown">
-              <option value="no">No proof required</option>
-              <option value="pdf">PDF</option>
-              <option value="hardCopy">Hard copy</option>
-            </select>
+
+        <div class="inline fields">
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="fruit" checked="" tabindex="0" class="hidden">
+              <label>No proof required</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="fruit" tabindex="0" class="hidden">
+              <label>Email PDF Proof</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="fruit" tabindex="0" class="hidden">
+              <label>Hard Copy</label>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

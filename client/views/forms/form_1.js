@@ -31,27 +31,30 @@ Template.form1.onRendered(function() {
   $('.ui.accordion').accordion({
     duration: 250
   });
-  $('.image-selection').hide();
+  $('.image-selection, .cover-types').hide();
 
   $('.collate.ui.dropdown').dropdown({
     onChange: function(value, text, $choice) {
       switch (value) {
         case 'bind':
-          $('.image-selection').hide();
+          $('.image-selection, .cover-types').hide();
           $('.bind-types').fadeIn();
+          $('.cover-types').fadeIn();
           break;
         case 'drill':
-          $('.image-selection').hide();
+          $('.image-selection, .cover-types').hide();
+          $('.cover-types').fadeIn();
           break;
         case 'fold':
-          $('.image-selection').hide();
+          $('.image-selection, .cover-types').hide();
           $('.fold-types').fadeIn();
           break;
         case 'staple':
-          $('.image-selection').hide();
+          $('.image-selection, .cover-types').hide();
+          $('.cover-types').fadeIn();
           break;
         default:
-          $('.image-selection').hide();
+          $('.image-selection, .cover-types').hide();
           console.warn('nothing selected.')
       }
     }

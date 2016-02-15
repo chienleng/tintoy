@@ -1,7 +1,15 @@
 Template.submittedJobs.helpers({
-  incoming: function() {
-    var filter = Template.instance().data.labSubmittedFilter;
-    return Jobs.find(filter, {sort: Session.get('jobsSortOrder')});
+  isAscend: function() {
+    var cssClass = Template.instance().data.submittedSortDirection.get() === 1 ? 'green active' : '';
+    return cssClass;
+  },
+  isDescend: function() {
+    var cssClass = Template.instance().data.submittedSortDirection.get() === -1 ? 'green active' : '';
+    return cssClass;
+  },
+  sortTypeClass: function() {
+    var cssClass = Template.instance().data.submittedSortType.get() === 'user.names.given' ? 'alphabet' : 'numeric';
+    return cssClass;
   },
   hasJobs: function() {
     var filter = Template.instance().data.labSubmittedFilter;
@@ -14,18 +22,29 @@ Template.submittedJobs.helpers({
   showSubmittedFilters: function() {
     return Template.instance().data.showSubmittedFilters.get();
   },
+  doubleAngleDirection: function() {
+    var show = Template.instance().data.showSubmittedFilters.get();
+    return show ? 'up' : 'down';
+  },
   searchString: function() {
-    return Session.get('submittedJobsSearch');
+    return Template.instance().data.submittedJobSearch.get();
   },
   filteredJobs: function() {
+    console.log(Template.instance().data)
+    var labId = Template.instance().data.labId();
     var filter = Template.instance().data.labSubmittedFilter;
-    var searchString = Session.get('submittedJobsSearch');
-
-    if (!searchString) {
-      return Jobs.find(filter);
+    var searchString = Template.instance().data.submittedJobSearch.get();
+    var sortType = Template.instance().data.submittedSortType.get();
+    var sortDirection = Template.instance().data.submittedSortDirection.get();
+    var sort = {
+      [sortType]: sortDirection
     }
 
-    var list = Jobs.find(filter).fetch();
+    if (!searchString) {
+      return Jobs.find(filter, {sort: sort});
+    }
+
+    var list = Jobs.find(filter, {sort: sort}).fetch();
     return _.filter(list, function(job) {
       var findName = false;
       if (_.isEmpty(job.customName)) {
@@ -54,22 +73,36 @@ Template.submittedJobs.events({
     Template.instance().data.showSubmittedFilters.set(false);
     return false
   },
-  'change .incoming-jobs .sort-selection': function() {
-    Template.instance().data.showSubmittedFilters.set(false);
+  'change .incoming-jobs .sort-selection': function(event, template) {
+    var selected = $(event.currentTarget).val();
+    template.data.submittedSortType.set(selected);
   },
-  'keyup .submitted-jobs-filter': function(event) {
-    Session.set('submittedJobsSearch', $(event.currentTarget).val());
+  'keyup .submitted-jobs-filter': function(event, template) {
+    template.data.submittedJobSearch.set($(event.currentTarget).val());
+  },
+  'click .incoming-jobs .sort-direction': function(event, template) {
+    var direction = $(event.currentTarget).data('value');
+    template.data.submittedSortDirection.set(parseInt(direction));
+    return false
+  },
+  'click .incoming-jobs .toggle-filter': function(event, template) {
+    var toggle = Template.instance().data.showSubmittedFilters.get();
+    Template.instance().data.showSubmittedFilters.set(!toggle);
+    return false
   }
 });
 
 Template.submittedJobs.onCreated(function() {
-  var labId = this.data.labId();
-  this.data.showSubmittedFilters = new ReactiveVar(false);
-  this.data.labSubmittedFilter = {
-    'labId': labId,
-    'latestLog.status': 'incoming'
-  }
+  this.autorun(function() {
+    var labId = this.data.labId();
 
-  var labId = Template.instance().data.labId();
-  var lab = Labs.findOne(labId);
+    this.data.submittedJobSearch = new ReactiveVar("");
+    this.data.submittedSortType = new ReactiveVar('jobNum');
+    this.data.submittedSortDirection = new ReactiveVar(1);
+    this.data.showSubmittedFilters = new ReactiveVar(false);
+    this.data.labSubmittedFilter = {
+      'labId': labId,
+      'latestLog.status': 'incoming'
+    }
+  }.bind(this))
 });

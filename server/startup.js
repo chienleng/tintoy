@@ -92,7 +92,8 @@ function fakeLabUsers() {
    {
      names: {
        given: 'Malcolm',
-       surname: 'Reynolds'
+       surname: 'Reynolds',
+       full: 'Malcolm Reynolds'
      },
      balance: 20.5,
      email: 'malcolm@serenity.org',
@@ -102,7 +103,8 @@ function fakeLabUsers() {
    {
      names: {
        given: 'Zoe',
-       surname: 'Washburne'
+       surname: 'Washburne',
+       full: 'Zoe Washburne'
      },
      balance: 13,
      email: 'zoe@serenity.org',
@@ -112,7 +114,8 @@ function fakeLabUsers() {
    {
      names: {
        given: 'Simon',
-       surname: 'Tam'
+       surname: 'Tam',
+       full: 'Simon Tam'
      },
      balance: 13,
      email: 'simon@serenity.org',

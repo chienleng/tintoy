@@ -1,4 +1,7 @@
 Template.lab.helpers({
+  noRender: function() {
+    return Session.get("noRender");
+  },
   noJobs: function() {
     var labId = Template.instance().data.labId();
     var jobCount = Jobs.find({labId: labId}).count();
@@ -28,126 +31,132 @@ Template.lab.onCreated(function() {
 })
 
 Template.lab.onRendered(function() {
-  var x = 0, y = 0;
-  var startX = 0, startY = 0;
-  var jobsContext = document.querySelector('.jobs-kanban');
   var self = this;
 
   this.autorun(function(){
+     var x = 0, y = 0;
+     var startX = 0, startY = 0;
+
      var jobId = self.data.selectedJobId.get();
      self.data.selectedJob.set(GetJob(jobId));
+
+     var jobsContext = document.querySelector('.jobs-kanban');
+     setupInteractions(jobsContext, x, y, startX, startY);
   });
 
-  interact('.ui.card', {context: jobsContext}).on('tap', function (event) {
-    self.data.selectedJobId.set($(event.currentTarget).data('id'));
-    $('.job-detail-modal').modal('show');
-  })
+  function setupInteractions(jobsContext, x, y, startX, startY) {
+    interact('.ui.card', {context: jobsContext}).on('tap', function (event) {
+      self.data.selectedJobId.set($(event.currentTarget).data('id'));
+      $('.job-detail-modal').modal('show');
+    })
 
-  interact('.ui.card', {context: jobsContext})
-    .draggable({
-      // enable inertial throwing
-      inertia: false,
-      // enable autoScroll
-      autoScroll: true,
+    interact('.ui.card', {context: jobsContext})
+      .draggable({
+        // enable inertial throwing
+        inertia: false,
+        // enable autoScroll
+        autoScroll: true,
 
-      // call this function on every dragmove event
-      onmove: dragMoveListener,
-      onstart: function(event) {
-        var target = event.target;
-        target.setAttribute('data-x', x);
-        target.setAttribute('data-y', y);
-        $(target).addClass('dragged');
-      },
-      // call this function on every dragend event
-      onend: function(event) {
-        var target = event.target;
-        target.style.webkitTransform =
-          target.style.transform =
-            'translate(' + startX + 'px, ' + startY + 'px)';
+        // call this function on every dragmove event
+        onmove: dragMoveListener,
+        onstart: function(event) {
+          var target = event.target;
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+          $(target).addClass('dragged');
+        },
+        // call this function on every dragend event
+        onend: function(event) {
+          var target = event.target;
+          target.style.webkitTransform =
+            target.style.transform =
+              'translate(' + startX + 'px, ' + startY + 'px)';
 
-        target.setAttribute('data-x', startX);
-        target.setAttribute('data-y', startY);
-        $(target).removeClass('dragged');
+          target.setAttribute('data-x', startX);
+          target.setAttribute('data-y', startY);
+          $(target).removeClass('dragged');
+        }
+      });
+
+    interact('.rejected-jobs .drop-zone').dropzone({
+      accept: '.incoming-job, .accepted-job, .done-job',
+      overlap: 0.5,
+      ondropactivate: ondropactivate,
+      ondropdeactivate: ondropdeactivate,
+      ondragenter: ondragenter,
+      ondragleave: ondragleave,
+      ondrop: function(event) {
+        var draggableElement = event.relatedTarget;
+        var jobId = $(draggableElement).data('id');
+        $('.reject-message.modal')
+          .modal({
+            onApprove: function() {
+              var message = $('.rejection-message textarea').val();
+              AddJobLog(jobId, JobStatus.REJECTED, message);
+            },
+            onDeny: function() {
+              console.log('deny');
+            }
+          })
+          .modal('setting', 'transition', 'fade up')
+          .modal('setting', 'duration', 250)
+          .modal('show');
       }
-    });
+    })
 
-  interact('.rejected-jobs .drop-zone').dropzone({
-    accept: '.incoming-job, .accepted-job, .done-job',
-    overlap: 0.5,
-    ondropactivate: ondropactivate,
-    ondropdeactivate: ondropdeactivate,
-    ondragenter: ondragenter,
-    ondragleave: ondragleave,
-    ondrop: function(event) {
-      var draggableElement = event.relatedTarget;
-      var jobId = $(draggableElement).data('id');
-      console.log('DDDD')
-      $('.reject-message.modal')
-        .modal({
-          onApprove: function() {
-            var message = $('.rejection-message textarea').val();
-            AddJobLog(jobId, JobStatus.REJECTED, message);
-          },
-          onDeny: function() {
-            console.log('deny');
-          }
-        })
-        .modal('setting', 'transition', 'fade up')
-        .modal('setting', 'duration', 250)
-        .modal('show');
-    }
-  })
+    interact('.incoming-jobs .drop-zone').dropzone({
+      accept: '.accepted-job, .rejected-job, .done-job',
+      overlap: 0.5,
+      ondropactivate: ondropactivate,
+      ondropdeactivate: ondropdeactivate,
+      ondragenter: ondragenter,
+      ondragleave: ondragleave,
+      ondrop: function(event) {
+        var draggableElement = event.relatedTarget;
+        var jobId = $(draggableElement).data('id');
 
-  interact('.incoming-jobs .drop-zone').dropzone({
-    accept: '.accepted-job, .rejected-job, .done-job',
-    overlap: 0.5,
-    ondropactivate: ondropactivate,
-    ondropdeactivate: ondropdeactivate,
-    ondragenter: ondragenter,
-    ondragleave: ondragleave,
-    ondrop: function(event) {
-      var draggableElement = event.relatedTarget;
-      var jobId = $(draggableElement).data('id');
+        Session.set('selectedJob', jobId);
 
-      Session.set('selectedJob', jobId);
+        AddJobLog(jobId, JobStatus.INCOMING, null);
+      }
+    })
 
-      AddJobLog(jobId, JobStatus.INCOMING, null);
-    }
-  })
+    interact('.accepted-jobs .drop-zone').dropzone({
+      accept: '.incoming-job, .rejected-job, .done-job',
+      overlap: 0.5,
+      ondropactivate: ondropactivate,
+      ondropdeactivate: ondropdeactivate,
+      ondragenter: ondragenter,
+      ondragleave: ondragleave,
+      ondrop: function(event) {
+        var draggableElement = event.relatedTarget;
+        var jobId = $(draggableElement).data('id');
 
-  interact('.accepted-jobs .drop-zone').dropzone({
-    accept: '.incoming-job, .rejected-job, .done-job',
-    overlap: 0.5,
-    ondropactivate: ondropactivate,
-    ondropdeactivate: ondropdeactivate,
-    ondragenter: ondragenter,
-    ondragleave: ondragleave,
-    ondrop: function(event) {
-      var draggableElement = event.relatedTarget;
-      var jobId = $(draggableElement).data('id');
+        Session.set('selectedJob', jobId);
 
-      Session.set('selectedJob', jobId);
+        AddJobLog(jobId, JobStatus.ACCEPTED, null);
+      }
+    })
 
-      AddJobLog(jobId, JobStatus.ACCEPTED, null);
-    }
-  })
+    interact('.done-jobs .drop-zone').dropzone({
+      accept: '.accepted-job, .incoming-job, .rejected-job',
+      overlap: 0.5,
+      ondropactivate: ondropactivate,
+      ondropdeactivate: ondropdeactivate,
+      ondragenter: ondragenter,
+      ondragleave: ondragleave,
+      ondrop: function(event) {
+        var draggableElement = event.relatedTarget;
+        var jobId = $(draggableElement).data('id');
 
-  interact('.done-jobs .drop-zone').dropzone({
-    accept: '.accepted-job, .incoming-job, .rejected-job',
-    overlap: 0.5,
-    ondropactivate: ondropactivate,
-    ondropdeactivate: ondropdeactivate,
-    ondragenter: ondragenter,
-    ondragleave: ondragleave,
-    ondrop: function(event) {
-      var draggableElement = event.relatedTarget;
-      var jobId = $(draggableElement).data('id');
+        Session.set('selectedJob', jobId);
 
-      Session.set('selectedJob', jobId);
+        AddJobLog(jobId, JobStatus.DONE, null);
+      }
+    })
+  }
 
-      AddJobLog(jobId, JobStatus.DONE, null);
-    }
-  })
+
 
 });
 

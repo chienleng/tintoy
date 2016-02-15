@@ -6,7 +6,8 @@
     </div>
 
     {{#if hasJobs}}
-    <div class="sort-div animated fadeIn">
+    {{#if showSubmittedFilters}}
+    <div class="sort-div">
       <form action="#" class="filter-form ui form">
         <div class="field">
           <div class="ui icon input">
@@ -15,27 +16,30 @@
           </div>
         </div>
 
-        {{#if showSubmittedFilters}}
-        <div class="animated fadeIn">
-          <div class="field">
-            <label>SORT BY</label>
+        <div class="" style="text-align: center">
+          <div class="inline field">
+            <strong style="position: relative; left: 2px;">Sort</strong>
             <select class="sort-selection ui dropdown">
-              <option value="">Job Number</option>
-              <option value="">User</option>
+              <option value="jobNum">Job Number</option>
+              <option value="user.names.given">User</option>
             </select>
+            <div class="ui icon buttons" style="position: relative; top: 1px;">
+              <button type="button" class="ui {{isAscend}} sort-direction button" data-value="1"><i class="sort {{sortTypeClass}} ascending icon"></i></button>
+              <button type="button" class="ui {{isDescend}} sort-direction button" data-value="-1"><i class="sort {{sortTypeClass}} descending icon"></i></button>
+            </div>
           </div>
           <!-- <div class="buttons" style="text-align: right;">
             <button class="cancel ui tiny button">Cancel</button>
             <button class="apply ui tiny green button">Apply</button>
           </div> -->
         </div>
-        {{else}}
         <!-- <div class="current-sort">
           <a href="#"><i class="sort icon"></i> Required By (Latest — Oldest)</a>
         </div> -->
-        {{/if}}
       </form>
     </div>
+    {{/if}}
+    <a href="#" class="toggle-filter"><i class="angle double {{doubleAngleDirection}} icon"></i></a>
     {{/if}}
 
     <div class="drop-zone">

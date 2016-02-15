@@ -14,6 +14,11 @@ Template.jobCard.helpers({
   },
   downloadLink: function() {
     return Template.instance().data.files[0].downloadLink;
+  },
+  threeD: function() {
+    var job = Template.instance().data;
+    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
+    return fileObj && fileObj.mimetype === "application/sla" ? true : false;
   }
 });
 

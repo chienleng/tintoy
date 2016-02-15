@@ -1,3 +1,4 @@
+Session.setDefault("noRender", false);
 Session.setDefault('labOp', null);
 Session.setDefault('labUser', null);
 

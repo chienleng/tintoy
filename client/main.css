@@ -70,7 +70,7 @@ a.take-pill:hover {
 /* headers */
 .ui.secondary.pointing.menu {
   border: none;
-  border-bottom: 2px solid transparent;
+  /*border-bottom: 2px solid transparent;*/
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#299a0b+0,299a0b+100;Green+Flat+%231 */
   background: rgb(41, 154, 11);
   /* Old browsers */
@@ -89,7 +89,7 @@ a.take-pill:hover {
 }
 .ui.secondary.pointing.menu .active.item {
   color: #fff;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid rgba(41, 154, 11, .75);
 }
 
 header .pc-logo {

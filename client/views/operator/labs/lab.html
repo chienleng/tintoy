@@ -1,12 +1,12 @@
 <template name="lab">
-  {{> operatorHeader menuItem='Print Room Kanban'}}
+  {{#unless noRender}}
+  {{> operatorHeader}}
 
   <div class="ui container lab-page" style="position: relative">
-    <h3 class="ui center aligned header" style="padding: 20px 0; border-bottom: 1px solid #fff;">{{labName}}</h3>
-    {{> addAnnouncement this}}
+    <!-- <h3 class="ui center aligned header" style="padding: 20px 0; border-bottom: 1px solid #fff;">{{labName}}</h3> -->
     {{#if noJobs}}
     <h2 class="ui header">
-      No Jobs — put something fun here.
+      <!-- No Jobs — put something fun here. -->
     </h2>
     {{else}}
     <div class="ui stackable padded grid jobs-kanban">
@@ -26,7 +26,7 @@
       </div> -->
       <div class="three column row">
         <div class="column">
-          {{> submittedJobs}}
+          {{> submittedJobs this}}
         </div>
 
         <div class="column">
@@ -41,8 +41,11 @@
     </div>
     {{/if}}
   </div>
+  {{/unless}}
 
   {{> jobModal}}
+  {{> jobModals}}
+
 
   {{> footer}}
 </template>

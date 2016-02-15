@@ -10,9 +10,11 @@
 
       </div> -->
       <div class="sixteen wide column" style="padding: 5px;">
+        {{#if threeD}}
         <span class="thumbnail" style="float: left; margin-right: 5px;">
           {{> thumbnail3D}}
         </span>
+        {{/if}}
         <div>
           <span style="font-weight: bold; width: 63px; display: inline-block; font-size: 14px; color: {{user.colour}}; border-top: 5px solid {{user.colour}}; margin-top: 0px;">#{{jobNum}}</span>
           <span class="ui {{stale}} basic horizontal tiny label" style="float: right; margin-right: 0; opacity: 0.75; border: 0;">{{fromNow submitted}}</span>

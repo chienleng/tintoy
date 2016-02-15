@@ -1,0 +1,7 @@
+.ui.button.show-add-announcement {
+  height: 40px;
+  padding-top: 14px;
+  border-radius: 0;
+  position: relative;
+  top: 1px;
+}
