@@ -45,8 +45,12 @@ Template.lab.onRendered(function() {
   });
 
   function setupInteractions(jobsContext, x, y, startX, startY) {
+
     interact('.ui.card', {context: jobsContext}).on('tap', function (event) {
-      self.data.selectedJobId.set($(event.currentTarget).data('id'));
+      var jobId = $(event.currentTarget).data('id')
+      var job = GetJob(jobId);
+      self.data.selectedJobId.set(jobId);
+      Session.set('type', job.latestLog.status);
       $('.job-detail-modal').modal('show');
     })
 
@@ -88,19 +92,24 @@ Template.lab.onRendered(function() {
       ondrop: function(event) {
         var draggableElement = event.relatedTarget;
         var jobId = $(draggableElement).data('id');
-        $('.reject-message.modal')
-          .modal({
-            onApprove: function() {
-              var message = $('.rejection-message textarea').val();
-              AddJobLog(jobId, JobStatus.REJECTED, message);
-            },
-            onDeny: function() {
-              console.log('deny');
-            }
-          })
-          .modal('setting', 'transition', 'fade up')
-          .modal('setting', 'duration', 250)
-          .modal('show');
+
+        Session.set('type', JobStatus.REJECTED);
+        self.data.selectedJobId.set(jobId);
+        $('.job-detail-modal').modal('show');
+
+        // $('.reject-message.modal')
+        //   .modal({
+        //     onApprove: function() {
+        //       var message = $('.rejection-message textarea').val();
+        //       AddJobLog(jobId, JobStatus.REJECTED, message);
+        //     },
+        //     onDeny: function() {
+        //       console.log('deny');
+        //     }
+        //   })
+        //   .modal('setting', 'transition', 'fade up')
+        //   .modal('setting', 'duration', 250)
+        //   .modal('show');
       }
     })
 
@@ -115,8 +124,8 @@ Template.lab.onRendered(function() {
         var draggableElement = event.relatedTarget;
         var jobId = $(draggableElement).data('id');
 
-        Session.set('selectedJob', jobId);
-
+        // Session.set('selectedJob', jobId);
+        self.data.selectedJobId.set(jobId);
         AddJobLog(jobId, JobStatus.INCOMING, null);
       }
     })
@@ -131,9 +140,14 @@ Template.lab.onRendered(function() {
       ondrop: function(event) {
         var draggableElement = event.relatedTarget;
         var jobId = $(draggableElement).data('id');
+        var job = GetJob(jobId);
 
-        Session.set('selectedJob', jobId);
+        if (job.files[0].mimetype === 'application/sla') {
+          window.open(job.files[0].downloadLink);
+        }
 
+        // Session.set('selectedJob', jobId);
+        self.data.selectedJobId.set(jobId);
         AddJobLog(jobId, JobStatus.ACCEPTED, null);
       }
     })
@@ -149,14 +163,15 @@ Template.lab.onRendered(function() {
         var draggableElement = event.relatedTarget;
         var jobId = $(draggableElement).data('id');
 
-        Session.set('selectedJob', jobId);
+        // Session.set('selectedJob', jobId);
+        // AddJobLog(jobId, JobStatus.DONE, null);
+        self.data.selectedJobId.set(jobId);
+        Session.set('type', JobStatus.DONE);
+        $('.job-detail-modal').modal('show');
 
-        AddJobLog(jobId, JobStatus.DONE, null);
       }
     })
   }
-
-
 
 });
 

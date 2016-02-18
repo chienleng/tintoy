@@ -26,39 +26,18 @@ Template.form1.onCreated(function() {
 Template.form1.onRendered(function() {
   var self = this;
   $('.ui.checkbox').checkbox();
-  $('.ui.dropdown').dropdown();
+  // $('.ui.dropdown').dropdown();
   $('.popup').popup();
   $('.ui.accordion').accordion({
     duration: 250
   });
   $('.image-selection, .cover-types').hide();
 
-  $('.collate.ui.dropdown').dropdown({
-    onChange: function(value, text, $choice) {
-      switch (value) {
-        case 'bind':
-          $('.image-selection, .cover-types').hide();
-          $('.bind-types').fadeIn();
-          $('.cover-types').fadeIn();
-          break;
-        case 'drill':
-          $('.image-selection, .cover-types').hide();
-          $('.cover-types').fadeIn();
-          break;
-        case 'fold':
-          $('.image-selection, .cover-types').hide();
-          $('.fold-types').fadeIn();
-          break;
-        case 'staple':
-          $('.image-selection, .cover-types').hide();
-          $('.cover-types').fadeIn();
-          break;
-        default:
-          $('.image-selection, .cover-types').hide();
-          console.warn('nothing selected.')
-      }
-    }
-  });
+  // $('.collate.ui.dropdown').dropdown({
+  //   onChange: function(value, text, $choice) {
+  //
+  //   }
+  // });
   //
   // setupColorPicker();
   // var picker = new Pikaday({

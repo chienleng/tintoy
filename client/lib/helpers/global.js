@@ -7,7 +7,8 @@ this.JobStatus = {
   RECEIVED: 'received' // job received by user
 }
 this.JobType = {
-  THREE_D: '3D'
+  THREE_D: '3D',
+  OTHER: 'Other'
 }
 this.Account = {
   PERSONAL: 'Personal',

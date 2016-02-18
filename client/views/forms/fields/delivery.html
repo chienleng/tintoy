@@ -1,7 +1,11 @@
 <template name="delivery">
   <div class="ui fluid accordion">
     <div class="title">
-      <h3 class="ui dividing header"><i class="dropdown icon"></i> Delivery</h3>
+      <h3 class="ui dividing header">
+        <i class="dropdown icon"></i>
+        Delivery
+        <small style="font-size: 0.8em; font-weight: 100; color: #999;">— {{deliverySelection}}</small>
+      </h3>
     </div>
     <div class="content">
       <div class="transition scale">
@@ -9,25 +13,25 @@
         <div class="inline fields">
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="fruit" checked="" tabindex="0" class="hidden">
+              <input type="radio" value="Pick-up" name="delivery" checked="" tabindex="0" class="delivery">
               <label>Pick-up</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="fruit" tabindex="0" class="hidden">
+              <input type="radio" value="Courier Delivery" name="delivery" tabindex="0" class="delivery">
               <label>Courier Delivery</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="fruit" tabindex="0" class="hidden">
+              <input type="radio" value="Campus Mail" name="delivery" tabindex="0" class="delivery">
               <label>Campus Mail</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="fruit" tabindex="0" class="hidden">
+              <input type="radio" value="Delivery address" name="delivery" tabindex="0" class="delivery">
               <label>Delivery address</label>
             </div>
           </div>

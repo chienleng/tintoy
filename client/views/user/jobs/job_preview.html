@@ -1,0 +1,63 @@
+<template name="jobPreview">
+  {{> userHeader}}
+  <div class="ui container user-page">
+    <div class="ui stackable padded grid">
+
+      <div class="three wide column">
+        {{> userMenu}}
+      </div>
+
+      <div class="thirteen wide column" style="padding: 0;">
+        {{#with selectedJob}}
+        <div class="ui segment" style="box-shadow: none; background-color: #f2f6f7; ">
+          <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
+            Confirm Print Job Settings
+          </h2>
+          <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
+            <div class="ui grid">
+              <div class="five wide column">
+                {{#if image}}
+                <img src="{{docPreviewUrl}}">
+                {{/if}}
+                {{#if pdf}}
+                <iframe src="{{docPreviewUrl}}" style='border: 0; width: 100%; height: 300px;'></iframe>
+                {{/if}}
+              </div>
+
+              <div class="eleven wide column">
+                <div class="ui relaxed divided list">
+                  <div class="item"><strong class="preview-label">Job title</strong> {{customName}}</div>
+                  <div class="item"><strong class="preview-label">Filename</strong> {{filename}}</div>
+                  <div class="item"><strong class="preview-label">Copies & Pages</strong> {{copiesPagesSelection}}</div>
+                  <div class="item"><strong class="preview-label">Finishing</strong> {{settings.finishing.collate.type}}</div>
+                  <div class="item"><strong class="preview-label">Proof Copy</strong> {{settings.proofCopy}}</div>
+                  <div class="item"><strong class="preview-label">Delivery</strong> {{settings.delivery}}</div>
+                  <div class="item"><strong class="preview-label">Account</strong> {{account.type}}</div>
+                  <div class="item"><strong class="preview-label">Instructions</strong> {{settings.additionalInstructions}}</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="" style="margin: 20 0 10px;">
+            <div style="float: right">
+              <button type="button" class="ui back icon button">
+                <i class="left angle arrow icon"></i>
+                Edit Job Settings
+              </button>
+              <button type="button" class="ui green right icon submit-job button">
+                Submit
+                <i class="upload cloud icon"></i>
+              </button>
+            </div>
+            <button type="button" class="ui basic cancel button">Cancel</button>
+          </div>
+
+        </div>
+        {{/with}}
+      </div>
+    </div>
+
+  </div>
+</template>

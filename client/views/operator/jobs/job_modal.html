@@ -4,92 +4,94 @@
     <!-- <div class="header">
       {{customName}}
     </div> -->
+
     {{#with selectedJob}}
 
     <div class="content" style="background-color: #fff;">
+      <div class="ui grid">
 
-      <!-- <div class="ui medium image">
-      </div> -->
-      <div class="description">
-        <div class="ui grid">
-          <div class="ten wide column">
-            {{#if threeD}}
-            <div style="height: 220px; float: left; margin-right: 20px;">
-              <!-- {{> preview3D selectedJobId=selectedJobId}} -->
-              {{> thumbnail3D}}
-            </div>
-            {{/if}}
-            {{#if image}}
-            <img src="{{docPreviewUrl}}" style='height: 200px; float: left; margin-right: 20px; margin-bottom: 20px;'>
-            {{/if}}
-            {{#if pdf}}
-            <iframe src="{{docPreviewUrl}}" style='border: 0; height: 200px; float: left; margin-right: 20px; margin-bottom: 20px;'></iframe>
-            {{/if}}
+        <div class="five wide column">
+          {{#if threeD}}
+          {{> preview3D selectedJobId=selectedJobId}}
+          {{/if}}
+          {{#if image}}
+          <img class="ui fluid image" src="{{docPreviewUrl}}">
+          {{/if}}
+          {{#if pdf}}
+          <iframe src="{{docPreviewUrl}}" style='border: 0; width: 100%; height: 300px;'></iframe>
+          {{/if}}
+        </div>
 
-            <div class="ui header">
-              <span style="font-weight: bold; width: 63px; display: inline-block; color: {{user.colour}}; border-top: 5px solid {{user.colour}}; ">#{{jobNum}}</span>
-            </div>
+        <div class="six wide column">
 
-            <div>
-              Submitted: {{fromNow submitted}}
-            </div>
-
-            <div style="font-weight: bold;">
-              {{#if customName}} Job Title: {{customName}} {{/if}}
-            </div>
-            <div>
-              User: {{fullName user.names}}
-            </div>
-
-            <div class="preview-caption" style="padding: 5px;">
-              <div class="ui medium header">
-                <a href="{{fileUrl}}" target="_blank">{{filename}}</a>
-                <br>
-                <small class="filesize" style="font-weight: 100;">{{filesize}}</small>
-              </div>
-            </div>
+          <div class="ui relaxed divided list">
+            <div class="item"><strong class="preview-label">Job title</strong> {{customName}}</div>
+            <div class="item"><strong class="preview-label">Filename</strong> <a href="{{fileUrl}}" download>{{filename}}</a></div>
+            <div class="item"><strong class="preview-label">Copies & Pages</strong> {{copiesPagesSelection}}</div>
+            <div class="item"><strong class="preview-label">Finishing</strong> {{settings.finishing.collate.type}}</div>
+            <div class="item"><strong class="preview-label">Proof Copy</strong> {{settings.proofCopy}}</div>
+            <div class="item"><strong class="preview-label">Delivery</strong> {{settings.delivery}}</div>
+            <div class="item"><strong class="preview-label">Account</strong> {{account.type}}</div>
+            <div class="item"><strong class="preview-label">Instructions</strong> {{settings.additionalInstructions}}</div>
           </div>
 
-          <div class="six wide column">
+        </div>
 
-            <div class="ui form content" style="">
-              <div class="field">
-                <label for="">Change Status to: </label>
-                <select name="" id="job-status-selection" class="ui dropdown">
-                  <option value="">Choose...</option>
-                  <option value="incoming">Submitted</option>
-                  <option value="accepted">In Progress</option>
-                  <option value="rejected">Rejected</option>
-                  <option value="done">Done</option>
-                </select>
-              </div>
+        <div class="job-update-fields five wide column">
+          <div class="ui header">
+            <span class="job-num-label" style="color: {{user.colour}}; border-top: 5px solid {{user.colour}}; ">#{{jobNum}}</span>
+          </div>
 
-              <!-- <div class="field">
-                <label for="">Message</label>
-                <textarea id="job-status-message" rows="3"></textarea>
-              </div> -->
+          <div>
+            <small>Submitted:</small><br>
+            <strong>{{fromNow submitted}}</strong>
+          </div>
 
-              <div class="field">
-                <label for="">Actual Cost</label>
-                <input type="text" value="$9.20">
-              </div>
+          <div>
+            <small>User:</small><br>
+            <strong>{{fullName user.names}}</strong>
+          </div>
 
-              <div class="field">
-                <label>Reason</label>
-                <select name="" id="">
-                  <option value="">Materials not available</option>
-                  <option value="">Print job design not suitable for printer</option>
-                  <option value="">Print job too large for printer</option>
-                  <option value="">Requested material not suitable for this design</option>
-                  <option value="">Other</option>
-                </select>
-              </div>
-              <div class="rejection-message field">
-                <label>Rejection Message</label>
-                <textarea>---Message here will be based on above selection.---</textarea>
-              </div>
-
+          <div class="ui divider"></div>
+          
+          <div class="ui form content">
+            <div class="field">
+              <label for="">Change Status to: </label>
+              <select name="" id="job-status-selection">
+                <option value="incoming" {{isIncomingSelected}}>Submitted</option>
+                <option value="accepted" {{isAcceptedSelected}}>In Progress</option>
+                <option value="rejected" {{isRejectedSelected}}>Rejected</option>
+                <option value="done" {{isDoneSelected}}>Done</option>
+              </select>
             </div>
+
+            {{#if showRejectReason}}
+            <div class="field">
+              <label>Reason</label>
+              <select name="" id="reject-reason-selection">
+                <option value="">Choose...</option>
+                <option value="">Materials not available</option>
+                <option value="">Print job design not suitable for printer</option>
+                <option value="">Print job too large for printer</option>
+                <option value="">Requested material not suitable for this design</option>
+                <option value="">Other</option>
+              </select>
+            </div>
+            {{/if}}
+
+            {{#if showMessage}}
+            <div class="field">
+              <label for="">Message</label>
+              <textarea id="job-status-message" rows="3"></textarea>
+            </div>
+            {{/if}}
+
+            {{#if showCost}}
+            <div class="field">
+              <label for="">Actual Cost</label>
+              <input type="text" value="$9.20">
+            </div>
+            {{/if}}
 
           </div>
         </div>
@@ -97,11 +99,9 @@
       </div>
     </div>
 
-
-
   {{/with}}
 
-    <div class="actions" style="text-align: center;">
+    <div class="actions">
       <div class="ui deny button">
         Cancel
       </div>

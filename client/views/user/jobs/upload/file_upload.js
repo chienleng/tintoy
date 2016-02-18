@@ -38,6 +38,7 @@ Template.fileUpload.onRendered(function() {
       $fileUploadZone.find('.drop-zone .description').text("Done, see result below");
 
       var fileId = Blobs[0].url.substring(Blobs[0].url.lastIndexOf("/")+1, Blobs[0].url.length);
+      var mimeType = Blobs[0].mimeType;
       Blobs[0].viewerUrl = 'https://www.filestackapi.com/api/preview/' + fileId;
       Blobs[0].infoUrl = 'https://www.filepicker.io/api/file/'+fileId+'/convert?getpdfinfo=true';
       Blobs[0].docPreviewUrl = 'https://www.filestackapi.com/api/file/'+fileId;
@@ -46,6 +47,36 @@ Template.fileUpload.onRendered(function() {
       newJob.files = Blobs;
       newJob.added = new Date();
       newJob.labId = labId;
+
+      if (mimeType === 'application/sla') {
+        newJob.type = JobType.THREE_D;
+        newJob.settings = {
+          colour: Session.get('3dColour'),
+          additionalInstructions: ''
+        };
+      } else {
+        newJob.type = JobType.OTHER;
+        newJob.settings = {
+          copiesPages: {
+            copies: 1,
+            twoSided: true,
+            size: 'A4',
+            paperColour: 'White',
+            type: 'Normal'
+          },
+          finishing: {
+            collate: {
+              type: 'Bind',
+              bind: 'Comb',
+              frontCover: 'None',
+              backCover: 'None'
+            }
+          },
+          proofCopy: 'No proof required',
+          delivery: 'pickUp',
+          additionalInstructions: ''
+        }
+      }
       var jobId = Jobs.insert(newJob);
 
       FlowRouter.go('/users/' + user._id +'/labs/' + labId + '/submit/' + jobId);

@@ -38,6 +38,34 @@ Template.jobModal.helpers({
     var job = Template.instance().data.selectedJob.get();
     var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
     return fileObj ? (fileObj.size / 1000).toFixed(0) + "KB" : "n/a";
+  },
+  showCost: function() {
+    var type = Session.get('type');
+    return type === 'done';
+  },
+  showRejectReason: function() {
+    var type = Session.get('type');
+    return type === JobStatus.REJECTED;
+  },
+  showMessage: function() {
+    var type = Session.get('type');
+    return type === JobStatus.REJECTED || type === JobStatus.DONE || type === JobStatus.ACCEPTED;
+  },
+  isRejectedSelected: function() {
+    var type = Session.get('type');
+    return type === JobStatus.REJECTED ? 'selected' : '';
+  },
+  isDoneSelected: function() {
+    var type = Session.get('type');
+    return type === JobStatus.DONE ? 'selected' : '';
+  },
+  isAcceptedSelected: function() {
+    var type = Session.get('type');
+    return type === JobStatus.ACCEPTED ? 'selected' : '';
+  },
+  isIncomingSelected: function() {
+    var type = Session.get('type');
+    return type === JobStatus.INCOMING ? 'selected' : '';
   }
 });
 
@@ -45,26 +73,17 @@ Template.jobModal.onRendered(function() {
   var self = this;
 
   $('#job-status-selection').on('change', function() {
+    console.log($(this).val());
+    Session.set('type', $(this).val());
   });
 
   $('.update-job.button').on('click', function() {
-    var job = self.data.selectedJob.get();
-    var jobId = job._id;
+    var jobId = self.data.selectedJobId.get();
+    var type = Session.get('type');
     var message = $('#job-status-message').val();
-    switch ($('#job-status-selection').val()) {
-      case 'incoming':
-      AddJobLog(jobId, JobStatus.INCOMING, message);
-      break;
-      case 'accepted':
-      AddJobLog(jobId, JobStatus.ACCEPTED, message);
-      break;
-      case 'rejected':
-      AddJobLog(jobId, JobStatus.REJECTED, message);
-      break;
-      case 'done':
-      AddJobLog(jobId, JobStatus.DONE, message);
-      break;
-      default:
-    }
+    console.log(jobId);
+    console.log(type);
+    console.log(message)
+    AddJobLog(jobId, type, message);
   })
 })

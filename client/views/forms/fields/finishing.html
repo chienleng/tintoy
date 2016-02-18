@@ -1,7 +1,11 @@
 <template name="finishing">
   <div class="ui fluid accordion">
     <div class="title">
-      <h3 class="ui dividing header"><i class="dropdown icon"></i> Finishing</h3>
+      <h3 class="ui dividing header">
+        <i class="dropdown icon"></i>
+        Finishing
+        <small style="font-size: 0.8em; font-weight: 100; color: #999;">— {{finishingSelection}}</small>
+      </h3>
     </div>
     <div class="content">
       <div class="transition scale">
@@ -9,11 +13,11 @@
           <div class="inline field">
             <label>Collate</label>
             <select class="collate ui dropdown">
-              <option value="none">Don't collate</option>
-              <option value="bind">Bind</option>
-              <option value="drill">Drill holes</option>
-              <option value="fold">Fold</option>
-              <option value="staple">Staple</option>
+              <option value="None">Don't collate</option>
+              <option value="Bind">Bind</option>
+              <option value="Drill">Drill holes</option>
+              <option value="Fold">Fold</option>
+              <option value="Staple">Staple</option>
             </select>
           </div>
         </div>

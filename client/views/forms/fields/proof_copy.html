@@ -1,7 +1,11 @@
 <template name="proofCopy">
   <div class="ui fluid accordion">
     <div class="title">
-      <h3 class="ui dividing header"><i class="dropdown icon"></i> Proof Copy</h3>
+      <h3 class="ui dividing header">
+        <i class="dropdown icon"></i>
+        Proof Copy
+        <small style="font-size: 0.8em; font-weight: 100; color: #999;">— {{proofCopySelection}}</small>
+      </h3>
     </div>
     <div class="content">
       <div class="transition scale">
@@ -9,19 +13,19 @@
         <div class="inline fields">
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="fruit" checked="" tabindex="0" class="hidden">
+              <input type="radio" name="proof-copy" value="No proof required" checked="" tabindex="0" class="proof-copy">
               <label>No proof required</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="fruit" tabindex="0" class="hidden">
+              <input type="radio" name="proof-copy" value="Email PDF Proof" tabindex="0" class="proof-copy">
               <label>Email PDF Proof</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="fruit" tabindex="0" class="hidden">
+              <input type="radio" name="proof-copy" value="Hard Copy" tabindex="0" class="proof-copy">
               <label>Hard Copy</label>
             </div>
           </div>

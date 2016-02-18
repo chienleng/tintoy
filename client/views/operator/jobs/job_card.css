@@ -10,3 +10,19 @@
 .job-link-label:hover {
   opacity: 1;
 }
+
+.job-num-label {
+  font-weight: bold;
+  width: 63px;
+  display: inline-block;
+  margin-top: 3px;
+}
+.job-update-fields {
+  border-radius: 0 3px 0 0;
+  background-color: #eee;
+  border-left: 1px solid #ccc;
+  position: relative;
+  top: -7px;
+  margin-bottom: -14px;
+  left: 7px;
+}

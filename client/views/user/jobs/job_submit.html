@@ -14,7 +14,7 @@
           </h2>
           <form action="#" class="new-submission ui form" style="margin: 0; width: 100%">
             <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
-              <div class="ui grid">
+              <div class="ui grid" style="margin-bottom: -2rem;">
                 {{#if threeD}}
                 <div class="four wide column preview">
                   {{> preview3D}}
@@ -44,19 +44,6 @@
                       <input type="text" class="job-custom-name" placeholder="Optional" style="width: 100%;">
 
                     </div>
-
-                    <!-- <div class="eight wide column">
-                      <div class="field">
-                        <label for="">Filename</label>
-                        <div>{{filename}}</div>
-                      </div>
-                    </div>
-                    <div class="eight wide column">
-                      <div class="field">
-                        <label for="">Pages</label>
-                        <div>20</div>
-                      </div>
-                    </div> -->
                   </div>
                   {{> form1}}
                 </div>
@@ -64,7 +51,7 @@
               </div>
             </div>
 
-            <div class="" style="text-align: right; margin: 30px 0 20px;">
+            <div class="" style="margin: 20 0 10px;">
               {{#if overFilesizeLimit}}
               <div class="inline field">
                 <div class="ui checkbox">
@@ -73,12 +60,16 @@
                 </div>
               </div>
               {{/if}}
-              <button type="button" class="ui cancel button">Cancel</button>
-              <button type="submit" class="ui green right labeled icon button">
-                Submit
-                <i class="upload cloud icon"></i>
-              </button>
+
+              <div style="float: right">
+                <button type="submit" class="ui green right icon button">
+                  Confirm
+                  <i class="right angle arrow icon"></i>
+                </button>
+              </div>
+              <button type="button" class="ui basic cancel button">Cancel</button>
             </div>
+
           </form>
         </div>
       </div>

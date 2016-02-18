@@ -1,18 +1,22 @@
 <template name="copiesPages">
   <div class="ui fluid accordion">
     <div class="title active popup" title="Specify page settings and number of copies">
-      <h3 class="ui dividing header"><i class="dropdown icon"></i> Copies & Pages</h3>
+      <h3 class="ui dividing header">
+        <i class="dropdown icon"></i>
+        Copies & Pages
+        <small style="font-size: 0.8em; font-weight: 100; color: #999;">— {{copiesPagesSelection}}</small>
+      </h3>
     </div>
     <div class="content active">
       <div class="transition scale">
         <div class="fields">
           <div class="inline field">
             <label>Copies</label>
-            <input type="number" value="1" style="width:80px;">
+            <input class="field-copies" type="number" value="1" style="width:80px;">
           </div>
           <div class="inline field" style="margin-top: 8px;">
             <div class="ui checkbox">
-              <input type="checkbox" tabindex="0" class="hidden">
+              <input type="checkbox" tabindex="0" class="hidden field-two-sided">
               <label>Two-Sided</label>
             </div>
           </div>
@@ -34,18 +38,18 @@
           <div class="inline field">
             <label>Paper Color</label>
             <select class="paper-colour ui dropdown" name="" id="">
-              <option value="lab1">White</option>
-              <option value="lab2">Red</option>
-              <option value="lab3">Blue</option>
+              <option value="White">White</option>
+              <option value="Red">Red</option>
+              <option value="Blue">Blue</option>
             </select>
           </div>
 
           <div class="inline field">
             <label>Type</label>
             <select class="paper-type ui dropdown" name="" id="">
-              <option value="normal">Normal (80 gsm)</option>
-              <option value="gloss">Gloss (80 gsm)</option>
-              <option value="heavy">Heavy duty (120 gsm)</option>
+              <option value="Normal">Normal (80 gsm)</option>
+              <option value="Gloss">Gloss (80 gsm)</option>
+              <option value="Heavy duty">Heavy duty (120 gsm)</option>
             </select>
           </div>
 
