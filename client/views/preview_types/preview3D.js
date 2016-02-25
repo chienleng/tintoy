@@ -1,16 +1,17 @@
 Template.preview3D.helpers({
-  filename: function() {
-    var fileObj = GetFileByJobId(Template.instance().data.id.get());
-    return fileObj ? fileObj.filename : "";
-  },
-  filesize: function() {
-    var fileObj = GetFileByJobId(Template.instance().data.id.get());
-    return fileObj ? (fileObj.size / 1000).toFixed(0) + "KB" : "n/a";
-  }
+  // filename: function() {
+  //   var fileObj = GetFileByJobId(Template.instance().data.id.get());
+  //   return fileObj ? fileObj.filename : "";
+  // },
+  // filesize: function() {
+  //   var fileObj = GetFileByJobId(Template.instance().data.id.get());
+  //   return fileObj ? (fileObj.size / 1000).toFixed(0) + "KB" : "n/a";
+  // }
 });
 
 Template.preview3D.onCreated(function() {
-  this.data.id = new ReactiveVar(this.data.selectedJobId);
+  // this.data.id = new ReactiveVar(this.data.selectedJobId);
+  console.log(this.data)
 });
 
 Template.preview3D.onRendered(function() {
@@ -18,13 +19,13 @@ Template.preview3D.onRendered(function() {
   var JSC3D = JSC3DWrapper();
   var obj = null;
 
-  getJobDetailsAndRender(this.data.selectedJobId)
+  getJobDetailsAndRender(this.data._id)
 
   this.autorun(function() {
     if (_.isFunction(this.data.jobId)) {
-      var jobId = this.data.jobId()
-      this.data.id.set(jobId);
-      getJobDetailsAndRender(jobId);
+      getJobDetailsAndRender(this.data.jobId());
+    } else if (!_.isUndefined(this.data.selectedJobId)) {
+      //getJobDetailsAndRender(this.data.selectedJobId.get());
     }
   }.bind(this));
 
@@ -50,11 +51,11 @@ Template.preview3D.onRendered(function() {
     var previewClass = '.preview';
     var preview3DClass = '.preview-3d';
     var canvas = null;
+    var width = $(previewClass).width() || 300;
     // set canvas width based on its container
-    $(previewClass).find(preview3DClass).attr('width', $(previewClass).width());
-
+    $(previewClass).find(preview3DClass).attr('width', width)
     // render the 3D file
-    canvas = $('#preview3D .preview-3d')[0];
+    canvas = $('.preview .preview-3d')[0];
     viewer = new JSC3D.Viewer(canvas);
     viewer.setParameter('InitRotationY', 45);
     viewer.setParameter('InitRotationZ', 45);

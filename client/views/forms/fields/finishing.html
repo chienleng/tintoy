@@ -13,47 +13,29 @@
           <div class="inline field">
             <label>Collate</label>
             <select class="collate ui dropdown">
-              <option value="None">Don't collate</option>
-              <option value="Bind">Bind</option>
-              <option value="Drill">Drill holes</option>
-              <option value="Fold">Fold</option>
-              <option value="Staple">Staple</option>
+              {{#each finishingTypes}}
+              <option value="{{label}}" {{selected}}>{{label}}</option>
+              {{/each}}
             </select>
           </div>
         </div>
 
         <div class="image-selection fold-types" style="margin-left: 115px">
-          <a href="#" class="fold-half active">
-            <img src="/img/finishing/fold-half.png">
-            <span class="caption">Half</span>
+          {{#each foldTypes}}
+          <a href="#" class="{{selected}}">
+            <img src="{{src}}">
+            <span class="caption">{{label}}</span>
           </a>
-          <a href="#" class="fold-letter">
-            <img src="/img/finishing/fold-letter.png">
-            <span class="caption">Letter</span>
-          </a>
-          <a href="#" class="fold-two">
-            <img src="/img/finishing/fold-two.png">
-            <span class="caption">Two</span>
-          </a>
+          {{/each}}
         </div>
 
         <div class="image-selection bind-types" style="margin-left: 115px">
-          <a href="#" class="comb active">
-            <img src="/img/finishing/comb.png">
-            <span class="caption">Comb</span>
+          {{#each bindTypes}}
+          <a href="#" class="{{selected}}">
+            <img src="{{src}}">
+            <span class="caption">{{label}}</span>
           </a>
-          <a href="#" class="saddle-stitch">
-            <img src="/img/finishing/saddle-stitch.png">
-            <span class="caption">Saddle Stitch</span>
-          </a>
-          <a href="#" class="tape">
-            <img src="/img/finishing/tape.png">
-            <span class="caption">Tape</span>
-          </a>
-          <a href="#" class="wire">
-            <img src="/img/finishing/wire.png">
-            <span class="caption">Wire</span>
-          </a>
+          {{/each}}
         </div>
 
         <div class="cover-types" style="margin-top:15px;">
@@ -61,10 +43,9 @@
             <div class="inline field">
               <label>Front Cover</label>
               <select class="front-cover ui dropdown" name="" id="">
-                <option value="none">None</option>
-                <option value="clear">Clear</option>
-                <option value="black">Black</option>
-                <option value="blue">Blue</option>
+                {{#each frontCoverColours}}
+                <option value="{{label}}" {{selected}}>{{label}}</option>
+                {{/each}}
               </select>
             </div>
           </div>
@@ -73,10 +54,9 @@
             <div class="inline field">
               <label>Back Cover</label>
               <select class="back-cover ui dropdown" name="" id="">
-                <option value="none">None</option>
-                <option value="clear">Clear</option>
-                <option value="black">Black</option>
-                <option value="blue">Blue</option>
+                {{#each backCoverColours}}
+                <option value="{{label}}" {{selected}}>{{label}}</option>
+                {{/each}}
               </select>
             </div>
           </div>

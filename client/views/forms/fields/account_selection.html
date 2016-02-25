@@ -42,7 +42,12 @@
   <div class="fields">
     <div class="inline field">
       <label>Balance</label>
+      {{#if isPersonal}}
       <div class="ui big label">{{balance}}</div>
+      {{/if}}
+      {{#if isShared}}
+      <div class="ui big label">{{accountBalance}}</div>
+      {{/if}}
     </div>
   </div>
 </template>

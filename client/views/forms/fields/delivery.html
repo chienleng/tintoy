@@ -10,32 +10,70 @@
     <div class="content">
       <div class="transition scale">
 
-        <div class="inline fields">
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" value="Pick-up" name="delivery" checked="" tabindex="0" class="delivery">
-              <label>Pick-up</label>
+        <div class="ui grid">
+
+          <div class="four wide column">
+            {{#each deliveryTypes}}
+            <div class="fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" value="{{label}}" name="delivery" {{selected}} tabindex="0" class="delivery">
+                  <label>{{label}} <br><small>{{description}}</small></label>
+                </div>
+              </div>
             </div>
+            {{/each}}
           </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" value="Courier Delivery" name="delivery" tabindex="0" class="delivery">
-              <label>Courier Delivery</label>
+
+          <div class="twelve wide column" style="border-left: 1px solid #eee; padding-left: 20px;">
+            <!-- campus mail -->
+            <div class="campus-mail-details">
+              <div class="fields">
+                <div class="delivery-address field">
+                  <label for="">Campus</label>
+                  <input type="text" value="{{deliveryAddress}}" />
+                </div>
+              </div>
+              <div class="fields">
+                <div class="delivery-address2 field">
+                  <label for="">Building and Room</label>
+                  <input type="text" value="{{deliveryAddress2}}" />
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" value="Campus Mail" name="delivery" tabindex="0" class="delivery">
-              <label>Campus Mail</label>
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" value="Delivery address" name="delivery" tabindex="0" class="delivery">
-              <label>Delivery address</label>
+
+            <!-- Address fields -->
+            <div class="courier-mail-details">
+              <div class="fields">
+                <div class="delivery-address3 field">
+                  <label for="">Address</label>
+                  <input type="text" value="{{deliveryAddress}}" />
+                </div>
+                <div class="delivery-address4 field">
+                  <label for="">Address 2</label>
+                  <input type="text" value="{{deliveryAddress2}}" />
+                </div>
+              </div>
+              <div class="fields">
+                <div class="delivery-address5 field">
+                  <label for="">City</label>
+                  <input type="text" value="{{deliveryAddress3}}" />
+                </div>
+                <div class="delivery-address6 field">
+                  <label for="">State</label>
+                  <input type="text" value="{{deliveryAddress4}}" style="width: 100px" />
+                </div>
+                <div class="delivery-address7 field">
+                  <label for="">Post code</label>
+                  <input type="text" value="{{deliveryAddress5}}" style="width: 100px"/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+
+
 
       </div>
     </div>

@@ -54,6 +54,33 @@ Template.registerHelper('jobStatusUser', function(status) {
   return display;
 });
 
+Template.registerHelper('jobStatusIcon', function(status) {
+  var display = null;
+  switch(status) {
+    case JobStatus.PENDING:
+      display = '';
+      break;
+    case JobStatus.ACCEPTED:
+      display = 'orange print';
+      break;
+    case JobStatus.REJECTED:
+      display = 'red remove';
+      break;
+    case JobStatus.DONE:
+      display = 'green checkmark';
+      break;
+    case JobStatus.RECEIVED:
+      display = 'Received';
+      break;
+    case JobStatus.INCOMING:
+      display = 'blue wait';
+      break;
+    default:
+      display = '';
+  }
+  return display;
+});
+
 Template.registerHelper('statusClass', function(status) {
   var cssClass = '';
   switch(status) {
@@ -61,7 +88,7 @@ Template.registerHelper('statusClass', function(status) {
       cssClass = '';
       break;
     case JobStatus.ACCEPTED:
-      cssClass = 'positive';
+      cssClass = 'warning';
       break;
     case JobStatus.REJECTED:
       cssClass = 'error';

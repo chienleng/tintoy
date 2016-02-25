@@ -1,38 +1,54 @@
 <template name="jobModal">
-  <div class="ui job-detail-modal modal">
+  <div class="ui job-detail-modal fullscreen modal">
     <i class="close icon"></i>
     <!-- <div class="header">
       {{customName}}
     </div> -->
-
-    {{#with selectedJob}}
 
     <div class="content" style="background-color: #fff;">
       <div class="ui grid">
 
         <div class="five wide column">
           {{#if threeD}}
-          {{> preview3D selectedJobId=selectedJobId}}
+          <div class="preview">
+            <canvas class="preview-3d" height="400" style="width: 100%"></canvas>
+          </div>
+          {{else}}
+          <iframe src="{{docPreviewUrl}}" style='border: 1px solid #ccc; width: 100%; height: 400px;'></iframe>
           {{/if}}
-          {{#if image}}
+          <!-- {{#if image}}
           <img class="ui fluid image" src="{{docPreviewUrl}}">
           {{/if}}
           {{#if pdf}}
           <iframe src="{{docPreviewUrl}}" style='border: 0; width: 100%; height: 300px;'></iframe>
-          {{/if}}
+          {{/if}} -->
         </div>
 
+        {{#with selectedJob}}
         <div class="six wide column">
 
           <div class="ui relaxed divided list">
-            <div class="item"><strong class="preview-label">Job title</strong> {{customName}}</div>
-            <div class="item"><strong class="preview-label">Filename</strong> <a href="{{fileUrl}}" download>{{filename}}</a></div>
-            <div class="item"><strong class="preview-label">Copies & Pages</strong> {{copiesPagesSelection}}</div>
-            <div class="item"><strong class="preview-label">Finishing</strong> {{settings.finishing.collate.type}}</div>
-            <div class="item"><strong class="preview-label">Proof Copy</strong> {{settings.proofCopy}}</div>
-            <div class="item"><strong class="preview-label">Delivery</strong> {{settings.delivery}}</div>
-            <div class="item"><strong class="preview-label">Account</strong> {{account.type}}</div>
-            <div class="item"><strong class="preview-label">Instructions</strong> {{settings.additionalInstructions}}</div>
+            <div class="item"><strong class="preview-label">Job title</strong>
+              <p>{{customName}}</p></div>
+            <div class="item"><strong class="preview-label">Filename</strong>
+              <p><a href="{{fileUrl}}" download>{{filename}}</a></p></div>
+
+            {{#if threeD}}
+            {{else}}
+            <div class="item"><strong class="preview-label">Copies & Pages</strong>
+              <p>{{copiesPagesSelection}}</p></div>
+            <div class="item"><strong class="preview-label">Finishing</strong>
+              <p>{{finishingSelection}}</p></div>
+            <div class="item"><strong class="preview-label">Proof Copy</strong>
+              <p>{{settings.proofCopy}}</p></div>
+            {{/if}}
+
+            <div class="item"><strong class="preview-label">Delivery</strong>
+              <p>{{deliverySelection}}</p></div>
+            <div class="item"><strong class="preview-label">Account</strong>
+              <p>{{accountTypeSelection}}</p></div>
+            <div class="item"><strong class="preview-label">Instructions</strong>
+              <p>{{settings.additionalInstructions}}</p></div>
           </div>
 
         </div>
@@ -49,11 +65,11 @@
 
           <div>
             <small>User:</small><br>
-            <strong>{{fullName user.names}}</strong>
+            <strong>{{user.names.userid}} ({{fullName user.names}})</strong>
           </div>
 
           <div class="ui divider"></div>
-          
+
           <div class="ui form content">
             <div class="field">
               <label for="">Change Status to: </label>
@@ -95,11 +111,11 @@
 
           </div>
         </div>
+        {{/with}}
 
       </div>
     </div>
 
-  {{/with}}
 
     <div class="actions">
       <div class="ui deny button">

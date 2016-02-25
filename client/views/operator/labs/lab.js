@@ -50,8 +50,12 @@ Template.lab.onRendered(function() {
       var jobId = $(event.currentTarget).data('id')
       var job = GetJob(jobId);
       self.data.selectedJobId.set(jobId);
+      self.data.selectedJob.set(GetJob(jobId));
       Session.set('type', job.latestLog.status);
       $('.job-detail-modal').modal('show');
+      $('.job-detail-modal').modal('refresh');
+
+      event.preventDefault();
     })
 
     interact('.ui.card', {context: jobsContext})
@@ -145,6 +149,7 @@ Template.lab.onRendered(function() {
         if (job.files[0].mimetype === 'application/sla') {
           window.open(job.files[0].downloadLink);
         }
+        // window.open(job.files[0].downloadLink);
 
         // Session.set('selectedJob', jobId);
         self.data.selectedJobId.set(jobId);

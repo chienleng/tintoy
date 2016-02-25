@@ -7,7 +7,15 @@
         {{> userMenu}}
       </div>
 
-      <div class="thirteen wide column" style="padding: 0;">
+      <div class="thirteen wide column" style="padding: 0; position: relative; top: -43px;">
+        <div>
+          <div style="color: #333; text-shadow: 1px 1px 1px #ccc; float: right">
+            {{fullName names}} ({{userid}})
+          </div>
+          <div style="position: relative; font-weight: bold; font-size: 1.5em;">
+            {{labName}}
+          </div>
+        </div>
         <div class="ui segment" style="box-shadow: none; background-color: #f2f6f7; padding: 20px;">
           <h3 class="ui header right floated">{{jobStatusUser latestStatus}}</h3>
           <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
@@ -16,20 +24,49 @@
           <form action="#" class="new-3d-submission ui form" style="margin: 0; width: 100%">
             <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
               <div class="ui grid">
-                <div class="eight wide column preview">
-                  {{#if threeD}}
+
+
+                <div class="row">
+                  {{#with selectedJob}}
+                  <div class="six wide column">
+                    {{#if threeD}}
                     {{> preview3D}}
-                  {{/if}}
-                </div>
-                <div class="eight wide column">
-                  {{#if threeD}}
-                    {{> view3D}}
-                  {{/if}}
+                    {{else}}
+                    <iframe src="{{docPreviewUrl}}" style='border: 1px solid #cc; width: 100%; height: 400px;'></iframe>
+                    {{/if}}
+
+                    <!-- {{#if image}}
+                    <img src="{{docPreviewUrl}}" class="ui bordered image">
+                    {{/if}}
+
+                    {{#if pdf}}
+                    <iframe src="{{docPreviewUrl}}" style='border: 0; width: 100%; height: 300px;'></iframe>
+                    {{/if}} -->
+                  </div>
+
+                  <div class="ten wide column">
+                    <div class="ui relaxed divided list">
+                      <div class="item"><strong class="preview-label">Job title</strong> {{customName}}</div>
+                      <div class="item"><strong class="preview-label">Filename</strong> {{filename}}</div>
+                      {{#if threeD}}
+
+                      {{else}}
+                      <div class="item"><strong class="preview-label">Copies & Pages</strong> {{copiesPagesSelection}}</div>
+                      <div class="item"><strong class="preview-label">Finishing</strong> {{settings.finishing.collate.type}}</div>
+                      <div class="item"><strong class="preview-label">Proof Copy</strong> {{settings.proofCopy}}</div>
+                      {{/if}}
+                      <div class="item"><strong class="preview-label">Delivery</strong> {{settings.delivery}}</div>
+                      <div class="item"><strong class="preview-label">Account</strong> {{account.type}}</div>
+                      <div class="item"><strong class="preview-label">Instructions</strong> {{settings.additionalInstructions}}</div>
+                    </div>
+                  </div>
+                  {{/with}}
+
                 </div>
 
                 <div class="sixteen wide column">
                   <h4 class="ui small header">Job progress</h4>
-                  <table class="ui single line table">
+                  <table class="ui table">
                     <thead>
                       <tr>
                         <th>Date</th>
@@ -53,7 +90,7 @@
 
             <div class="" style="text-align: right; margin: 30px 0 20px;">
               <button type="button" class="ui green done button">
-                Done
+                Back to Job List
               </button>
             </div>
           </form>

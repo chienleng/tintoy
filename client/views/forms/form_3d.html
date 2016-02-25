@@ -1,32 +1,99 @@
 <template name="form3D">
-    <div class="field">
-      <label>Job title</label>
-      <input type="text" class="job-custom-name" placeholder="Optional">
+  <div class="ui grid">
+    <div class="ten wide column">
+      <div class="field">
+        <label>Job title</label>
+        <input type="text" class="job-custom-name" placeholder="Optional" value="{{customName}}">
+      </div>
     </div>
 
-    <div class="fields">
-      <div class="three wide field">
+    <div class="six wide column">
+      <div class="ten wide field">
         <label>Color</label>
         <input type='text' id="colorpicker" />
       </div>
-
-      <div class="thirteen wide field">
-        <label>Required by</label>
-        <input type="text" id="datepicker">
-      </div>
     </div>
+  </div>
 
-    <div class="field">
+
+
+    <!-- <div class="field">
       <label>Delivery method</label>
       <select class="delivery-method ui dropdown" name="" id="">
         <option value="">Collect</option>
         <option value="">Internal Delivery</option>
         <option value="">External Delivery</option>
       </select>
+    </div> -->
+
+    <div class="field" style="margin-top: 20px; margin-bottom: 25px;">
+      <label for="">Delivery</label>
+      <div class="ui grid">
+        <div class="eight wide column">
+          {{#each deliveryTypes}}
+          <div class="fields">
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" value="{{label}}" name="delivery" {{selected}} tabindex="0" class="delivery">
+                <label>{{label}} <br><small>{{description}}</small></label>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+
+        <div class="eight wide column" style="border-left: 1px solid #eee; padding-left: 20px;">
+          <!-- campus mail -->
+          <div class="campus-mail-details">
+            <div class="fields">
+              <div class="delivery-address field">
+                <label for="">Campus</label>
+                <input type="text" value="{{deliveryAddress}}" />
+              </div>
+            </div>
+            <div class="fields">
+              <div class="delivery-address2 field">
+                <label for="">Building and Room</label>
+                <input type="text" value="{{deliveryAddress2}}" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Address fields -->
+          <div class="courier-mail-details">
+            <div class="fields">
+              <div class="delivery-address3 field">
+                <label for="">Address</label>
+                <input type="text" value="{{deliveryAddress}}" />
+              </div>
+              <div class="delivery-address4 field">
+                <label for="">Address 2</label>
+                <input type="text" value="{{deliveryAddress2}}" />
+              </div>
+            </div>
+            <div class="fields">
+              <div class="delivery-address5 field">
+                <label for="">City</label>
+                <input type="text" value="{{deliveryAddress3}}" />
+              </div>
+              <div class="delivery-address6 field">
+                <label for="">State</label>
+                <input type="text" value="{{deliveryAddress4}}" style="width: 100px" />
+              </div>
+              <div class="delivery-address7 field">
+                <label for="">Post code</label>
+                <input type="text" value="{{deliveryAddress5}}" style="width: 100px"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="field">
+
+
+    <div class="field" style="margin-bottom: 10px;">
       <label>Additional Instructions</label>
-      <textarea class="instructions"></textarea>
+      <textarea class="additional-instructions">{{additionalInstructions}}</textarea>
     </div>
 </template>

@@ -52,6 +52,7 @@ function fakeLabs() {
   return [
     {
       name: '3D Print Lab',
+      fileTypes: 'STL',
       devices: [
         {
           label: 'Formlabs Form 1+',
@@ -69,6 +70,7 @@ function fakeLabs() {
     },
     {
       name: 'Print Room',
+      fileTypes: 'PDF, PNG, JPG',
       devices: [
         {
           label: 'Lexmark E462dtn',
@@ -93,7 +95,8 @@ function fakeLabUsers() {
      names: {
        given: 'Malcolm',
        surname: 'Reynolds',
-       full: 'Malcolm Reynolds'
+       full: 'Malcolm Reynolds',
+       userid: 'R129633'
      },
      balance: 20.5,
      email: 'malcolm@serenity.org',
@@ -104,7 +107,8 @@ function fakeLabUsers() {
      names: {
        given: 'Zoe',
        surname: 'Washburne',
-       full: 'Zoe Washburne'
+       full: 'Zoe Washburne',
+       userid: 'E872352'
      },
      balance: 13,
      email: 'zoe@serenity.org',
@@ -115,7 +119,8 @@ function fakeLabUsers() {
      names: {
        given: 'Simon',
        surname: 'Tam',
-       full: 'Simon Tam'
+       full: 'Simon Tam',
+       userid: 'S789643'
      },
      balance: 13,
      email: 'simon@serenity.org',
@@ -127,46 +132,46 @@ function fakeLabUsers() {
 
 function fakeSharedAccounts() {
   return [
+    // {
+    //   label: 'Biology Science',
+    //   balance: 1100
+    // },
+    // {
+    //   label: 'Business',
+    //   balance: 2200
+    // },
+    // {
+    //   label: 'Communications & Arts',
+    //   balance: 3300
+    // },
     {
-      label: 'Biology Science',
-      balance: 1100
-    },
-    {
-      label: 'Business',
-      balance: 2200
-    },
-    {
-      label: 'Communications & Arts',
-      balance: 3300
-    },
-    {
-      label: 'Computing & Security',
+      label: 'Computing and Security',
       balance: 4400
     },
     {
-      label: 'Engineering & Technology',
+      label: 'Engineering and Technology',
       balance: 5500
     },
-    {
-      label: 'Exercise & Health Science',
-      balance: 6600
-    },
-    {
-      label: 'Medical Sciences',
-      balance: 7700
-    },
-    {
-      label: 'Nursing & Midwifery',
-      balance: 8800
-    },
-    {
-      label: 'Performing Arts',
-      balance: 9900
-    },
-    {
-      label: 'Psychology Science',
-      balance: 11000
-    },
+    // {
+    //   label: 'Exercise & Health Science',
+    //   balance: 6600
+    // },
+    // {
+    //   label: 'Medical Sciences',
+    //   balance: 7700
+    // },
+    // {
+    //   label: 'Nursing & Midwifery',
+    //   balance: 8800
+    // },
+    // {
+    //   label: 'Performing Arts',
+    //   balance: 9900
+    // },
+    // {
+    //   label: 'Psychology Science',
+    //   balance: 11000
+    // },
     {
       label: 'Teacher Education',
       balance: 12000

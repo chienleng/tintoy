@@ -10,6 +10,15 @@ var newJob = {
   settings: {}
 }
 
+Template.fileUpload.helpers({
+  threeD: function() {
+    console.log(Template.instance().data)
+    var labId = Template.instance().data.labId();
+    var lab = GetLab(labId);
+    return !_.isUndefined(lab) && lab.name === "3D Print Lab" ? true : false;
+   }
+})
+
 Template.fileUpload.onRendered(function() {
   var user = null;
   var labId = null;
@@ -66,14 +75,14 @@ Template.fileUpload.onRendered(function() {
           },
           finishing: {
             collate: {
-              type: 'Bind',
+              type: "Don't collate",
               bind: 'Comb',
               frontCover: 'None',
               backCover: 'None'
             }
           },
-          proofCopy: 'No proof required',
-          delivery: 'pickUp',
+          proofCopy: 'Email PDF Proof',
+          delivery: 'Pick-up',
           additionalInstructions: ''
         }
       }

@@ -1,33 +1,52 @@
 <template name="userAnnouncements">
 
-  <div class="ui feed" style="padding: 20px; margin: 0;">
-    {{#with latestAnnouncement}}
-    <div class="event animated fadeIn">
-      <div class="label">
-        <i class="newspaper icon" style="position: relative; top: 4px; color: #777;"></i>
-      </div>
-      <div class="content">
-        <div class="date">
-          {{fromNow time}}
-        </div>
-        <div class="summary">
-          {{message}}
-        </div>
-        <div class="meta">
-          {{#if notLastAnnouncement}}
-          <a class="#">
-            <i class="arrow left icon"></i> back
-          </a>
-          {{/if}}
-          {{#if notFirstAnnouncement}}
-          <a class="#">
-            <i class="arrow right icon"></i> next
-          </a>
-          {{/if}}
-        </div>
+  <div class="ui grid">
+    <div class="five wide column">
+      <div style="padding: 20px; margin: 0; background-color: #eee; color: #666; border-radius: 2px;">
+      <h3 class="ui green header">{{labName}}</h3>
+      {{#if isPrintRoom}}
+        <strong>Swinburne Hawthorn Campus</strong><br>
+        <small>
+          <span>Room 205, George Swinburne Building</span><br>
+          <span>Contact: <a href="tel:92148004">(03) 9214 8004</a></span><br>
+          <span>E-mail: <a href="mailto:printroom@swinburne.com.au">printroom@swinburne.com.au</a></span>
+        </small>
+      {{else}}
+        <strong>Swinburne Hawthorn Campus</strong><br>
+        <small>
+          <span>Room 409, George Swinburne Building</span><br>
+          <span>Contact: <a href="tel:92148004">(03) 9214 8008</a></span><br>
+          <span>E-mail: <a href="mailto:3dlab@swinburne.com.au">3dlab@swinburne.com.au</a></span>
+        </small>
 
+      {{/if}}
       </div>
     </div>
-    {{/with}}
+
+    <div class="eleven wide column">
+      <div class="ui feed" style="margin: 0; margin-right: 20px;">
+        {{#each announcements}}
+        <div class="event animated fadeIn">
+          <div class="label">
+            <i class="newspaper icon" style="position: relative; top: 4px; color: #777;"></i>
+          </div>
+          <div class="content">
+            <div class="date">
+              <small>{{fromNow time}}</small>
+            </div>
+            <div class="summary">
+              {{message}}
+            </div>
+            <div class="meta">
+
+            </div>
+
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
+
+
 </template>

@@ -2,6 +2,26 @@
   - if job is already submitted, change to job details view
 */
 Template.jobSubmission.helpers({
+  labName: function() {
+    var labId = Template.instance().data.labId();
+    var lab = GetLab(labId);
+    return _.isUndefined(lab) ? '' : lab.name;
+  },
+  names: function() {
+    var userId = Template.instance().data.userId();
+    var user = GetUser(userId);
+    return _.isUndefined(user) ? '' : user.names;
+  },
+  userid: function() {
+    var userId = Template.instance().data.userId();
+    var user = GetUser(userId);
+    return _.isUndefined(user) ? '' : user.names.userid;
+  },
+  customName: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return (_.isUndefined(job)) ? "" : job.customName;
+  },
   fileUrl: function() {
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);
@@ -62,21 +82,21 @@ Template.jobSubmission.events({
 
     job.submitted = new Date();
     job.files[0].downloadLink = 'https://www.filestackapi.com/api/file/' + fileId;
-    if (job.account.type === Account.SHARED) {
-      job.account.accountId = Template.instance().data.sharedAccountId;
-    } else if (_.isEmpty(job.account)) {
+    if (_.isEmpty(job.account)) {
       job.account = {
         type: Account.PERSONAL
       }
     }
     Jobs.update(job._id, job);
 
-    if (mimetype === "application/sla") {
-      AddJobLog(job._id, JobStatus.INCOMING, null);
-      FlowRouter.go('/users/'+userId+'/labs/'+job.labId);
-    } else {
-      FlowRouter.go('/users/'+userId+'/labs/'+job.labId+'/preview/'+job._id);
-    }
+    // if (mimetype === "application/sla") {
+    //   AddJobLog(job._id, JobStatus.INCOMING, null);
+    //   FlowRouter.go('/users/'+userId+'/labs/'+job.labId);
+    // } else {
+    //   FlowRouter.go('/users/'+userId+'/labs/'+job.labId+'/preview/'+job._id);
+    // }
+    FlowRouter.go('/users/'+userId+'/labs/'+job.labId+'/preview/'+job._id);
+
     return false;
   },
   "click .cancel.button": function() {
@@ -84,7 +104,8 @@ Template.jobSubmission.events({
     var userId = job.user._id;
     FlowRouter.go('/users/'+userId+'/labs/'+job.labId);
     return false;
-  }});
+  },
+});
 
 Template.jobSubmission.onCreated(function() {
   this.autorun(function() {

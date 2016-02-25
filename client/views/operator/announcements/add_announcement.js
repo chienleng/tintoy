@@ -1,6 +1,11 @@
 Template.addAnnouncement.helpers({
   isAdded: function(){
     return Template.instance().data.added.get();
+  },
+  latestAnnouncement: function() {
+    var labId = Template.instance().data.labId();
+    var all = Announcements.find({labId: labId}, {sort: {time: -1}}).fetch();
+    return all[0];
   }
 });
 

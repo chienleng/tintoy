@@ -7,32 +7,58 @@
         {{> userMenu}}
       </div>
 
-      <div class="thirteen wide column" style="padding: 0;">
+      <div class="thirteen wide column" style="padding: 0; position: relative; top: -43px;">
+        <div>
+          <div style="color: #333; text-shadow: 1px 1px 1px #ccc; float: right">
+            {{fullName names}} ({{userid}})
+          </div>
+          <div style="position: relative; font-weight: bold; font-size: 1.5em;">
+            {{labName}}
+          </div>
+        </div>
         <div class="ui segment" style="box-shadow: none; background-color: #f2f6f7; ">
-          <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
+          <!-- <h2 class="ui header" style="color: #6A6F7B; margin: 10px;">
             Print Job Details
-          </h2>
+          </h2> -->
+          <div class="upload-steps ui equal width center aligned padded grid">
+            <div class="five wide column">
+              <div class="step">
+                1. Upload
+              </div>
+            </div>
+            <div class="five wide column">
+              <div class="step active">
+                2. Enter Job Details
+              </div>
+            </div>
+            <div class="five wide column">
+              <div class="step">
+                3. Confirm and Submit
+              </div>
+            </div>
+          </div>
           <form action="#" class="new-submission ui form" style="margin: 0; width: 100%">
             <div class="ui segment" style="box-shadow: none; border: none; border-radius: 0;">
               <div class="ui grid" style="margin-bottom: -2rem;">
                 {{#if threeD}}
-                <div class="four wide column preview">
+                <div class="six wide column preview">
                   {{> preview3D}}
                 </div>
-                <div class="twelve wide column">
+                <div class="ten wide column">
                   {{> form3D}}
-                  <h3 class="ui dividing header">Costs & Account Selection</h3>
-                  {{> accountSelection}}
+                  <!-- <h3 class="ui dividing header">Costs & Account Selection</h3>
+                  {{> accountSelection}} -->
                 </div>
                 {{else}}
                 <div class="sixteen wide column">
                   <div class="fields" style="padding: 0;">
-                    {{#if image}}
+                    <!-- {{#if image}}
                     <img src="{{docPreviewUrl}}" style='width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'>
                     {{/if}}
                     {{#if pdf}}
                     <iframe src="{{docPreviewUrl}}" style='border: 0; width: 150px; height: 150px; float: left; margin-right: 20px; margin-bottom: 20px;'></iframe>
-                    {{/if}}
+                    {{/if}} -->
+                    <iframe src="{{viewerUrl}}" style='border: 1px solid #ccc; width: 300px; height: 400px; margin-bottom: 15px; margin-right: 10px;'></iframe>
 
                     <div class="field">
                       <label for="">Filename</label>
@@ -41,17 +67,26 @@
                       <br>
 
                       <label>Job title</label>
-                      <input type="text" class="job-custom-name" placeholder="Optional" style="width: 100%;">
+                      <input type="text" class="job-custom-name" value={{customName}} placeholder="Optional" style="width: 300px;">
 
                     </div>
                   </div>
                   {{> form1}}
+
+                  <div class="ui divider"></div>
+                  <div class="field" style="text-align: right; margin: 20px 0">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="">
+                      <label for="">Remember form selections</label>
+                    </div>
+                  </div>
+
                 </div>
                 {{/if}}
               </div>
             </div>
 
-            <div class="" style="margin: 20 0 10px;">
+            <div class="" style="margin: 20 0 10px; text-align: right">
               {{#if overFilesizeLimit}}
               <div class="inline field">
                 <div class="ui checkbox">
@@ -61,13 +96,14 @@
               </div>
               {{/if}}
 
-              <div style="float: right">
+              <button type="button" class="ui basic cancel button" style="float: left">Cancel</button>
+
+              <div style="">
                 <button type="submit" class="ui green right icon button">
-                  Confirm
+                  Continue
                   <i class="right angle arrow icon"></i>
                 </button>
               </div>
-              <button type="button" class="ui basic cancel button">Cancel</button>
             </div>
 
           </form>

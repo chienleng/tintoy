@@ -3,6 +3,63 @@
   - check this job belongs to this user
 */
 Template.userJob.helpers({
+  labName: function() {
+    var labId = Template.instance().data.labId();
+    var lab = GetLab(labId);
+    return _.isUndefined(lab) ? '' : lab.name;
+  },
+  names: function() {
+    var userId = Template.instance().data.userId();
+    var user = GetUser(userId);
+    return _.isUndefined(user) ? '' : user.names;
+  },
+  userid: function() {
+    var userId = Template.instance().data.userId();
+    var user = GetUser(userId);
+    return _.isUndefined(user) ? '' : user.names.userid;
+  },
+  selectedJob: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return job;
+  },
+  copiesPagesSelection: function(){
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var copiesPages = null;
+    var string = ""
+    if (!_.isUndefined(job)) {
+      copiesPages = job.settings.copiesPages;
+      string += copiesPages.copies + (copiesPages.copies > 1 ? " copies" : " copy") + ", ";
+      string += (copiesPages.twoSided ? "Two-Sided" : "Single-Sided") + ", ";
+      string += copiesPages.size + ", ";
+      string += copiesPages.paperColour + ", ";
+      string += copiesPages.type
+    }
+    return string;
+  },
+  filename: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return (_.isUndefined(job)) ? "" : job.files[0].filename;
+  },
+  docPreviewUrl: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    return (_.isUndefined(job)) ? "" : job.files[0].viewerUrl;
+  },
+  pdf: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
+    return fileObj && fileObj.mimetype === "application/pdf" ? true : false;
+  },
+  image: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
+    return fileObj && _.contains(ImageTypes, fileObj.mimetype) ? true : false;
+  },
   fileUrl: function() {
     var jobId = Template.instance().data.jobId();
     var job = GetJob(jobId);

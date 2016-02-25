@@ -17,9 +17,15 @@
       Update lab status
     </div>
     <div class="ui flowing popup transition hidden add-announcement-form" style="width: 300px;">
+      <div>
+        <strong>Previous status</strong><br>
+        <small>{{calendarDate latestAnnouncement.time}}</small>
+        <p>{{latestAnnouncement.message}}</p>
+      </div>
+      <div class="ui divider"></div>
       <div class="ui form">
         <div class="field">
-          <label for="">Status</label>
+          <label for="">New lab update</label>
           {{#if isAdded}}
           <div class="ui success message" style="display: block">
             <div class="header">Status published!</div>

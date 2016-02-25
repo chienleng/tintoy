@@ -8,10 +8,36 @@
         {{> userMenu}}
       </div>
 
-      <div class="thirteen wide column" style="padding: 0;">
-        
+      <div class="thirteen wide column" style="padding: 0; position: relative; top: -43px;">
+        <div>
+          <div style="color: #333; text-shadow: 1px 1px 1px #ccc; position: absolute; right: 10px">
+            {{fullName names}} ({{userid}}):
+            <span style="background-color: #ddd; font-size: 1.3em; padding: 8px 12px; display: inline-block; margin-left: 5px; border-radius: 3px;">{{balance}}</span>
+          </div>
+          <div style="position: relative; font-weight: bold; font-size: 1.5em; visibility: hidden;">
+            {{labName}}
+          </div>
+        </div>
         <div class="ui segment" style="box-shadow: none; padding: 0; background-color: #f2f6f7">
           {{> userAnnouncements}}
+
+          <div class="upload-steps ui equal width center aligned padded grid">
+            <div class="five wide column">
+              <div class="step active">
+                1. Upload
+              </div>
+            </div>
+            <div class="five wide column">
+              <div class="step">
+                2. Enter Job Details
+              </div>
+            </div>
+            <div class="five wide column">
+              <div class="step">
+                3. Confirm and Submit
+              </div>
+            </div>
+          </div>
 
           {{> fileUpload}}
 

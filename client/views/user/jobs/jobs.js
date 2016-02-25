@@ -16,6 +16,14 @@ Template.jobs.helpers({
     var labId = Template.instance().data.labId();
     var user = GetUser(userId);
     return _.isUndefined(user) ? [] : Jobs.find({'user._id': user._id, 'labId': labId, 'latestLog.status': {$ne: 'pending'}}, {sort: Session.get('jobsSortOrder')}).count() > 0;
+  },
+  labName: function() {
+    var labId = Template.instance().data.labId();
+    var lab = GetLab(labId);
+    return _.isUndefined(lab) ? '' : lab.name;
+  },
+  hasMessage: function(message) {
+    return message && message !== "" ? true : false;
   }
 });
 
@@ -32,4 +40,10 @@ Template.jobs.events({
     var path = '/users/' + this.user._id + '/labs/' + this.labId + '/submit/' + this._id;
     FlowRouter.go(path);
   }
+});
+
+Template.jobs.onRendered(function() {
+  $('.job-message').popup({
+    position: 'top right'
+  });
 })

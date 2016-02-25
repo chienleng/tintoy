@@ -1,6 +1,6 @@
 <template name="fileUpload">
   <div id="file-upload-zone" class="file-progress">
-    <div class="ui teal progress" id="file-upload-progress" style="margin: 50px 20px 80px;">
+    <div class="ui green progress" id="file-upload-progress" style="margin: 50px 20px 80px;">
       <div class="bar">
         <div class="progress"></div>
       </div>
@@ -8,7 +8,13 @@
     </div>
     <div class="drop-zone">
       <img class="file-upload-icon" src="/img/package-upload.png" alt="">
-      <span class="description">DROP YOUR FILE HERE</span>
+      <span class="description">
+        {{#if threeD}}
+        DROP YOUR 3D PRINT FILE HERE
+        {{else}}
+        DROP YOUR PRINT FILE HERE <br>(.DOCX, .PDF)
+        {{/if}}
+      </span>
     </div>
   </div>
 </template>

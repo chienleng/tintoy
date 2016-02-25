@@ -1,9 +1,86 @@
 Template.copiesPages.helpers({
   paperSizes: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var paperSize = 'A4';
+
+    if (!_.isUndefined(job)) {
+      paperSize = job.settings.copiesPages.size;
+    }
+
+    console.log(paperSize)
     return _.map(PaperSizes, function(size) {
-      size.label === 'A4' ? size.selected = 'selected' : size.selected = '';
+      size.label === paperSize ? size.selected = 'selected' : size.selected = '';
       return size;
     });
+  },
+  paperColours: function() {
+    var Colours = [
+      {
+        label: 'White',
+        hex: '#FFFFFF'
+      },{
+        label: 'Red',
+        hex: '#FF0000'
+      },{
+        label: 'Blue',
+        hex: '#0000FF'
+      }
+    ];
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var selectedColour = Colours[0].label;
+
+    if (!_.isUndefined(job)) {
+      selectedColour = job.settings.copiesPages.paperColour;
+    }
+
+    return _.map(Colours, function(colour) {
+      colour.label === selectedColour ? colour.selected = 'selected' : colour.selected = '';
+      return colour;
+    });
+  },
+  paperTypes: function() {
+    var Types = [
+      {
+        label: 'Normal',
+        weight: '(80 gsm)'
+      },{
+        label: 'Gloss',
+        weight: '(80 gsm)'
+      },{
+        label: 'Heavy Duty',
+        weight: '(120 gsm)'
+      }
+    ];
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var selected = Types[0].label;
+
+    if (!_.isUndefined(job)) {
+      selected = job.settings.copiesPages.type;
+    }
+
+    return _.map(Types, function(type) {
+      type.label === selected ? type.selected = 'selected' : type.selected = '';
+      return type;
+    });
+  },
+  selectedJob: function() {
+    var jobId = Template.instance().data.jobId();
+    return GetJob(jobId);
+  },
+  twoSidedChecked: function() {
+    var jobId = Template.instance().data.jobId();
+    var job = GetJob(jobId);
+    var checked = "";
+    if (!_.isUndefined(job)) {
+      copiesPages = job.settings.copiesPages;
+      if (copiesPages.twoSided) {
+        checked = "checked"
+      }
+    }
+    return checked
   },
   copiesPagesSelection: function(){
     var jobId = Template.instance().data.jobId();
@@ -13,7 +90,7 @@ Template.copiesPages.helpers({
     if (!_.isUndefined(job)) {
       copiesPages = job.settings.copiesPages;
       string += copiesPages.copies + (copiesPages.copies > 1 ? " copies" : " copy") + ", ";
-      string += copiesPages.twoSided ? "Two-Sided" : "Single-Sided" + ", ";
+      string += (copiesPages.twoSided ? "Two-Sided" : "Single-Sided") + ", ";
       string += copiesPages.size + ", ";
       string += copiesPages.paperColour + ", ";
       string += copiesPages.type;

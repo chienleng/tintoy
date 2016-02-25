@@ -15,14 +15,13 @@
 
   <!-- <div style="float: right; margin-right: 18px; margin-top: 20px;">
     <div class="ui icon small buttons">
-      <button class="ui basic teal button"><i class="block layout icon"></i></button>
-      <button class="ui active teal button"><i class="list layout icon"></i></button>
+      <button class="ui basic green button"><i class="block layout icon"></i></button>
+      <button class="ui active green button"><i class="list layout icon"></i></button>
     </div>
-    <button class="ui basic teal small button">Archive <strong>Done</strong> and <strong>Rejected</strong></button>
   </div> -->
 
   <div class="ui small header" style="margin-bottom: 0; color: #6A6F7B; margin-left: 20px">
-    {{#if hasJobs}} YOUR PRINT JOBS {{else}} NO RECENT JOBS {{/if}}
+    {{#if hasJobs}} Your recent print jobs {{else}} No recent jobs {{/if}}
   </div>
 
 
@@ -32,41 +31,54 @@
     </div>
   </div> -->
 
-  <!-- <div class="animated fadeInDown" style="margin: 20px;">
+  <div class="" style="margin: 20px;">
     <table class="ui single line selectable compact table jobs-table">
       <thead>
         <tr>
-          <th>Date submitted</th>
-          <th>Current status</th>
+          <th></th>
+          <th>Status</th>
+          <th></th>
+          <th>Updated</th>
           <th>Job details</th>
-          <th>Cost</th>
         </tr>
       </thead>
       <tbody>
       {{#each jobs}}
-        <tr class="{{statusClass latestLog.status}} job-row">
-          <td><span>{{fromNow submitted}}</span></td>
-          <td>{{jobStatusUser latestLog.status}}</td>
+        <tr class="{{statusClass latestLog.status}} job-row animated fadeInDown">
+          <td><strong>#{{jobNum}}</strong></td>
+          <td><span class="ui {{statusClass latestLog.status}} label">
+            <i class="{{jobStatusIcon latestLog.status}} icon"></i>
+            {{jobStatusUser latestLog.status}}
+          </span></td>
+          <td>
+            {{#if hasMessage latestLog.message}}
+            <div class="job-message" title="{{latestLog.message}}">
+              <i class="file text outline icon"></i>
+            </div>
+            {{/if}}
+          </td>
+          <td><small>{{fromNow latestLog.date}}</small></td>
           <td>
             {{#if customName}}
             <strong>{{customName}}</strong> —{{/if}}
-            <small style="position: relative; top: -2px;">{{filename files}}</small>
+            <small style="">{{filename files}}</small>
           </td>
-
-          <td>$5.20</td>
         </tr>
       {{/each}}
       </tbody>
     </table>
-  </div> -->
+  </div>
 
-  <div class="ui link items jobs">
+  <!-- <div class="ui link items jobs">
     {{#each jobs}}
     <div class="item animated fadeIn" data-id="{{_id}}">
       <div class="content">
         <div class="ui padded grid description">
-          <div class="three wide column {{status}}">
-            {{jobStatusUser latestLog.status}}
+          <div class="three wide column {{latestLog.status}}">
+            <span class="ui {{latestLog.status}} label">
+              <i class="{{jobStatusIcon latestLog.status}} icon"></i>
+              {{jobStatusUser latestLog.status}}
+            </span>
           </div>
           <div class="three wide column" style="padding: 0;">
             <div class="thumbnail" style="float: left; margin-right: 5px;">
@@ -92,6 +104,6 @@
       </div>
     </div>
     {{/each}}
-  </div>
+  </div> -->
 
 </template>

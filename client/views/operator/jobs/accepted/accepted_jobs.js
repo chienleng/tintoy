@@ -54,7 +54,20 @@ Template.acceptedJobs.helpers({
       }
       var findGivenName = job.user.names.given.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
       var findSurname = job.user.names.surname.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ? true : false;
-      return findName || findGivenName || findSurname;
+      var findBind = (function() {
+        var collate = job.settings.finishing.collate.type;
+        var find = false;
+        if (collate === "Bind") {
+          job.settings.finishing.collate.bind.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ?
+            find = true : find = false;
+        } else {
+          job.settings.finishing.collate.type.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ?
+            find = true : find = false;
+        }
+        return find;
+      })();
+
+      return findName || findGivenName || findSurname || findBind;
     })
   }
 });

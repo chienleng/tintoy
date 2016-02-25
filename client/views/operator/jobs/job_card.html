@@ -40,8 +40,12 @@
         <br>
         <small style="position: relative; top: -3px;">
           <!-- <i class="user icon"></i> -->
-          {{fullName user.names}}
+          <strong>{{user.names.userid}}</strong> ({{fullName user.names}})
         </small>
+        {{#if not3D}}
+        <br>
+        <small>{{finishingSelection}}</small>
+        {{/if}}
 
       </div>
 

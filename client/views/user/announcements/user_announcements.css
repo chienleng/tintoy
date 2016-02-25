@@ -1,8 +1,13 @@
 .event {
   border-bottom: 1px solid #ddd;
 }
-.event:last-child {
+.ui.feed > .event:first-child {
+  /*margin-bottom: 10px;*/
+  padding-top: 10px;
+}
+.ui.feed > .event:last-child {
   border-bottom: none;
+  padding-top: 10px;
 }
 .ui.feed > .event > .content .summary {
   font-weight: normal;
