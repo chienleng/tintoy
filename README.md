@@ -11,5 +11,8 @@ curl https://install.meteor.com/ | sh
 * run 'meteor' in terminal (in the project folder)
 * browse to http://localhost:3000/
 
+### Public Demo ###
+http://tintoy.meteorapp.com
+
 ### dev ###
 * Steven Tan
