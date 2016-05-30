@@ -49,6 +49,10 @@ Template.jobCard.helpers({
     var job = Template.instance().data;
     var fileObj = (!_.isUndefined(job) && job.files.length > 0) ? job.files[0] : null; // assume single file
     return fileObj && fileObj.mimetype !== "application/sla" ? true : false;
+  },
+  isSubmitted: function() {
+    var job = Template.instance().data;
+    return job.latestLog.status === 'incoming';
   }
 });
 

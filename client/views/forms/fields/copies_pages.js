@@ -96,6 +96,9 @@ Template.copiesPages.helpers({
       string += copiesPages.type;
     }
     return string;
+  },
+  copiesPagesPrice: function() {
+    return "$1.45 per page"
   }
 });
 

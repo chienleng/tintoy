@@ -21,8 +21,13 @@ Template.finishing.helpers({
         string += "Front: " + finishing.frontCover + ", ";
         string += "Back: " + finishing.backCover;
       }
+
+
     }
     return string;
+  },
+  finishingCost: function() {
+    return "$1.45 per page"
   },
   finishingTypes: function() {
     var Types = [
