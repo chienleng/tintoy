@@ -1,0 +1,8 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "ROOT_URL": "http://tintoy.meteorapp.com",
+      "MONGO_URL": "mongodb://tintoy_db:tinnyisintintoy@ds021969.mlab.com:21969/tintoy"
+    }
+  }
+}
